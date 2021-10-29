@@ -9,7 +9,7 @@ Team Vanquish Project 2 Implementation
 - [ ] Client/Server communication is done with JSON in HTTP request and response bodies.
 - [ ] All low-level persistence logic is abstracted away with Hibernate/Spring Data
 - [ ] Documentation (all classes and methods have adequate Javadoc comments)
-- [ ] All Exceptions are caught and logged to a file
+- [ ] All Exceptions are caught and logged to a file/database
 - [ ] Data useful to the application is retrieved from a third party API
 - [ ] Adequate test coverage for the service-layer
 - [ ] DevOps CI/CD pipeline is used to build and deploy project to a publicly available remote location
@@ -19,14 +19,14 @@ Team Vanquish Project 2 Implementation
 You will need to write a small paragraph describing your application. It should be 4-6 sentences and briefly cover the important points and features.
 
 ### Minimum Viable Product
-Your team will need to work with the trainer to come up with a satisfactory list of user stories for MVP as well as bonus stories. They should begin with "As a [stakeholder] I can... and describe what the user should be able to do. Aim for at least 2 different roles, user and administrator. Try to come up with 8 or so user stories for MVP. Carefully consider what your team can accomplish in 3 weeks and try not to set yourselves too great a task.
-
-* As a user, I can see...
-* As a user, I can purchase...
-* As a user, I can check...
-* As an administrator, I can schedule...
-* As an administrator, I can cancel...
-* As an administrator, I can view...
+* As a user, I can create a playlist.
+* As a user, I can add or remove songs from a playlist.
+* As a user, I can rate a song with a like or dislike.
+* As a user, I can look up an album and see what songs are on it.
+* As a user, I can look up an artist and see a [limited] list of their songs.
+* As a artist, I can schedule a concert.
+* As a artist, I can cancel a concert.
+* As a artist, I can view who has liked my songs.
 
 ### Bonus Stories
 * As an administrator, I can...
