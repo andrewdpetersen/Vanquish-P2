@@ -2,16 +2,17 @@
 Team Vanquish Project 2 Implementation
 
 ### Minimum Requirements
-1. Proper use of OOP principles and a well layered application structure
-2. Users are interfacing with an advanced UI built with Angular running in a browser
-4. CRUD operations are supported for one or more domain objects via the web application's API endpoints
-5. Client/Server communication is done with JSON in HTTP request and response bodies.
-6. All low-level persistence logic is abstracted away with Hibernate/Spring Data
-7. Documentation (all classes and methods have adequate Javadoc comments)
-8. All Exceptions are caught and logged to a file
-9. Data useful to the application is retrieved from a third party API
-10. Adequate test coverage for the service-layer
-11. DevOps CI/CD pipeline is used to build and deploy project to a publicly available remote location
+- [] Proper use of OOP principles and a well layered application structure
+- [] Users are interfacing with an advanced UI built with Angular running in a browser
+- [] CRUD operations are supported for one or more domain objects via the web application's API endpoints
+- [] Client/Server communication is done with JSON in HTTP request and response bodies.
+- [] Client/Server communication is done with JSON in HTTP request and response bodies.
+- [] All low-level persistence logic is abstracted away with Hibernate/Spring Data
+- [] Documentation (all classes and methods have adequate Javadoc comments)
+- [] All Exceptions are caught and logged to a file
+- [] Data useful to the application is retrieved from a third party API
+- [] Adequate test coverage for the service-layer
+- [] DevOps CI/CD pipeline is used to build and deploy project to a publicly available remote location
 
 
 ## -- App Name Here --
