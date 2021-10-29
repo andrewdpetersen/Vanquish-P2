@@ -1,4 +1,4 @@
-package com.revature.vanquish.P2;
+package Application;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
