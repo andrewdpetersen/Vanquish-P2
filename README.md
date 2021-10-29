@@ -23,7 +23,7 @@ while allowing concert organizers to gain insights into user trends and analytic
 Users will be able to create and share playlists of their favorite songs and artists,
 along with viewing songs by similar artists and genres.
 
-Premium users (Concert organizers, artists, tour managers) will be able to browse artists and see high-level, real-time analytics on
+Premium users (concert organizers, artists, tour managers, etc.) will be able to browse artists and see high-level, real-time analytics on
 the users that like particular artists.
 
 
