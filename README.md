@@ -15,9 +15,9 @@ Team Vanquish Project 2 Implementation
 - [ ] DevOps CI/CD pipeline is used to build and deploy project to a publicly available remote location
 
 
-## -- App Name Here --
+## -- 4TheMusic --
 
-Our Music and concerts app brings users together with their favorite artists,
+Our Music and concerts app, "4TheMusic" brings users together with their favorite artists,
 while allowing concert organizers to gain insights into user trends and analytics.
 
 Users will be able to create and share playlists of their favorite songs and artists,
