@@ -20,7 +20,7 @@
 *.rar
 
 # Resources
-# src/main/resources
+src/main/resources
 
 # IntelliJ
 \.idea
