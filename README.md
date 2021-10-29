@@ -18,7 +18,7 @@ Team Vanquish Project 2 Implementation
 ## -- 4TheMusic --
 
 Our Music and concerts app, "4TheMusic" brings users together with their favorite artists,
-while allowing concert organizers to gain insights from user trends and analytics.
+while allowing premium users to gain insights from user trends and analytics.
 
 Users will be able to create and share playlists of their favorite songs and artists,
 along with viewing songs by similar artists and genres.
