@@ -33,13 +33,14 @@ the users that like particular artists.
 * As a user, I can rate a song with a like or dislike.
 * As a user, I can look up an album and see what songs are on it.
 * As a user, I can look up an artist and see a [limited] list of their songs.
-* As an artist, I can schedule a concert.
-* As an artist, I can cancel a concert.
-* As an artist, I can view who has liked my songs.
+* As a premium user, I can schedule a concert.
+* As a premium user, I can cancel a concert.
+* As a premium user, I can see a list of liked songs for a user.
+* As a premium user, I can see a like/dislike ratio for a particular song.
 
 ### Bonus Stories
 * As a user, I can view a list of users who like the same songs.
-* As an artist, I can view a list of songs on them.
+* As a premium user, I can see a like/dislike ratio for an entire artist.
 
 ## Tech Stack
 You should be employing the following technologies in your project.
