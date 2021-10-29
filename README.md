@@ -16,7 +16,16 @@ Team Vanquish Project 2 Implementation
 
 
 ## -- App Name Here --
-You will need to write a small paragraph describing your application. It should be 4-6 sentences and briefly cover the important points and features.
+
+Our Music and concerts app brings users together with their favorite artists,
+while allowing concert organizers to gain insights into user trends and analytics.
+
+Users will be able to create and share playlists of their favorite songs and artists,
+along with viewing songs by similar artists and genres.
+
+Concert organizers will be able to browse artists and see high-level, real-time analytics on
+the users that like particular artists.
+
 
 ### Minimum Viable Product
 * As a user, I can create a playlist.
