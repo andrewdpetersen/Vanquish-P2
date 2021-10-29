@@ -24,12 +24,13 @@ You will need to write a small paragraph describing your application. It should 
 * As a user, I can rate a song with a like or dislike.
 * As a user, I can look up an album and see what songs are on it.
 * As a user, I can look up an artist and see a [limited] list of their songs.
-* As a artist, I can schedule a concert.
-* As a artist, I can cancel a concert.
-* As a artist, I can view who has liked my songs.
+* As an artist, I can schedule a concert.
+* As an artist, I can cancel a concert.
+* As an artist, I can view who has liked my songs.
 
 ### Bonus Stories
-* As an administrator, I can...
+* As a user, I can view a list of users who like the same songs.
+* As an artist, I can view a list of songs on them.
 
 ## Tech Stack
 You should be employing the following technologies in your project.
