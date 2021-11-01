@@ -1,6 +1,6 @@
 package Util;
 
-import Logging.MyLogger;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,6 +13,7 @@ import java.util.Date;
 /**
  * This class is used to record every request made in a single session.
  */
+@Service
 public abstract class ServiceRequests {
     // The request count for this session
     private static int requestCount = 0;
@@ -36,7 +37,7 @@ public abstract class ServiceRequests {
 
             System.out.println("Request Summary has been written to designated to file.");
         } catch (IOException e) {
-            MyLogger.getMyLogger().writeLog(e.toString(), 3);
+            e.printStackTrace();
         }
     }
 

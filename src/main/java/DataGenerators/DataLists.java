@@ -1,7 +1,10 @@
 package DataGenerators;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class DataLists {
-    static String[] names = {
+    public static String[] names = {
             "Chace", "Nielsen",
             "Leticia", "Allen",
             "Lyric", "Branch",
@@ -13,24 +16,23 @@ public class DataLists {
             "Augustus", "James",
             "Rodolfo", "Patton",
             "Iyana", "Berry",
-            "Dawson", "Sheppard"};
-
-    static String[] passwords = {
-            "solo", "variable",
-            "treaty", "dismissal",
-            "possible", "quarrel",
-            "challenge", "compact",
-            "partner", "disorder",
-            "medieval", "soil",
-            "snuggle", "quotation",
-            "lamb", "accurate",
-            "embarrassment", "standard",
-            "investment", "low",
-            "include", "hay",
-            "opponent", "idempotent"
+            "Dawson", "Sheppard"
     };
 
-    static String[] usernames = {
+    public static String[] passwords = {
+            "m]hQB7>d", "wRr^){3Q" ,
+            "h@w/V[8k", "]tqWC_D4",
+            "kKL9?sx6", "WmHu{V9K",
+            "(@veR46w", ">?x&D2N9",
+            ">6J.yd7t", "6Qm@av{/",
+            "t(6_R8^{", "j)4A?[=h",
+            "!kZ%h[6b", "q7yS[gB{",
+            "_3$nJQ,r", "UCaH5[$S",
+            "D5p_,yVG", "J29a-j?@",
+            "DRyQp3}]", "n3cYM@B^"
+    };
+
+    public static String[] usernames = {
             "Aireril", "Alisomet",
             "Anostung", "Aspenbo",
             "AuthorPlatinum", "Astroboy",
@@ -45,7 +47,7 @@ public class DataLists {
             "Pherietm", "Puffro"
     };
 
-    static String[] emails = {
+    public static String[] emails = {
             "andre.kling@mills.com",
             "gayle.turcotte@connelly.biz",
             "adelbert.bauch@reilly.com",
@@ -66,5 +68,5 @@ public class DataLists {
             "graham.bertha@hotmail.com",
             "alessandra68@kuphal.com",
             "mraz.cory@yahoo.com"
-};
+    };
 }

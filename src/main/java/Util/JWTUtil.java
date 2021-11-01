@@ -2,10 +2,12 @@ package Util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Key;
 
+@Service
 public class JWTUtil {
     private static Key key;
 

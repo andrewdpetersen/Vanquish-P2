@@ -1,6 +1,13 @@
 package Models;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.*;
+
+/**
+ * This class is used to declare the POJO, User
+ * @date 10/29/2021
+ * @author
+ */
 
 @Table(name = "USERS")
 @Entity
@@ -11,6 +18,14 @@ public class User {
     public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public User(String firstName, String lastName, String email, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
     }
 
     @Id
@@ -51,22 +66,33 @@ public class User {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "User {\n" +
-                "\tID: " + ID + "\n" +
-                "\tfirstName: " + firstName + '\n' +
-                "\tlastName: " + lastName + '\n' +
-                "\temail: " + email + '\n' +
-                '}';
+    @Column(name = "USERNAME")
+    private String username;
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    @OneToOne
-    private UserInfo userInfo;
-    public UserInfo getUserInfo() {
-        return userInfo;
+    @Column(name = "PASSWORD", nullable = false)
+    private String password;
+    public String getPassword(){
+        return password;
     }
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User: {\n" +
+                "ID: " + ID +
+                "firstName: " + firstName + ",\n" +
+                "lastName: " + lastName + ",\n" +
+                "email: " + email + ",\n" +
+                "username: " + username + ",\n" +
+                "password: " + password + "\n" +
+                '}';
     }
 }

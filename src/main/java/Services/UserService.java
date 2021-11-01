@@ -1,29 +1,38 @@
 package Services;
 
 import Models.User;
-import Models.UserInfo;
 import org.hibernate.query.Query;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transaction;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import static Util.CredentialValidator.*;
+
+/**
+ *
+ * @date 10/29/2021
+ * @author
+ */
 
 @Service
 public class UserService {
     // Variables
-    boolean success;
+    private static boolean success;
+    private static User user;
 
     // Hibernate Variable
-    Query<User> query;
-    Transaction tx;
+    private static Query<User> query;
+    private static Transaction tx;
+
+    static {
+        user = new User();
+    }
 
     // Get All
-    public ArrayList<User> allUsers(){
+    @Bean
+    public static ArrayList<User> allUsers(){
         ArrayList<User> users = new ArrayList<>();
 
         // Query for all users in database
@@ -31,8 +40,29 @@ public class UserService {
         return users;
     }
 
+    @Bean
+    public static User getByID(int ID){
+        // User with this ID
+        // Query<User> query = getSession().createQuery("from User where ID = :id", User.class);
+        // user = query.getFirstResult();
+
+        return user;
+    }
+
+    public static boolean save(@Autowired User user){
+        try{
+            // getSession.save(user);
+            success = true;
+        } catch (Exception e) {
+            success = false;
+            e.printStackTrace();
+        }
+
+        return success;
+    }
+
     // Register
-    public boolean registerUser(JSONObject registrationData){
+    public static boolean registerUser(JSONObject registrationData){
         try {
             String firstName, lastName, username, password, email;
             firstName = registrationData.getString("firstName");
@@ -42,10 +72,7 @@ public class UserService {
             email = registrationData.getString("email");
 
             if (emailIsValid(email) && usernameIsValid(username) && passwordIsValid(password)) {
-                User user = new User(firstName, lastName);
-                UserInfo userInfo = new UserInfo(username, password, email);
-
-                user.setUserInfo(userInfo);
+                User user = new User();
 
                 /*tx = getSession.startTransaction();
                 getSession.save(user);*/
@@ -55,8 +82,9 @@ public class UserService {
                 success = false;
             }
         } catch (Exception e) {
-            // if tx != null
+            // if tx != null {
             // tx.rollback();
+            // }
             success = false;
             e.printStackTrace();
         }
