@@ -6,7 +6,6 @@ Team Vanquish Project 2 Implementation
 - [ ] Users are interfacing with an advanced UI built with Angular running in a browser
 - [ ] CRUD operations are supported for one or more domain objects via the web application's API endpoints
 - [ ] Client/Server communication is done with JSON in HTTP request and response bodies.
-- [ ] Client/Server communication is done with JSON in HTTP request and response bodies.
 - [ ] All low-level persistence logic is abstracted away with Hibernate/Spring Data
 - [ ] Documentation (all classes and methods have adequate Javadoc comments)
 - [ ] All Exceptions are caught and logged to a file/database
