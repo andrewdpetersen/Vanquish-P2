@@ -17,7 +17,7 @@ Team Vanquish Project 2 Implementation
 ## -- 4TheMusic --
 
 "4TheMusic" is a social web service that brings music fans and concert-goers together with their favorite artists,
-while allowing premium users to gain insights from user trends and analytics.
+while allowing premium users to gain valuable insights from user trends and analytics.
 
 Users can create and share playlists of their favorite songs and artists,
 along with viewing songs by similar artists and genres, and connecting to the social media accounts of their
