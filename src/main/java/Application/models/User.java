@@ -1,5 +1,6 @@
 package Application.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -28,7 +29,25 @@ public class User {
     private String email;
 
     @Column
+    private String location;
+
+    @Column
     private boolean role;
+
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "playlist_id")
+//    //A list of playlists mapped to this user
+//    private List<Playlist> playlistList;
+//
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "track_id")
+//    //A list of all the tracks this user has "liked"
+//    private List<Track> likedTracks;
+//
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "concert_id")
+//    //Only premium users have this field active
+//    private List<Concert> myConcerts;
 
     /**
      * Full args constructor
@@ -38,15 +57,17 @@ public class User {
      * @param username
      * @param password
      * @param email
+     * @param location
      * @param role
      */
-    public User(Integer user_id, String first_name, String last_name, String username, String password, String email, boolean role) {
+    public User(Integer user_id, String first_name, String last_name, String username, String password, String email, String location, boolean role) {
         this.user_id = user_id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.location = location;
         this.role = role;
     }
 
@@ -114,5 +135,13 @@ public class User {
 
     public void setRole(boolean role) {
         this.role = role;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
