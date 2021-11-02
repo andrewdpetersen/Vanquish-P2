@@ -1,47 +1,54 @@
 package Util;
 
+import Exceptions.AuthenticationException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
-
 import javax.servlet.http.HttpServletRequest;
 import java.security.Key;
 
+/**
+ * JWTUtil
+ * Class used for the creation/parsing of JWTs
+ */
 @Service
 public class JWTUtil {
-    private static Key key;
+    private Key key;
+    private final Logger logger = LogManager.getLogger();
 
-    private static void createKey(){
+    private void createKey(){
         key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
 
-    public static String createJWT(HttpServletRequest request){
+    public String createJWT(HttpServletRequest request){
         createKey();
 
-        // Build the java web token
-        String jwt = Jwts.builder().setIssuer(request.getRequestURL().toString())
+        // Build the java web token and return it
+        return Jwts.builder().setIssuer(request.getRequestURL().toString())
                 .setSubject(request.getParameter("username"))
                 .signWith(key)
                 .compact();
-
-        return jwt;
     }
 
-    public static boolean parseJWT(String jwsString) {
-        boolean parsed = false;
-
+    public String parseJWT(String token) {
         try {
-            Jws<Claims> jws = Jwts.parserBuilder()  // Creates parser instance
+            Jws<Claims> jwtClaim = Jwts.parserBuilder()  // Creates parser instance
                     .setSigningKey(key)             // Specify the key to verify this jws signature
                     .build()                        // Returns a new, thread-safe, parser
-                    .parseClaimsJws(jwsString);     // Parse the jws and return the original jws
+                    .parseClaimsJws(token);         // Parse the jws and return the original jws
 
-            parsed = true;
-        }catch (JwtException e){
+            return jwtClaim.getBody().getSubject();
+        } catch (JwtException e) {
             // JWT is invalid
-            e.printStackTrace();
+            logger.info(String.format("Unauthorized user tried to barge their way in here! Don't worry, I caught this transgression. Error: %s",
+                    e.getMessage()));
+            throw new AuthenticationException();
         }
+    }
 
-        return parsed;
+    public Key getKey() {
+        return key;
     }
 }

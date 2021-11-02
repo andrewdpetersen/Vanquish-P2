@@ -1,9 +1,12 @@
 package DataGenerators;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Random;
 
 import static DataGenerators.DataLists.*;
 
+@Service
 public class UserGen {
     private static Random rand = new Random();
     private static int index;

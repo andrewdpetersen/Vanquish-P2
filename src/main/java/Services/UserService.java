@@ -1,14 +1,13 @@
 package Services;
 
 import Models.User;
-import org.hibernate.query.Query;
-import org.json.JSONObject;
+import Service.UserRegistration;
+import Exceptions.UserDoesNotExistException;
+import Repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-import javax.transaction.Transaction;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
-import static Util.CredentialValidator.*;
 
 /**
  *
@@ -17,22 +16,23 @@ import static Util.CredentialValidator.*;
  */
 
 @Service
+@Transactional
 public class UserService {
-    // Variables
-    private static boolean success;
-    private static User user;
+    // Repository
+    private final UserRepository userRepository;
 
-    // Hibernate Variable
-    private static Query<User> query;
-    private static Transaction tx;
-
-    static {
-        user = new User();
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    // Get All
-    @Bean
-    public static ArrayList<User> allUsers(){
+    /**
+     *
+     *
+     * @return
+     * @author
+     */
+    public ArrayList<User> allUsers(){
         ArrayList<User> users = new ArrayList<>();
 
         // Query for all users in database
@@ -40,18 +40,27 @@ public class UserService {
         return users;
     }
 
-    @Bean
-    public static User getByID(int ID){
-        // User with this ID
-        // Query<User> query = getSession().createQuery("from User where ID = :id", User.class);
-        // user = query.getFirstResult();
-
-        return user;
+    /**
+     *
+     * @param ID
+     * @return
+     * @author
+     */
+    public User getByID(int ID){
+        return userRepository.findByID(ID)
+                .orElseThrow(UserDoesNotExistException::new);
     }
 
-    public static boolean save(@Autowired User user){
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean save(@Autowired User user){
+        boolean success;
+
         try{
-            // getSession.save(user);
+            userRepository.save(user);
             success = true;
         } catch (Exception e) {
             success = false;
@@ -61,34 +70,51 @@ public class UserService {
         return success;
     }
 
-    // Register
-    public static boolean registerUser(JSONObject registrationData){
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public boolean delete(int id){
+        boolean success;
+
         try {
-            String firstName, lastName, username, password, email;
-            firstName = registrationData.getString("firstName");
-            lastName = registrationData.getString("lastName");
-            username = registrationData.getString("username");
-            password = registrationData.getString("password");
-            email = registrationData.getString("email");
-
-            if (emailIsValid(email) && usernameIsValid(username) && passwordIsValid(password)) {
-                User user = new User();
-
-                /*tx = getSession.startTransaction();
-                getSession.save(user);*/
-
-                tx.commit();
+            User user = getByID(id);
+            if (user != null) {
+                userRepository.delete(user);
+                success = true;
             } else {
                 success = false;
             }
         } catch (Exception e) {
-            // if tx != null {
-            // tx.rollback();
-            // }
             success = false;
             e.printStackTrace();
         }
 
         return success;
+    }
+
+    /**
+     *
+     * @param userRegistrationData
+     * @return
+     */
+    public User registerUser(UserRegistration userRegistrationData){
+        User newUser = null;
+        String username, password, email;
+
+        username = userRegistrationData.getUsername();
+        email = userRegistrationData.getEmail();
+        password = userRegistrationData.getPassword();
+
+        try {
+            newUser = new User(email, username, password);
+            newUser.setRole(User.Role.BASIC);
+            userRepository.save(newUser);
+        } catch (Exception e){
+
+        }
+
+        return newUser;
     }
 }

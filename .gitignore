@@ -19,9 +19,6 @@
 *.tar.gz
 *.rar
 
-# Resources
-src/main/resources
-
 # IntelliJ
 \.idea
 
@@ -31,4 +28,3 @@ hs_err_pid*
 # ignore any .properties files
 *.properties
 /.jpb/
-/.mvn/

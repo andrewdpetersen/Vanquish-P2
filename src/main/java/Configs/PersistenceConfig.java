@@ -10,7 +10,9 @@ package Configs;
  */
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
@@ -18,4 +20,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class PersistenceConfig {
     // Hibernate Variables
     // @Value("")
+
 }

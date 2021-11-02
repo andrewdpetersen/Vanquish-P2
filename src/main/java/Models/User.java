@@ -1,7 +1,10 @@
 package Models;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * This class is used to declare the POJO, User
@@ -13,16 +16,18 @@ import javax.persistence.*;
 @Entity
 public class User {
     public User() {
-    }
 
-    public User(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     public User(String firstName, String lastName, String email, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String email, String username, String password) {
         this.email = email;
         this.username = username;
         this.password = password;
@@ -82,6 +87,28 @@ public class User {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Enumerated
+    Role role;
+    public enum Role {
+        BASIC,
+        PREMIUM
+    }
+    public Role getRole() {
+        return role;
+    }
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    @OneToMany(mappedBy = "user")
+    List<Playlist> myPlaylists;
+    public List<Playlist> getMyPlaylists() {
+        return myPlaylists;
+    }
+    public void setMyPlaylists(List<Playlist> myPlaylists) {
+        this.myPlaylists = myPlaylists;
     }
 
     @Override
