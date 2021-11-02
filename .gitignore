@@ -20,7 +20,10 @@
 *.rar
 
 # Resources
-# src/main/resources
+src/main/resources
+
+# Properties files
+*.properties
 
 # IntelliJ
 \.idea

@@ -6,30 +6,41 @@ Team Vanquish Project 2 Implementation
 - [ ] Users are interfacing with an advanced UI built with Angular running in a browser
 - [ ] CRUD operations are supported for one or more domain objects via the web application's API endpoints
 - [ ] Client/Server communication is done with JSON in HTTP request and response bodies.
-- [ ] Client/Server communication is done with JSON in HTTP request and response bodies.
 - [ ] All low-level persistence logic is abstracted away with Hibernate/Spring Data
 - [ ] Documentation (all classes and methods have adequate Javadoc comments)
-- [ ] All Exceptions are caught and logged to a file
+- [ ] All Exceptions are caught and logged to a file/database
 - [ ] Data useful to the application is retrieved from a third party API
 - [ ] Adequate test coverage for the service-layer
 - [ ] DevOps CI/CD pipeline is used to build and deploy project to a publicly available remote location
 
 
-## -- App Name Here --
-You will need to write a small paragraph describing your application. It should be 4-6 sentences and briefly cover the important points and features.
+## -- 4TheMusic --
+
+"4TheMusic" is a social web service that brings music fans and concert-goers together with their favorite artists,
+while allowing premium users to gain valuable insights from user trends and analytics.
+
+Users can create and share playlists of their favorite songs and artists,
+along with viewing songs by similar artists and genres, and connecting to the social media accounts of their
+favorite artists.
+
+Premium users (concert organizers, artists, tour managers, etc.) can browse artists and see high-level, real-time analytics on
+the users that like particular artists.
+
 
 ### Minimum Viable Product
-Your team will need to work with the trainer to come up with a satisfactory list of user stories for MVP as well as bonus stories. They should begin with "As a [stakeholder] I can... and describe what the user should be able to do. Aim for at least 2 different roles, user and administrator. Try to come up with 8 or so user stories for MVP. Carefully consider what your team can accomplish in 3 weeks and try not to set yourselves too great a task.
-
-* As a user, I can see...
-* As a user, I can purchase...
-* As a user, I can check...
-* As an administrator, I can schedule...
-* As an administrator, I can cancel...
-* As an administrator, I can view...
+* As a user, I can create a playlist.
+* As a user, I can add or remove songs from a playlist.
+* As a user, I can rate a song with a like or dislike.
+* As a user, I can look up an album and see what songs are on it.
+* As a user, I can look up an artist and see a [limited] list of their songs.
+* As a premium user, I can schedule a concert.
+* As a premium user, I can cancel a concert.
+* As a premium user, I can see a list of liked songs for a user.
+* As a premium user, I can see a like/dislike ratio for a particular song.
 
 ### Bonus Stories
-* As an administrator, I can...
+* As a user, I can view a list of users who like the same songs.
+* As a premium user, I can see a like/dislike ratio for an entire artist.
 
 ## Tech Stack
 You should be employing the following technologies in your project.
