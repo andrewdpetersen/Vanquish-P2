@@ -6,9 +6,7 @@ import javax.persistence.*;
 @Entity
 public class Track {
     public Track()
-    {
-
-    }
+    {   }
 
     @Id
     @Column(name = "Track_ID")
