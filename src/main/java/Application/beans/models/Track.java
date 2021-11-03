@@ -1,23 +1,20 @@
-package Application.models;
+package Application.beans.models;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
-@Table(name = "Tracks") //or @Component?
 @Entity
+@Table(name = "tracks")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Track {
-    public Track()
-    {   }
-
     @Id
-    @Column(name = "Track_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int track_id;
+    private Integer id;
 
-    @Column(name = "Track_Title")
+    @Column(name = "track_title")
     private String title;
 
-    //possible one if we want to track overall likes?
-    @Column(name = "Track_Likes")
+    @Column(name = "track_likes")
     private int likes;
 
 //    //many tracks per one album
@@ -30,12 +27,30 @@ public class Track {
 //    @JoinColumn(nullable = false)
 //    private Artist artist;
 
-    public int getTrack_id() {
-        return track_id;
+    /**
+     * Full args constructor
+     * @param id
+     * @param title
+     * @param likes
+     */
+    public Track(Integer id, String title, int likes) {
+        this.id = id;
+        this.title = title;
+        this.likes = likes;
     }
 
-    public void setTrack_id(int track_id) {
-        this.track_id = track_id;
+    /**
+     * No args constructor
+     */
+    public Track() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -69,4 +84,12 @@ public class Track {
 //    public void setArtist(Artist artist) {
 //        this.artist = artist;
 //    }
+
+    @Override
+    public String toString() {
+        return "Track{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }
