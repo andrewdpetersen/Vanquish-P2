@@ -6,9 +6,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication(scanBasePackages = "java")
-@EntityScan("java")
-@ComponentScan("java")
+@SpringBootApplication(scanBasePackages = "Application")
+@EntityScan("Application")
 public class P2Application {
 
 	public static void main(String[] args) {
