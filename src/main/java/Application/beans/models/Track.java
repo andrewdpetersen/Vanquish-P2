@@ -1,16 +1,22 @@
-package Application.models;
+package Application.beans.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
+/**
+ * If @Component (defines a java class as a bean) not added will throw a NoSuchBeanDefinitionException
+ */
+@Component
 @Entity
 @Table(name = "tracks")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Track {
+public class Track implements Serializable {
     @Id
     private Integer id;
 

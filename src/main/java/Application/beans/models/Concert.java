@@ -1,35 +1,32 @@
-package Application.models;
+package Application.beans.models;
 
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.List;
+import java.io.Serializable;
 
 @Component
 @Entity
 @Table(name = "concert")
-public class Concert {
+public class Concert implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int concert_id;
+    private Integer concert_id;
 
     @Column(name = "concert_date")
     private String date;
 
+    private String name;
+
     public Concert() {
     }
 
-    public Concert(int concert_id, String date) {
-        this.concert_id = concert_id;
-        this.date = date;
-    }
-
-    public int getConcert_id() {
+    public Integer getConcert_id() {
         return concert_id;
     }
 
-    public void setConcert_id(int concert_id) {
+    public void setConcert_id(Integer concert_id) {
         this.concert_id = concert_id;
     }
 
@@ -41,7 +38,15 @@ public class Concert {
         this.date = date;
     }
 
-//    @OneToMany
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    //    @OneToMany
 //    @JoinColumn(name = "concert_state_id", referencedColumnName = "concert_id")
 //    private List<Concert> concertList;
 //
@@ -55,6 +60,7 @@ public class Concert {
         return "Concert{" +
                 "concert_id=" + concert_id +
                 ", date='" + date + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

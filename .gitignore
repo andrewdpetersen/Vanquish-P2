@@ -32,4 +32,3 @@ src/main/resources
 hs_err_pid*
 
 # ignore any .properties files
-*.properties
