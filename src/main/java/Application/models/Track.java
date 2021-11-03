@@ -11,10 +11,14 @@ import javax.persistence.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Track {
     @Id
-    private Integer id;
+    private Integer track_id;
 
     @Column
     private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "playlist_id")
+    private Playlist playlist;
 
     /**
      * Full args constructor
@@ -22,7 +26,7 @@ public class Track {
      * @param title
      */
     public Track(Integer id, String title) {
-        this.id = id;
+        this.track_id = id;
         this.title = title;
     }
 
@@ -33,11 +37,11 @@ public class Track {
     }
 
     public Integer getId() {
-        return id;
+        return track_id;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.track_id = id;
     }
 
     public String getTitle() {
@@ -48,10 +52,18 @@ public class Track {
         this.title = title;
     }
 
+    public Playlist getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
+    }
+
     @Override
     public String toString() {
         return "Track{" +
-                "id=" + id +
+                "id=" + track_id +
                 ", title='" + title + '\'' +
                 '}';
     }
