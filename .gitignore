@@ -20,10 +20,16 @@
 *.rar
 
 # Resources
-# src/main/resources
+src/main/resources
+
+# Properties files
+*.properties
 
 # IntelliJ
 \.idea
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# ignore any .properties files
+*.properties
