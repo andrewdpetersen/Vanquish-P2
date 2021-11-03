@@ -1,8 +1,18 @@
+import VanquishP2.Beans.Service.ValidatorService;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import java.util.Arrays;
-import static DataGenerators.DataLists.*;
+import org.junit.jupiter.api.TestInstance;
+import static org.mockito.Mockito.mock;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CredentialValidatorsTest {
+    ValidatorService mockValidator = mock(ValidatorService.class);
+
+    @BeforeAll
+    void setup(){
+        mockValidator = new ValidatorService();
+    }
+
     @Test
     public void emailChecker() {
 

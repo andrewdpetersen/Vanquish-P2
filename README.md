@@ -8,7 +8,7 @@ Team Vanquish Project 2 Implementation
 - [ ] Client/Server communication is done with JSON in HTTP request and response bodies.
 - [ ] All low-level persistence logic is abstracted away with Hibernate/Spring Data
 - [ ] Documentation (all classes and methods have adequate Javadoc comments)
-- [ ] All Exceptions are caught and logged to a file/database
+- [ ] All VanquishP2.Exceptions are caught and logged to a file/database
 - [ ] Data useful to the application is retrieved from a third party API
 - [ ] Adequate test coverage for the service-layer
 - [ ] DevOps CI/CD pipeline is used to build and deploy project to a publicly available remote location
