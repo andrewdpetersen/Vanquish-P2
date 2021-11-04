@@ -6,7 +6,6 @@ Team Vanquish Project 2 Implementation
 - [ ] Users are interfacing with an advanced UI built with Angular running in a browser
 - [ ] CRUD operations are supported for one or more domain objects via the web application's API endpoints
 - [ ] Client/Server communication is done with JSON in HTTP request and response bodies.
-- [ ] Client/Server communication is done with JSON in HTTP request and response bodies.
 - [ ] All low-level persistence logic is abstracted away with Hibernate/Spring Data
 - [ ] Documentation (all classes and methods have adequate Javadoc comments)
 - [ ] All Exceptions are caught and logged to a file/database
@@ -15,8 +14,18 @@ Team Vanquish Project 2 Implementation
 - [ ] DevOps CI/CD pipeline is used to build and deploy project to a publicly available remote location
 
 
-## -- App Name Here --
-You will need to write a small paragraph describing your application. It should be 4-6 sentences and briefly cover the important points and features.
+## -- 4TheMusic --
+
+"4TheMusic" is a social web service that brings music fans and concert-goers together with their favorite artists,
+while allowing premium users to gain valuable insights from user trends and analytics.
+
+Users can create and share playlists of their favorite songs and artists,
+along with viewing songs by similar artists and genres, and connecting to the social media accounts of their
+favorite artists.
+
+Premium users (concert organizers, artists, tour managers, etc.) can browse artists and see high-level, real-time analytics on
+the users that like particular artists.
+
 
 ### Minimum Viable Product
 * As a user, I can create a playlist.
@@ -24,13 +33,14 @@ You will need to write a small paragraph describing your application. It should 
 * As a user, I can rate a song with a like or dislike.
 * As a user, I can look up an album and see what songs are on it.
 * As a user, I can look up an artist and see a [limited] list of their songs.
-* As an artist, I can schedule a concert.
-* As an artist, I can cancel a concert.
-* As an artist, I can view who has liked my songs.
+* As a premium user, I can schedule a concert.
+* As a premium user, I can cancel a concert.
+* As a premium user, I can see a list of liked songs for a user.
+* As a premium user, I can see a like/dislike ratio for a particular song.
 
 ### Bonus Stories
 * As a user, I can view a list of users who like the same songs.
-* As an artist, I can view a list of songs on them.
+* As a premium user, I can see a like/dislike ratio for an entire artist.
 
 ## Tech Stack
 You should be employing the following technologies in your project.
