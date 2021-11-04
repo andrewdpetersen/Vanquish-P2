@@ -60,12 +60,22 @@ public class User {
 
     @OneToMany(mappedBy = "track_id")
     @JsonIgnore
-    List<Track> favorites;
-    public List<Track> getFavorites() {
-        return favorites;
+    List<Track> liked_tracks;
+    public List<Track> getLiked_tracks() {
+        return liked_tracks;
     }
-    public void setFavorites(List<Track> favorites) {
-        this.favorites = favorites;
+    public void setLiked_tracks(List<Track> liked_tracks) {
+        this.liked_tracks = liked_tracks;
+    }
+
+    @OneToMany(mappedBy = "track_id")
+    @JsonIgnore
+    List<Track> disliked_tracks;
+    public List<Track> getDisliked_tracks() {
+        return disliked_tracks;
+    }
+    public void setDisliked_tracks(List<Track> disliked_tracks) {
+        this.disliked_tracks = disliked_tracks;
     }
 
     @OneToOne(mappedBy = "user")
@@ -83,7 +93,8 @@ public class User {
                 "ID=" + ID +
                 ", role=" + role +
                 ", myPlaylists=" + myPlaylists +
-                ", favorites=" + favorites +
+                ", liked_tracks=" + liked_tracks +
+                ", disliked_tracks=" + disliked_tracks +
                 ", userInfo=" + userInfo +
                 '}';
     }

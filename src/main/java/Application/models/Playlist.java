@@ -25,7 +25,7 @@ public class Playlist {
     private User user;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "track_id")
+    @ManyToMany(mappedBy = "track_id")
     private List<Track> trackList;
 
     /**
