@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -29,18 +28,4 @@ public class ConcertService {
     public List <Concert> getConcertList(){
         return concertRepository.findAll();
     }
-
-    public void delete(Concert concert){
-        concertRepository.delete(concert);
-    }
-
-    /**
-     * Optional is a container object which may or may not contain a non-null value.
-     * @param name
-     * @return
-     */
-    public Optional<Concert> getConcertByName(String name){
-        return concertRepository.findByName(name);
-    }
-
 }

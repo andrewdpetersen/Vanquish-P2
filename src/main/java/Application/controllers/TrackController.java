@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/Track")
+@RequestMapping("/4TheMusic")
 public class TrackController {
     private final TrackService trackService;
 

@@ -1,8 +1,5 @@
 package Application.controllers;
-
-
 import Application.models.Artist;
-import Application.models.Concert;
 import Application.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("music")
+@RequestMapping("/4TheMusic")
 public class ArtistController {
 
     private final ArtistService artistService;
@@ -29,14 +26,7 @@ public class ArtistController {
 
     @GetMapping(path = "/artist/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Artist getArtist(@PathVariable("id") Integer id) {
+    public Artist getArtistById(@PathVariable("id") Integer id) {
         return artistService.getArtist(id);
     }
-
-    @GetMapping(path = "/artist/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.OK)
-    public Artist getArtistByName(@PathVariable("name") String name){
-        return artistService.getArtistByName(name);
-    }
-
 }

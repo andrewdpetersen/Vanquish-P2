@@ -7,10 +7,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("music")
+@RequestMapping("/4TheMusic")
 public class ConcertController {
 
     private final ConcertService concertService;
@@ -38,17 +37,4 @@ public class ConcertController {
     public Concert getConcertById(@PathVariable("id") Integer id){
         return concertService.getConcert(id);
     }
-
-    @DeleteMapping(path = "/concert/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public void cancelConcert(@PathVariable("id") Integer id, @RequestBody Concert concert){
-       concertService.delete(concert);
-    }
-
-    @GetMapping(path = "/concert/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.OK)
-    public Optional<Concert> getConcertByTitle(@PathVariable("name") String name){
-    return concertService.getConcertByName(name);
-    }
-
 }
