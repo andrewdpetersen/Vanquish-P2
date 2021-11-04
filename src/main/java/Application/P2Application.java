@@ -1,6 +1,5 @@
 package Application;
 
-import Application.beans.TestBean;
 import Application.beans.models.Track;
 import Application.beans.service.TrackService;
 import org.springframework.boot.SpringApplication;
@@ -8,16 +7,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication(scanBasePackages = "java")
-@EntityScan("java")
-@ComponentScan("java")
+@SpringBootApplication(scanBasePackages = "Application.beans")
+@EntityScan("Application.beans")
+@ComponentScan("Application.beans")
+@EnableTransactionManagement
 public class P2Application {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(P2Application.class, args);
-		TestBean bean = context.getBean(TestBean.class);
-		System.out.println(bean.getOtherBean().getTest());
 
 		TrackService service = context.getBean(TrackService.class);
 

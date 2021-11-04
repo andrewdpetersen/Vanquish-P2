@@ -1,10 +1,12 @@
 package Application.beans.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
 @Entity
+@Component
 @Table(name = "tracks")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Track {
@@ -26,6 +28,11 @@ public class Track {
 //    @ManyToOne
 //    @JoinColumn(nullable = false)
 //    private Artist artist;
+//
+//    //many tracks per one playlist
+//    @ManyToOne
+//    @JoinColumn(nullable = false)
+//    private Playlist playlist;
 
     /**
      * Full args constructor

@@ -6,6 +6,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@NoRepositoryBean
 public interface TrackRepository extends JpaRepository<Track,Integer> {
 }
