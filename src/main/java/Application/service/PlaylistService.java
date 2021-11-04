@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @Transactional
 public class PlaylistService {
-    private PlaylistRepository playlistRepository;
+    private final PlaylistRepository playlistRepository;
 
     @Autowired
     public PlaylistService(PlaylistRepository playlistRepository) {

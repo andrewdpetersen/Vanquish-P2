@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication(scanBasePackages = "Application")
-@EntityScan("Application.beans.models")
+@EntityScan("Application.models")
 @ComponentScan("Application")
 public class P2Application {
 

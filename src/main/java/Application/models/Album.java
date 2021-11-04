@@ -81,6 +81,14 @@ public class Album implements Serializable {
     @JsonIgnore
     private List<Genre> genres_of_album;
 
+    public List<Genre> getGenres_of_album() {
+        return genres_of_album;
+    }
+
+    public void setGenres_of_album(List<Genre> genres_of_album) {
+        this.genres_of_album = genres_of_album;
+    }
+
     @Override
     public String toString() {
         return "Album{" +

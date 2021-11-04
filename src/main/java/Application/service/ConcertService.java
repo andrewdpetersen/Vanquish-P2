@@ -26,8 +26,12 @@ public class ConcertService {
         return concertRepository.getById(id);
     }
 
-    public List <Concert> concertList(){
+    public List <Concert> getConcertList(){
         return concertRepository.findAll();
+    }
+
+    public void delete(Concert concert){
+        concertRepository.delete(concert);
     }
 
     /**
@@ -38,4 +42,5 @@ public class ConcertService {
     public Optional<Concert> getConcertByName(String name){
         return concertRepository.findByName(name);
     }
+
 }
