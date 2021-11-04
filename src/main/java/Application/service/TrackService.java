@@ -1,7 +1,7 @@
-package Application.beans.service;
+package Application.service;
 
-import Application.beans.models.Track;
-import Application.beans.repositories.TrackRepository;
+import Application.models.Track;
+import Application.repositories.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

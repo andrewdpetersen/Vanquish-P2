@@ -1,8 +1,7 @@
-package Application.beans.repositories;
+package Application.repositories;
 
-import Application.beans.models.Track;
+import Application.models.Track;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Repository;
 
 @Repository

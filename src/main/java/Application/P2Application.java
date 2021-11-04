@@ -1,7 +1,7 @@
 package Application;
 
-import Application.beans.models.Track;
-import Application.beans.service.TrackService;
+import Application.models.Track;
+import Application.service.TrackService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -9,9 +9,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication(scanBasePackages = "Application.beans")
-@EntityScan("Application.beans")
-@ComponentScan("Application.beans")
+@SpringBootApplication(scanBasePackages = "Application")
+@EntityScan("Application")
+@ComponentScan("Application")
 @EnableTransactionManagement
 public class P2Application {
 
@@ -20,7 +20,7 @@ public class P2Application {
 
 		TrackService service = context.getBean(TrackService.class);
 
-		Track track = new Track(1,"Never Gonna Give You Up",20);
+		Track track = new Track(1,"Never Gonna Give You Up");
 		service.save(track);
 
 		Track track2 = service.getTrack(1);
