@@ -1,7 +1,6 @@
-package Application.beans.service;
-
-import Application.beans.models.Concert;
-import Application.beans.repositories.ConcertRepository;
+package Application.service;
+import Application.models.Concert;
+import Application.repositories.ConcertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

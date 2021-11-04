@@ -1,7 +1,7 @@
-package Application.beans.controllers;
+package Application.controllers;
 
 import Application.beans.models.Concert;
-import Application.beans.service.ConcertService;
+import Application.service.ConcertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

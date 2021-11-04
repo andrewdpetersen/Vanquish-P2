@@ -1,14 +1,14 @@
-package Application.beans.controllers;
+package Application.controllers;
 
-import Application.beans.models.Track;
-import Application.beans.service.TrackService;
+import Application.models.Track;
+import Application.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("music")
+@RequestMapping(value = "/Track")
 public class TrackController {
     private final TrackService trackService;
 

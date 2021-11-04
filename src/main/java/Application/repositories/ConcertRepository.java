@@ -1,6 +1,5 @@
-package Application.beans.repositories;
-
-import Application.beans.models.Concert;
+package Application.repositories;
+import Application.models.Concert;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
