@@ -16,16 +16,16 @@ import java.util.List;
 
 @Table(name = "USERS")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class User {
     public User() {
         myPlaylists = new ArrayList<>();
     }
 
-    public User(UserRegistrationDTO registration) {
-        this.firstName = registration.getFirstName();
-        this.lastName = registration.getLastName();
-        myPlaylists = new ArrayList<>();
+    public User(Role role, UserInfo userInfo) {
+        this.role = role;
+        this.myPlaylists = new ArrayList<>();
+        this.userInfo = userInfo;
     }
 
     @Id
@@ -37,24 +37,6 @@ public class User {
     }
     public void setID(Integer ID) {
         this.ID = ID;
-    }
-
-    @Column(name = "FirstName")
-    private String firstName;
-    public String getFirstName() {
-        return firstName;
-    }
-    public void setFirstName(String username) {
-        this.firstName = username;
-    }
-
-    @Column(name = "LastName")
-    private String lastName;
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     @Enumerated
@@ -79,6 +61,15 @@ public class User {
         this.myPlaylists = myPlaylists;
     }
 
+    @OneToMany(mappedBy = "user")
+    List<Track> favorites;
+    public List<Track> getFavorites() {
+        return favorites;
+    }
+    public void setFavorites(List<Track> favorites) {
+        this.favorites = favorites;
+    }
+
     @OneToOne(mappedBy = "user")
     UserInfo userInfo;
     public UserInfo getUserInfo() {
@@ -90,10 +81,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "User: {\n" +
-                "ID: " + ID +
-                "firstName: " + firstName + ",\n" +
-                "lastName: " + lastName + ",\n" +
+        return "User {\n" +
+                "ID: " + ID + ",\n" +
+                "role: " + role + ",\n" +
+                "myPlaylists: " + myPlaylists + ",\n" +
+                "favorites: " + favorites + ",\n" +
+                "userInfo: " + userInfo + ",\n" +
                 '}';
     }
 }

@@ -1,7 +1,6 @@
 package VanquishP2.Application.Beans.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @Table(name = "ARTISTS")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class Artist {
     public Artist() {
         tracks = new ArrayList<>();
@@ -23,9 +22,8 @@ public class Artist {
         concerts = new ArrayList<>();
     }
 
-    public Artist(String name, int ID) {
+    public Artist(String name) {
         this.name = name;
-        this.ID = ID;
         tracks = new ArrayList<>();
         albums = new ArrayList<>();
         concerts = new ArrayList<>();
@@ -52,7 +50,15 @@ public class Artist {
         this.name = name;
     }
 
-    // Many artists, many concerts
+    @Column(name = "Picture")
+    private String imageURL;
+    public String getImageURL() {
+        return imageURL;
+    }
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
     @ManyToMany
     List<Concert> concerts;
     public List<Concert> getConcerts() {
@@ -62,7 +68,6 @@ public class Artist {
         this.concerts = concerts;
     }
 
-    // One artist, many albums
     @OneToMany(mappedBy = "artist")
     List<Album> albums;
     public List<Album> getAlbums() {
@@ -72,7 +77,6 @@ public class Artist {
         this.albums = albums;
     }
 
-    // One artist, many tracks
     @OneToMany
     List<Track> tracks;
     public List<Track> getTracks() {
@@ -85,8 +89,12 @@ public class Artist {
     @Override
     public String toString() {
         return "Artist {\n" +
-                "ID: " + ID + "\n" +
-                "name: " + name + "\n" +
+                "ID: " + ID + ",\n" +
+                "name: " + name + ",\n" +
+                "imageURL: " + imageURL + ",\n" +
+                "concerts: " + concerts + ",\n" +
+                "albums: " + albums + ",\n" +
+                "tracks: " + tracks + ",\n" +
                 '}';
     }
 }

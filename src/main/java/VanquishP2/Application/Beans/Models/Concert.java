@@ -1,7 +1,6 @@
 package VanquishP2.Application.Beans.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @Table(name = "CONCERTS")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class Concert {
     public Concert() {
         artists = new ArrayList<>();
@@ -48,5 +47,14 @@ public class Concert {
     }
     public void setArtists(List<Artist> artists) {
         this.artists = artists;
+    }
+
+    @Override
+    public String toString() {
+        return "Concert {\n" +
+                "ID: " + ID + ",\n" +
+                "location: " + location + ",\n" +
+                "artists: " + artists + ",\n" +
+                '}';
     }
 }

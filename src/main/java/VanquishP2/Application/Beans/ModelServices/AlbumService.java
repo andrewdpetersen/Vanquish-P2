@@ -36,8 +36,8 @@ public class AlbumService {
                 .orElseThrow(AlbumDoesNotExistException::new);
     }
 
-    public Album getByName(String name) throws AlbumDoesNotExistException {
-        return albumRepository.getAlbumByName(name)
+    public Album getByTitle(String title) throws AlbumDoesNotExistException {
+        return albumRepository.getAlbumByAlbumTitle(title)
                 .orElseThrow(AlbumDoesNotExistException::new);
     }
 

@@ -1,7 +1,6 @@
 package VanquishP2.Application.Beans.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -13,9 +12,16 @@ import javax.persistence.*;
 
 @Table(name = "TRACKS")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class Track {
     public Track() {
+
+    }
+
+    public Track(String trackName, String duration, Artist artist) {
+        this.trackName = trackName;
+        this.duration = duration;
+        this.artist = artist;
     }
 
     @Id
@@ -29,7 +35,7 @@ public class Track {
         this.ID = ID;
     }
 
-    @Column(name = "TrackName")
+    @Column(name = "Title")
     private String trackName;
     public String getTrackName() {
         return trackName;
@@ -57,11 +63,32 @@ public class Track {
     }
 
     @ManyToOne
+    private User user;
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @ManyToOne
     private Playlist playlist;
     public Playlist getPlaylist() {
         return playlist;
     }
     public void setPlaylist(Playlist playlist) {
         this.playlist = playlist;
+    }
+
+    @Override
+    public String toString() {
+        return "Track {\n" +
+                "ID: " + ID + ",\n" +
+                "trackName: " + trackName + ",\n" +
+                "duration: " + duration + ",\n" +
+                "artist: " + artist + ",\n" +
+                "user: " + user + ",\n" +
+                "playlist: " + playlist + ",\n" +
+                '}';
     }
 }

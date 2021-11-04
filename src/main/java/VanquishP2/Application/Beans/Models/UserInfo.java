@@ -2,7 +2,6 @@ package VanquishP2.Application.Beans.Models;
 
 import VanquishP2.DTOs.UserRegistrationDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -12,9 +11,9 @@ import javax.persistence.*;
  * @author Kollier Martin
  */
 
-@Table(name = "USERINFOS")
+@Table(name = "USERINFO")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class UserInfo {
     public UserInfo() {
 
@@ -27,19 +26,39 @@ public class UserInfo {
     }
 
     public UserInfo(UserRegistrationDTO registration) {
+        this.firstName = registration.getFirstName();
+        this.lastName = registration.getLastName();
         this.username = registration.getUsername();
         this.password = registration.getPassword();
         this.email = registration.getEmail();
     }
 
     @Id
-    @Column(name = "InfoID")
+    @Column(name = "UserInfoID")
     private int ID;
     public int getID() {
         return ID;
     }
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    @Column(name = "FirstName")
+    private String firstName;
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setFirstName(String username) {
+        this.firstName = username;
+    }
+
+    @Column(name = "LastName")
+    private String lastName;
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Column(name = "Email")
@@ -69,6 +88,15 @@ public class UserInfo {
         this.password = password;
     }
 
+    @OneToOne(mappedBy = "userInfo")
+    private Location location;
+    public Location getLocation() {
+        return location;
+    }
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     @OneToOne
     User user;
     public User getUser() {
@@ -76,5 +104,19 @@ public class UserInfo {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo {\n" +
+                "ID: " + ID + ",\n" +
+                "firstName: " + firstName + ",\n" +
+                "lastName: " + lastName + ",\n" +
+                "email: " + email + ",\n" +
+                "username: " + username + ",\n" +
+                "password: " + password + ",\n" +
+                "location: " + location + ",\n" +
+                "user: " + user + ",\n" +
+                '}';
     }
 }

@@ -65,13 +65,13 @@ public class UserService {
 
     /**
      *
-     * @param firstName
+     * @param userInfo
      * @return
      * @author
      */
-    public User getByFirstName(String firstName) throws UserDoesNotExistException {
-        return userRepository.findUserByFirstName(firstName)
-                .orElseThrow(() -> new UserDoesNotExistException(String.format(exceptionError, firstName)));
+    public User getByFirstName(UserInfo userInfo) throws UserDoesNotExistException {
+        return userRepository.findUserByUserInfo(userInfo)
+                .orElseThrow(() -> new UserDoesNotExistException(String.format(exceptionError, userInfo)));
     }
 
     /**
@@ -118,13 +118,7 @@ public class UserService {
         UserInfo newUserInfo;
 
         newUserInfo = new UserInfo(userRegistrationDTOData);
-        newUserInfo.setUsername(userRegistrationDTOData.getUsername());
-        newUserInfo.setEmail(userRegistrationDTOData.getEmail());
-        newUserInfo.setPassword(userRegistrationDTOData.getPassword());
-
-        newUser = new User(userRegistrationDTOData);
-        newUser.setRole(role);
-        newUser.setUserInfo(newUserInfo);
+        newUser = new User(role, newUserInfo);
 
         userInfoRepository.save(newUserInfo);
         userRepository.save(newUser);

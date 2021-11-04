@@ -28,9 +28,10 @@ public class UserGen {
 
     //@PostConstruct
     private void populate() {
-        userRegistrationDTO = new UserRegistrationDTO(getAUsername(), getAPassword(), getAEmail());
-        User user = new User(userRegistrationDTO);
-        UserInfo userInfo;
+        userRegistrationDTO = new UserRegistrationDTO(getAFirstName(), getALastName(),
+                getAUsername(), getAPassword(), getAEmail());
+        UserInfo userInfo = new UserInfo(userRegistrationDTO);
+        User user = new User(User.Role.BASIC, userInfo);
         userService.save(user);
     }
 

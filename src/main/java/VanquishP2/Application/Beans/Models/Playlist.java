@@ -1,7 +1,6 @@
 package VanquishP2.Application.Beans.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,10 +14,16 @@ import java.util.List;
 
 @Table(name = "PLAYLISTS")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class Playlist {
     public Playlist() {
-        tracks = new ArrayList<>();
+        trackList = new ArrayList<>();
+    }
+
+    public Playlist(String playlistName, User user, List<Track> trackList) {
+        this.playlistName = playlistName;
+        this.user = user;
+        this.trackList = trackList;
     }
 
     @Id
@@ -51,11 +56,21 @@ public class Playlist {
     }
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist")
-    List<Track> tracks;
-    public List<Track> getTracks() {
-        return tracks;
+    List<Track> trackList;
+    public List<Track> getTrackList() {
+        return trackList;
     }
-    public void setTracks(List<Track> tracks) {
-        this.tracks = tracks;
+    public void setTrackList(List<Track> tracks) {
+        this.trackList = tracks;
+    }
+
+    @Override
+    public String toString() {
+        return "Playlist {\n" +
+                "ID: " + ID + ",\n" +
+                "playlistName: " + playlistName + ",\n" +
+                "user: " + user + ",\n" +
+                "tracks: " + trackList + ",\n" +
+                '}';
     }
 }

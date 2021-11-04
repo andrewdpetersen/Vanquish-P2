@@ -59,7 +59,7 @@ public class AlbumController {
     @GetMapping("/{name}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Album retrieve(@PathVariable String name) {
-        return albumService.getByName(name);
+        return albumService.getByTitle(name);
     }
 
     @DeleteMapping("{/id}")

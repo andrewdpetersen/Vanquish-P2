@@ -1,7 +1,6 @@
 package VanquishP2.Application.Beans.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,7 +16,7 @@ import java.util.List;
 
 @Table(name = "ALBUMS")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class Album implements Serializable {
     public Album() {
         tracks = new ArrayList<>();
@@ -34,13 +33,13 @@ public class Album implements Serializable {
         this.ID = ID;
     }
 
-    @Column(name = "AlbumName")
-    private String name;
-    public String getName() {
-        return name;
+    @Column(name = "AlbumTitle")
+    private String albumTitle;
+    public String getAlbumTitle() {
+        return albumTitle;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setAlbumTitle(String albumTitle) {
+        this.albumTitle = albumTitle;
     }
 
     @Column(name = "ReleaseDate")
@@ -53,7 +52,7 @@ public class Album implements Serializable {
     }
 
     @ManyToOne
-    Artist artist;
+    private Artist artist;
     public Artist getArtist() {
         return artist;
     }
@@ -62,7 +61,7 @@ public class Album implements Serializable {
     }
 
     @OneToMany
-    List<Track> tracks;
+    private List<Track> tracks;
     public List<Track> getTracks() {
         return tracks;
     }
@@ -70,5 +69,24 @@ public class Album implements Serializable {
         this.tracks = tracks;
     }
 
+    @ManyToMany
+    private List<Genre> albumGenres;
+    public List<Genre> getAlbumGenres() {
+        return albumGenres;
+    }
+    public void setAlbumGenres(List<Genre> albumGenres) {
+        this.albumGenres = albumGenres;
+    }
 
+    @Override
+    public String toString() {
+        return "Album {\n" +
+                "ID: " + ID + ",\n" +
+                "albumTitle: " + albumTitle + ",\n" +
+                "date: " + date + ",\n" +
+                "artist: " + artist + ",\n" +
+                "tracks: " + tracks + ",\n" +
+                "albumGenres: " + albumGenres + ",\n" +
+                '}';
+    }
 }
