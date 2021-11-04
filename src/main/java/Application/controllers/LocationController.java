@@ -25,21 +25,21 @@ public class LocationController {
 
     @PostMapping(value = "/location", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public Location saveLocation(Location location){
+    public Location saveLocation(@RequestBody Location location){
         locationService.saveLocation(location);
         return locationService.getLocationById(location.getLocation_id());
     }
 
     @PutMapping(value = "/location", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public Location updateLocation(Location location){
+    public Location updateLocation(@RequestBody Location location){
         Location updatedLocation = locationService.getLocationById(location.getLocation_id());
         updatedLocation.setCity(location.getCity());
         updatedLocation.setState(location.getState());
         return locationService.saveLocation(updatedLocation);
     }
 
-    @DeleteMapping(value = "/location/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/location/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteLocation(@PathVariable ("id") Integer id){
         if(id>0){

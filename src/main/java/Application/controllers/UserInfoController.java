@@ -25,13 +25,13 @@ public class UserInfoController {
 
     @PostMapping(value = "/userinfo", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public UserInfo saveUserInfo(UserInfo userInfo){
+    public UserInfo saveUserInfo(@RequestBody UserInfo userInfo){
         return userInfoService.saveUserInfo(userInfo);
     }
 
     @PutMapping(value = "/userinfo", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public UserInfo updateUserInfo(UserInfo userInfo){
+    public UserInfo updateUserInfo(@RequestBody UserInfo userInfo){
         UserInfo updatedInfo = userInfoService.getUserInfoById(userInfo.getID());
         updatedInfo.setEmail(userInfo.getEmail());
         updatedInfo.setPassword(userInfo.getPassword());
