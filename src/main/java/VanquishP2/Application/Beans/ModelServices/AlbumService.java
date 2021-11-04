@@ -1,8 +1,8 @@
-package VanquishP2.Beans.ModelServices;
+package VanquishP2.Application.Beans.ModelServices;
 
 import VanquishP2.Exceptions.AlbumDoesNotExistException;
-import VanquishP2.Beans.Models.Album;
-import VanquishP2.Repos.AlbumRepository;
+import VanquishP2.Application.Beans.Models.Album;
+import VanquishP2.Application.Beans.Repos.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;

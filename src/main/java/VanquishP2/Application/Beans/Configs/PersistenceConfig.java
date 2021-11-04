@@ -1,4 +1,4 @@
-package VanquishP2.Configs;
+package VanquishP2.Application.Beans.Configs;
 
 /**
  * DB Persistence Configuration

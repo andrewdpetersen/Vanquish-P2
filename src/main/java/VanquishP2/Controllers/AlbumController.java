@@ -1,7 +1,7 @@
 package VanquishP2.Controllers;
 
-import VanquishP2.Beans.Models.Album;
-import VanquishP2.Beans.ModelServices.AlbumService;
+import VanquishP2.Application.Beans.Models.Album;
+import VanquishP2.Application.Beans.ModelServices.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

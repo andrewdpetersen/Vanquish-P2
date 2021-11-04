@@ -1,4 +1,4 @@
-package VanquishP2.Beans.Service;
+package VanquishP2.Application.Beans.Service;
 
 import org.springframework.stereotype.Service;
 import java.io.BufferedWriter;

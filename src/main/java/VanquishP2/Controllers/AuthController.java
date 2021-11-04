@@ -1,8 +1,8 @@
 package VanquishP2.Controllers;
 
-import VanquishP2.Beans.ModelServices.UserService;
-import VanquishP2.Beans.Models.User;
-import VanquishP2.Beans.Service.JWTUtil;
+import VanquishP2.Application.Beans.ModelServices.UserService;
+import VanquishP2.Application.Beans.Models.User;
+import VanquishP2.Application.Beans.Service.JWTUtil;
 import VanquishP2.DTOs.LoginCredentialsDTO;
 import VanquishP2.DTOs.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;

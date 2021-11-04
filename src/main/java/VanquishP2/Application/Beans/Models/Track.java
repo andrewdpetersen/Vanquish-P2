@@ -1,6 +1,7 @@
-package VanquishP2.Beans.Models;
+package VanquishP2.Application.Beans.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 

@@ -1,15 +1,11 @@
 package VanquishP2.DataGenerators;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-@Service
-@Validated
 public class DataLists {
     public static String[] names = {
             "Chace", "Nielsen",

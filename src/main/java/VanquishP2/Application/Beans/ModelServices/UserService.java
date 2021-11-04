@@ -1,13 +1,13 @@
-package VanquishP2.Beans.ModelServices;
+package VanquishP2.Application.Beans.ModelServices;
 
-import VanquishP2.Beans.Models.User;
-import VanquishP2.Beans.Models.UserInfo;
-import VanquishP2.Beans.Service.Logger;
+import VanquishP2.Application.Beans.Models.User;
+import VanquishP2.Application.Beans.Models.UserInfo;
+import VanquishP2.Application.Beans.Service.Logger;
 import VanquishP2.DTOs.UserRegistrationDTO;
 import VanquishP2.Exceptions.AuthenticationException;
 import VanquishP2.Exceptions.UserDoesNotExistException;
-import VanquishP2.Repos.UserInfoRepository;
-import VanquishP2.Repos.UserRepository;
+import VanquishP2.Application.Beans.Repos.UserInfoRepository;
+import VanquishP2.Application.Beans.Repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;

@@ -1,7 +1,7 @@
-package VanquishP2.Configs.Filters;
+package VanquishP2.Application.Beans.Configs.Filters;
 
-import VanquishP2.Beans.Service.JWTUtil;
-import VanquishP2.Beans.Service.Logger;
+import VanquishP2.Application.Beans.Service.JWTUtil;
+import VanquishP2.Application.Beans.Service.Logger;
 import VanquishP2.Exceptions.AuthenticationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

@@ -1,6 +1,6 @@
-package VanquishP2.Beans.Service;
+package VanquishP2.Application.Beans.Service;
 
-import VanquishP2.Beans.Models.User;
+import VanquishP2.Application.Beans.Models.User;
 import VanquishP2.Exceptions.AuthenticationException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

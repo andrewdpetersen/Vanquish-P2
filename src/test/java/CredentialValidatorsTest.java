@@ -1,4 +1,4 @@
-import VanquishP2.Beans.Service.ValidatorService;
+import VanquishP2.Application.Beans.Service.ValidatorService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

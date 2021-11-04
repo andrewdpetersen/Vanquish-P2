@@ -1,6 +1,6 @@
-package VanquishP2.Repos;
+package VanquishP2.Application.Beans.Repos;
 
-import VanquishP2.Beans.Models.User;
+import VanquishP2.Application.Beans.Models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

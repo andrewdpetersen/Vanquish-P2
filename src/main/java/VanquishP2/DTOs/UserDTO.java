@@ -1,7 +1,7 @@
 package VanquishP2.DTOs;
 
-import VanquishP2.Beans.Models.Track;
-import VanquishP2.Beans.Models.User;
+import VanquishP2.Application.Beans.Models.Track;
+import VanquishP2.Application.Beans.Models.User;
 
 import java.util.List;
 

@@ -1,29 +1,37 @@
 package VanquishP2.DataGenerators;
 
-import VanquishP2.Beans.Models.User;
-import VanquishP2.Beans.Models.UserInfo;
+import VanquishP2.Application.Beans.ModelServices.UserService;
+import VanquishP2.Application.Beans.Models.User;
+import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.DTOs.UserRegistrationDTO;
-import VanquishP2.Repos.UserRepository;
+import VanquishP2.Application.Beans.Repos.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.Random;
 
 import static VanquishP2.DataGenerators.DataLists.*;
 
-@Component
+//@Service
 public class UserGen {
     private static Random rand = new Random();
     private static int index;
-    private UserRepository userRepository;
+    private final UserService userService;
     private UserRegistrationDTO userRegistrationDTO;
 
-    @PostConstruct
+    //@Autowired
+    public UserGen(UserService userService) {
+        this.userService = userService;
+    }
+
+    //@PostConstruct
     private void populate() {
         userRegistrationDTO = new UserRegistrationDTO(getAUsername(), getAPassword(), getAEmail());
         User user = new User(userRegistrationDTO);
         UserInfo userInfo;
-        userRepository.save(user);
+        userService.save(user);
     }
 
     public static String getAFirstName() {

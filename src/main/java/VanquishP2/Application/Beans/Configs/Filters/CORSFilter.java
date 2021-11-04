@@ -1,4 +1,4 @@
-package VanquishP2.Configs.Filters;
+package VanquishP2.Application.Beans.Configs.Filters;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 
