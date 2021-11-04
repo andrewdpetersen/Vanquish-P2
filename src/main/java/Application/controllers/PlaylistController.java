@@ -23,16 +23,17 @@ public class PlaylistController {
         this.trackService = trackService;
     }
 
-    @PostMapping(value = "/playlist", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public Playlist savePlaylist(@RequestBody Playlist playlist){
-        playlistService.savePlaylist(playlist);
-        return playlistService.getPlaylist(playlist.getId());
-    }
-
-    @GetMapping(value = "/playlist/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.OK)
-    public Playlist getPlaylistById(@PathVariable ("id") Integer id){
-        return playlistService.getPlaylist(id);
-    }
+//    @PostMapping(value = "/playlist", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseStatus(value = HttpStatus.CREATED)
+//    public Playlist savePlaylist(@RequestBody Playlist playlist){
+//        playlistService.savePlaylist(playlist);
+//        return playlistService.getPlaylist(playlist.getId());
+//    }
+//
+//    @GetMapping(value = "/playlist/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseStatus(value = HttpStatus.OK)
+//    public List<Track> getPlaylistById(@PathVariable ("id") Integer id){
+//        trackService.getTrack()
+//        return playlistService.getPlaylist(id);
+//    }
 }

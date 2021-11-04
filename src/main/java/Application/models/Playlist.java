@@ -13,30 +13,47 @@ import java.util.List;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Playlist {
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "playlist_id")
+    private int playlist_id;
 
-    @Column
-    private String playlist_name;
+    @Column(name="playlist_name")
+    String playlist_name;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @JsonIgnore
     @OneToMany(mappedBy = "track_id")
-    List<Track> trackList;
+    private List<Track> trackList;
 
-    public Playlist(Integer id, String playlist_name, List<Track> trackList) {
-        this.id = id;
+    /**
+     * Full args constructor
+     * @param playlist_id
+     * @param playlist_name
+     * @param user
+     * @param trackList
+     */
+    public Playlist(int playlist_id, String playlist_name, User user, List<Track> trackList) {
+        this.playlist_id = playlist_id;
         this.playlist_name = playlist_name;
+        this.user = user;
         this.trackList = trackList;
     }
 
-    public Playlist() {
+    /*
+     * No args constructor
+     */
+    public Playlist(){
     }
 
-    public Integer getId() {
-        return id;
+    public int getPlaylist_id() {
+        return playlist_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPlaylist_id(int playlist_id) {
+        this.playlist_id = playlist_id;
     }
 
     public String getPlaylist_name() {
@@ -45,6 +62,14 @@ public class Playlist {
 
     public void setPlaylist_name(String playlist_name) {
         this.playlist_name = playlist_name;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<Track> getTrackList() {
@@ -58,8 +83,9 @@ public class Playlist {
     @Override
     public String toString() {
         return "Playlist{" +
-                "id=" + id +
+                "playlist_id=" + playlist_id +
                 ", playlist_name='" + playlist_name + '\'' +
+                ", user=" + user +
                 ", trackList=" + trackList +
                 '}';
     }
