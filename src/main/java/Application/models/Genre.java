@@ -58,6 +58,14 @@ public class Genre {
         this.image_url = image_url;
     }
 
+    public List<Album> getAlbums_of_genre() {
+        return albums_of_genre;
+    }
+
+    public void setAlbums_of_genre(List<Album> albums_of_genre) {
+        this.albums_of_genre = albums_of_genre;
+    }
+
     @Override
     public String toString() {
         return "Genre{" +

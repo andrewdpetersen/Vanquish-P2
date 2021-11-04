@@ -61,6 +61,12 @@ public class User {
     @OneToMany(mappedBy = "track_id")
     @JsonIgnore
     List<Track> favorites;
+    public List<Track> getFavorites() {
+        return favorites;
+    }
+    public void setFavorites(List<Track> favorites) {
+        this.favorites = favorites;
+    }
 
     @OneToOne(mappedBy = "user")
     UserInfo userInfo;

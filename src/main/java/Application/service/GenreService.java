@@ -1,31 +1,27 @@
 package Application.service;
 
+import Application.models.Genre;
 import Application.models.Track;
-import Application.repositories.TrackRepository;
+import Application.repositories.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class TrackService {
-    private final TrackRepository repo;
+public class GenreService {
+    private final GenreRepository repo;
 
     @Autowired
-    public TrackService(TrackRepository repo){
+    public GenreService(GenreRepository repo){
         this.repo = repo;
     }
 
-    public void save(Track track){
-        repo.save(track);
+    public void save(Genre genre){
+        repo.save(genre);
     }
 
-    public Track getTrack(Integer id){
+    public Genre getGenre(Integer id){
         return repo.getById(id);
-    }
-
-    public boolean trackExists(Integer id)
-    {
-        return repo.existsById(id);
     }
 }
