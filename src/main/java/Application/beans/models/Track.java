@@ -1,12 +1,14 @@
-package Application.models;
+package Application.beans.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Component
 @Entity
 @Table(name = "tracks")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

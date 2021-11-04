@@ -1,7 +1,10 @@
-package Application.models;
+package Application.beans.models;
+
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
+@Component
 @Entity
 @Table(name="playlist")
 public class Playlist {
@@ -10,20 +13,22 @@ public class Playlist {
     @Column(name = "playlist_id")
     private int playlist_id;
 
-    @Column(name="user_id")
-    private int user_id;
-
     @Column(name="playlist_name")
     String playlist_name;
+
+    //many playlists to one user
+//    @ManyToOne
+//    @JoinColumn(nullable = false)
+//    private User user;
+
     /*
      * Full args constructor
      * @param playlist_id
-     * @param user_id
      * @param playlist_name
      */
-    public Playlist(Integer playlist_id, Integer user_id, String playlist_name){
+
+    public Playlist(Integer playlist_id, String playlist_name){
         this.playlist_id = playlist_id;
-        this.user_id = user_id;
         this.playlist_name = playlist_name;
     }
     /*
@@ -38,14 +43,6 @@ public class Playlist {
 
     public void setPlaylist_id(int playlist_id) {
         this.playlist_id = playlist_id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 
     public String getPlaylist_name() {

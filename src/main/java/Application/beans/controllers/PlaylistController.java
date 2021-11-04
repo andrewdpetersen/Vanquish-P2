@@ -1,7 +1,7 @@
-package Application.controllers;
+package Application.beans.controllers;
 
-import Application.models.Playlist;
-import Application.service.PlaylistService;
+import Application.beans.models.Playlist;
+import Application.beans.service.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,10 +16,10 @@ public class PlaylistController {
         this.playlistService = playlistService;
     }
 
-    @PostMapping(value = "/Playlist_Name", produces = Mediatype.APPLICATION_JSON_VALUE, consumes = MediaType.A)
+    @PostMapping(value = "/Playlist_Name", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public Playlist savePlaylist_name(@RequestBody Playlist playlist){
-        playlistService.save(Playlist);
+        playlistService.save(playlist);
         return playlistService.getPlaylist_name(playlist.getPlaylist_id());
     }
 

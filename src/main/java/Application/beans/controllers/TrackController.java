@@ -1,7 +1,7 @@
-package Application.controllers;
+package Application.beans.controllers;
 
-import Application.models.Track;
-import Application.service.TrackService;
+import Application.beans.models.Track;
+import Application.beans.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
