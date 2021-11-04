@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Component
 @Table(name = "locations")
@@ -22,8 +23,8 @@ public class Location {
     @Column
     private String state;
 
-    @OneToOne
-    private UserInfo userInfo;
+    @OneToMany(mappedBy = "location")
+    private List<UserInfo> userInfoList;
 
     public Location(Integer location_id, String city, String state) {
         this.location_id = location_id;

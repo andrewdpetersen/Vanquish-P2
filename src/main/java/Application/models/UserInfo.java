@@ -76,7 +76,8 @@ public class UserInfo {
         this.lastName = lastName;
     }
 
-    @OneToOne(mappedBy = "userInfo")
+    @ManyToOne
+    @JoinColumn(name = "location_id")
     private Location location;
 
     public Location getLocation() {
