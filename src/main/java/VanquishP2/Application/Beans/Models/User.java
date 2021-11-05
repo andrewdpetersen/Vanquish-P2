@@ -19,12 +19,16 @@ import java.util.List;
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class User {
     public User() {
-        myPlaylists = new ArrayList<>();
+        this.role = Role.BASIC;
+        this.myPlaylists = new ArrayList<>();
+        this.favorites = new ArrayList<>();
+        this.userInfo = null;
     }
 
     public User(Role role, UserInfo userInfo) {
         this.role = role;
         this.myPlaylists = new ArrayList<>();
+        this.favorites = new ArrayList<>();
         this.userInfo = userInfo;
     }
 

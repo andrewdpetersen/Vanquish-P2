@@ -26,6 +26,7 @@ public class UserInfo {
     }
 
     public UserInfo(UserRegistrationDTO registration) {
+        this.location = registration.getLocation();
         this.firstName = registration.getFirstName();
         this.lastName = registration.getLastName();
         this.username = registration.getUsername();
@@ -35,6 +36,7 @@ public class UserInfo {
 
     @Id
     @Column(name = "UserInfoID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
     public int getID() {
         return ID;
@@ -88,7 +90,7 @@ public class UserInfo {
         this.password = password;
     }
 
-    @OneToOne(mappedBy = "userInfo")
+    @ManyToOne
     private Location location;
     public Location getLocation() {
         return location;

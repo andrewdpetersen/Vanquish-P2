@@ -6,6 +6,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * UserRegistrationDTO
+ * The DTO for User Registration
+ *
+ * @date 10/29/2021
+ * @author Kollier Martin
+ */
 public class UserRegistrationDTO {
 
     @Length(min = 5, max = 20)
@@ -82,5 +89,13 @@ public class UserRegistrationDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

@@ -4,7 +4,7 @@ package VanquishP2.Exceptions;
  * Custom Runtime Exception
  *
  * @date 11/1/2021
- * @author
+ * @author Kollier Martin
  */
 public class AuthenticationException extends RuntimeException {
     public AuthenticationException() {

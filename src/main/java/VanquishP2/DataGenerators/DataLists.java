@@ -7,6 +7,32 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class DataLists {
+    public static String[] states = {
+            "Freeport",
+            "Alcoa",
+            "Fayetteville",
+            "Vail",
+            "Pekin",
+            "Ishpeming",
+            "Puyallup",
+            "Houlton",
+            "Rome",
+            "Pampa",
+    };
+
+    public static String[] cities = {
+            "Nacogdoches",
+            "Queens",
+            "Elgin",
+            "West Lafayette",
+            "Cushing",
+            "Payson",
+            "South Hadley",
+            "Daytona Beach",
+            "Meriden",
+            "Randolph",
+    };
+
     public static String[] names = {
             "Chace", "Nielsen",
             "Leticia", "Allen",

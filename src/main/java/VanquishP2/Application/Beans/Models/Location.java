@@ -2,13 +2,13 @@ package VanquishP2.Application.Beans.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "LOCATIONS")
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Location {
-    public Location(Integer locationID, String city, String state) {
-        this.locationID = locationID;
+    public Location(String city, String state) {
         this.city = city;
         this.state = state;
     }
@@ -46,13 +46,13 @@ public class Location {
         this.state = state;
     }
 
-    @OneToOne
-    private UserInfo userInfo;
-    public UserInfo getUserInfo() {
-        return userInfo;
+    @OneToMany(mappedBy = "location")
+    private List<UserInfo> userLocations;
+    public List<UserInfo> getUserInfo() {
+        return userLocations;
     }
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
+    public void setUserInfo(List<UserInfo> userLocations) {
+        this.userLocations = userLocations;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Location {
                 "locationID: " + locationID + ",\n" +
                 "city: " + city + ",\n" +
                 "state: " + state + ",\n" +
-                "userInfo: " + userInfo + ",\n" +
+                "userLocations: " + userLocations + ",\n" +
                 '}';
     }
 }

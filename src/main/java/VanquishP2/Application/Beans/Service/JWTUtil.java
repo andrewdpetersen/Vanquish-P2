@@ -1,6 +1,6 @@
 package VanquishP2.Application.Beans.Service;
 
-import VanquishP2.Application.Beans.Models.User;
+import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.Exceptions.AuthenticationException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -36,11 +36,11 @@ public class JWTUtil {
         key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
 
-    public String createJWT(User user){
+    public String createJWT(UserInfo userInfo){
         // Build the java web token and return it
         return Jwts.builder()
                 .setIssuer("Vanquish")
-                .setSubject(user.getUserInfo().getUsername())
+                .setSubject(userInfo.getUsername())
                 .signWith(key)
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .compact();

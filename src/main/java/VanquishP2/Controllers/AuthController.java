@@ -1,10 +1,10 @@
 package VanquishP2.Controllers;
 
-import VanquishP2.Application.Beans.ModelServices.UserService;
-import VanquishP2.Application.Beans.Models.User;
+import VanquishP2.Application.Beans.ModelServices.UserInfoService;
+import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.Application.Beans.Service.JWTUtil;
 import VanquishP2.DTOs.LoginCredentialsDTO;
-import VanquishP2.DTOs.UserDTO;
+import VanquishP2.DTOs.UserInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,20 +22,20 @@ import static org.springframework.http.MediaType.*;
 public class AuthController {
 
     private JWTUtil jwtUtil;
-    private UserService userService;
+    private final UserInfoService userInfoService;
 
     @Autowired
-    public AuthController (JWTUtil jwtUtil, UserService userService) {
-        this.userService = userService;
+    public AuthController (JWTUtil jwtUtil, UserInfoService userInfoService) {
+        this.userInfoService = userInfoService;
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public UserDTO authenticate(@RequestBody LoginCredentialsDTO credentials, HttpServletResponse response) {
-        Optional<User> user = userService.authenticate(credentials.getUsername(), credentials.getPassword());
-        String jwt = jwtUtil.createJWT(user.get());
+    public UserInfoDTO authenticate(@RequestBody LoginCredentialsDTO credentials, HttpServletResponse response) {
+        Optional<UserInfo> userInfo = userInfoService.authenticate(credentials.getUsername(), credentials.getPassword());
+        String jwt = jwtUtil.createJWT(userInfo.get());
         response.setHeader(jwtUtil.getHeader(), jwt);
 
-        return new UserDTO(user.get());
+        return new UserInfoDTO(userInfo.get());
     }
 
 }
