@@ -1,13 +1,10 @@
-package Application.service;
+package Application.services;
 
 import Application.models.Playlist;
-import Application.models.Track;
 import Application.repositories.PlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional

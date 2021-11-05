@@ -1,4 +1,4 @@
-package Application.service;
+package Application.services;
 
 import Application.models.Location;
 import Application.repositories.LocationRepository;
