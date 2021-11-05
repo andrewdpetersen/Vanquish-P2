@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/UserInfo")
+@RequestMapping(value = "/4TheMusic")
 public class UserInfoController {
     private final UserInfoService userInfoService;
 

@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Location")
+@RequestMapping("/4TheMusic")
 public class LocationController {
     private final LocationService locationService;
 
