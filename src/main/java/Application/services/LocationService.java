@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class LocationService {
-    private LocationRepository locationRepository;
+    private final LocationRepository locationRepository;
 
     @Autowired
     public LocationService(LocationRepository locationRepository){

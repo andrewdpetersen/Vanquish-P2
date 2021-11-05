@@ -53,4 +53,8 @@ public class UserInfoController {
             userInfoService.deleteAllInfo();
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bd93c80105452fa6d2fc22b344109e5ed39147a9

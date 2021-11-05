@@ -97,13 +97,13 @@
 			<version>2.5.5</version>
 		</dependency>
 
-		<!-- Spring Boot Testing -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<version>2.5.5</version>
-			<scope>provided</scope>
-		</dependency>
+<!--		&lt;!&ndash; Spring Boot Testing &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--			<version>2.5.5</version>-->
+<!--			<scope>provided</scope>-->
+<!--		</dependency>-->
 
 		<!-- Spring Boot Testing -->
 		<dependency>
@@ -122,6 +122,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
+		<!--OK HTTP for sending get requests to third party API-->
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>4.9.2</version>
+		</dependency>
+
     </dependencies>
 
 	<build>
@@ -129,6 +137,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+<!--				<version>2.4.3</version>-->
 			</plugin>
 		</plugins>
 	</build>

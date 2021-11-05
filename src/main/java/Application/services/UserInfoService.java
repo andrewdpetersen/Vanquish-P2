@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @Transactional
 public class UserInfoService {
-    private UserInfoRepository userInfoRepository;
+    private final UserInfoRepository userInfoRepository;
 
     @Autowired
     public UserInfoService(UserInfoRepository userInfoRepository) {

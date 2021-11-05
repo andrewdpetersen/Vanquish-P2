@@ -24,8 +24,9 @@ public class Playlist {
     @JoinColumn(name = "user_id")
     private User user;
 
+    //many tracks on many playlists
     @JsonIgnore
-    @OneToMany(mappedBy = "track_id")
+    @ManyToMany
     private List<Track> trackList;
 
     /**
