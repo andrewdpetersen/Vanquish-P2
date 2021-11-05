@@ -1,7 +1,6 @@
-package Application.service;
+package Application.services;
 
 import Application.models.Genre;
-import Application.models.Track;
 import Application.repositories.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

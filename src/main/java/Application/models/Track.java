@@ -30,6 +30,7 @@ public class Track {
         this.title = title;
     }
 
+    //many tracks, many playlists (we want a list of what playlists this track is on)
     @ManyToMany(mappedBy = "trackList")
     @JsonIgnore
     private List<Playlist> playlists;
@@ -40,7 +41,8 @@ public class Track {
         this.playlists = playlists;
     }
 
-    @OneToMany(mappedBy = "liked_tracks")
+    //many tracks, many users
+    @ManyToMany(mappedBy = "liked_tracks")
     @JsonIgnore
     List<User> userLikes;
     public List<User> getUserLikes() {
@@ -50,7 +52,8 @@ public class Track {
         this.userLikes = userLikes;
     }
 
-    @OneToMany(mappedBy = "disliked_tracks")
+    //many tracks, many users
+    @ManyToMany(mappedBy = "disliked_tracks")
     @JsonIgnore
     List<User> userDislikes;
     public List<User> getUserDislikes() {

@@ -1,16 +1,14 @@
 package Application.controllers;
 
 import Application.models.Genre;
-import Application.models.Track;
-import Application.service.GenreService;
-import Application.service.TrackService;
+import Application.services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/Genre")
+@RequestMapping(value = "/4TheMusic")
 public class GenreController {
     private final GenreService genreService;
 

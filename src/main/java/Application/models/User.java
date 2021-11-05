@@ -58,7 +58,7 @@ public class User {
         this.myPlaylists = myPlaylists;
     }
 
-    @OneToMany(mappedBy = "track_id")
+    @ManyToMany
     @JsonIgnore
     List<Track> liked_tracks;
     public List<Track> getLiked_tracks() {
@@ -68,7 +68,7 @@ public class User {
         this.liked_tracks = liked_tracks;
     }
 
-    @OneToMany(mappedBy = "track_id")
+    @ManyToMany
     @JsonIgnore
     List<Track> disliked_tracks;
     public List<Track> getDisliked_tracks() {
