@@ -1,5 +1,6 @@
 package VanquishP2.DTOs;
 
+import VanquishP2.Application.Beans.Models.Location;
 import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -21,13 +22,17 @@ public class UserRegistrationDTO {
     private String email;
 
     private String firstName, lastName;
+    private Location location;
 
     public UserRegistrationDTO() {
 
     }
 
     public UserRegistrationDTO(String firstName, String lastName,
-                               String username, String password, String email) {
+                               String username, String password, String email, Location location) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.location = location;
         this.username = username;
         this.password = password;
         this.email = email;

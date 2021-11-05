@@ -14,8 +14,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * AlbumController
  * Handles requests that involve the manipulating or retrieval of album data
  *
- * @Date 11/3/2021
- * @Author Kollier Martin
+ * @date 11/3/2021
+ * @author Kollier Martin
  */
 
 @RestController
@@ -28,6 +28,10 @@ public class AlbumController {
         this.albumService = albumService;
     }
 
+    /**
+     * This functions returns all albums cached into DB
+     * @return ResponseEntity with HttpStatus and/or content
+     */
     @GetMapping("")
     public ResponseEntity<List<Album>> getAllAlbums() {
         List<Album> allAlbums = albumService.getAll();
@@ -62,6 +66,11 @@ public class AlbumController {
         return albumService.getByTitle(name);
     }
 
+    /**
+     * Deletes an Album from the DB, if it exists
+     * @param id Album ID
+     * @return ResponseEntity depending on success or failure
+     */
     @DeleteMapping("{/id}")
     public ResponseEntity<?> remove(@PathVariable int id) {
         Optional<Album> album = Optional.ofNullable(albumService.getByID(id));
@@ -70,6 +79,23 @@ public class AlbumController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             albumService.delete(id);
+            return new ResponseEntity<>(album.get(), HttpStatus.NO_CONTENT);
+        }
+    }
+
+    /**
+     * Deletes an Album from the DB, if it exists
+     * @param title Album title
+     * @return ResponseEntity depending on success or failure
+     */
+    @DeleteMapping("{/title}")
+    public ResponseEntity<?> remove(@PathVariable String title) {
+        Optional<Album> album = Optional.ofNullable(albumService.getByTitle(title));
+
+        if (!album.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            albumService.delete(album);
             return new ResponseEntity<>(album.get(), HttpStatus.NO_CONTENT);
         }
     }

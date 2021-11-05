@@ -17,7 +17,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * Handles requests that involve the manipulating or retrieval of user data
  *
  * @Date 11/1/2021
- * @Author Vanquish
+ * @Author Kollier Martin
  */
 
 @RestController
@@ -54,16 +54,31 @@ public class UserController {
             return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param regData
+     * @return
+     */
     @PostMapping(value = "/register/basic", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public User registerBasicUser(@RequestBody @Valid UserRegistrationDTO regData){
         return userService.registerUser(regData, User.Role.BASIC);
     }
 
+    /**
+     *
+     * @param regData
+     * @return
+     */
     @PostMapping(value = "/register/premium", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public User registerPremiumUser(@RequestBody @Valid UserRegistrationDTO regData){
         return userService.registerUser(regData, User.Role.PREMIUM);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<User> delete(@PathVariable("id") int id) {
         User user = userService.getByID(id);

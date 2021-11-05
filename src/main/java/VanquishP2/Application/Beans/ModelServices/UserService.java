@@ -4,7 +4,6 @@ import VanquishP2.Application.Beans.Models.User;
 import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.Application.Beans.Service.Logger;
 import VanquishP2.DTOs.UserRegistrationDTO;
-import VanquishP2.Exceptions.AuthenticationException;
 import VanquishP2.Exceptions.UserDoesNotExistException;
 import VanquishP2.Application.Beans.Repos.UserInfoRepository;
 import VanquishP2.Application.Beans.Repos.UserRepository;
@@ -12,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 /**
+ * This service bean is used to talk to its designated repository and handle data retrieval
  *
  * @date 10/29/2021
- * @author
+ * @author Kollier Martin
  */
 
 @Service
@@ -35,20 +34,17 @@ public class UserService {
     }
 
     /**
-     *
-     *
-     * @return
-     * @author
+     * This method fetches all Users in the DB
+     * @return List of users present in DB
      */
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
     /**
-     *
-     * @param ID
-     * @return
-     * @author
+     * This method fetches User by ID
+     * @param ID User ID
+     * @return User object
      */
     public User getByID(int ID) {
         User user = null;
@@ -64,14 +60,21 @@ public class UserService {
     }
 
     /**
-     *
-     * @param userInfo
-     * @return
-     * @author
+     * This method fetches a User based on UserInfo
+     * @param userInfo UserInfo object
+     * @return User object
      */
-    public User getByFirstName(UserInfo userInfo) throws UserDoesNotExistException {
-        return userRepository.findUserByUserInfo(userInfo)
-                .orElseThrow(() -> new UserDoesNotExistException(String.format(exceptionError, userInfo)));
+    public User getByUserInfo(UserInfo userInfo) {
+        User user = null;
+
+        try {
+            user = userRepository.findUserByUserInfo(userInfo)
+                    .orElseThrow(() -> new UserDoesNotExistException(String.format(exceptionError, userInfo)));
+        } catch (UserDoesNotExistException e) {
+            Logger.getFileLogger().writeLog(e.getMessage(), 3);
+        }
+
+        return user;
     }
 
     /**
@@ -79,24 +82,8 @@ public class UserService {
      * @param user
      * @return
      */
-    public void save(@Autowired User user) {
+    public void save(User user) {
         userRepository.save(user);
-    }
-
-    /**
-     *
-     * @param username
-     * @param password
-     * @return
-     * @throws AuthenticationException
-     */
-    public Optional<User> authenticate(String username, String password) throws AuthenticationException {
-        Optional<User> user = Optional.ofNullable(userInfoRepository.findUserByUsernameAndPassword(username, password).get().getUser());
-
-        if (!user.isPresent()) {
-            throw new AuthenticationException("Either you can't spell or your caps lock is on! Try again.");
-        }
-        return Optional.ofNullable(userInfoRepository.findUserByUsernameAndPassword(username, password).get().getUser());
     }
 
     /**
@@ -110,18 +97,20 @@ public class UserService {
 
     /**
      *
-     * @param userRegistrationDTOData
+     * @param data
      * @return
      */
-    public User registerUser(UserRegistrationDTO userRegistrationDTOData, User.Role role) {
+    public User registerUser(UserRegistrationDTO data, User.Role role) {
         User newUser;
         UserInfo newUserInfo;
 
-        newUserInfo = new UserInfo(userRegistrationDTOData);
+        newUserInfo = new UserInfo(data);
         newUser = new User(role, newUserInfo);
 
-        userInfoRepository.save(newUserInfo);
         userRepository.save(newUser);
+
+        newUserInfo.setUser(newUser);
+        userInfoRepository.save(newUserInfo);
 
         return newUser;
     }
