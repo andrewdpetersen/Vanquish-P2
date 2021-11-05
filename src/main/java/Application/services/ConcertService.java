@@ -1,4 +1,4 @@
-package Application.service;
+package Application.services;
 import Application.models.Concert;
 import Application.repositories.ConcertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +27,9 @@ public class ConcertService {
 
     public List <Concert> getConcertList(){
         return concertRepository.findAll();
+    }
+
+    public void delete(Concert concert) {
+        concertRepository.delete(concert);
     }
 }

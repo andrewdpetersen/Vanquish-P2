@@ -1,6 +1,6 @@
 package Application.controllers;
 import Application.models.Concert;
-import Application.service.ConcertService;
+import Application.services.ConcertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,4 +37,6 @@ public class ConcertController {
     public Concert getConcertById(@PathVariable("id") Integer id){
         return concertService.getConcert(id);
     }
+
 }
+

@@ -1,4 +1,4 @@
-package Application.service;
+package Application.services;
 import Application.models.Artist;
 import Application.repositories.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;

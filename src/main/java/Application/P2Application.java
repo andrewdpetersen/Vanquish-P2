@@ -1,7 +1,7 @@
 package Application;
 
 import Application.models.Track;
-import Application.service.TrackService;
+import Application.services.TrackService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;

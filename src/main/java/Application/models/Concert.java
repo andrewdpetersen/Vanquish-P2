@@ -93,4 +93,8 @@ public class Concert implements Serializable {
                 ", concert_lineup=" + concert_lineup +
                 '}';
     }
+
+    public Integer getConcert(Integer id) {
+        return id;
+    }
 }
