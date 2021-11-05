@@ -1,39 +1,31 @@
 package Application.controllers;
 
 import Application.models.Playlist;
-import Application.models.Track;
-import Application.service.PlaylistService;
-import Application.service.TrackService;
+import Application.services.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/vanquish")
 public class PlaylistController {
-    private PlaylistService playlistService;
-    private TrackService trackService;
+    private final PlaylistService playlistService;
 
     @Autowired
-    public PlaylistController(PlaylistService playlistService, TrackService trackService) {
+    public PlaylistController(PlaylistService playlistService){
         this.playlistService = playlistService;
-        this.trackService = trackService;
     }
 
-//    @PostMapping(value = "/playlist", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(value = HttpStatus.CREATED)
-//    public Playlist savePlaylist(@RequestBody Playlist playlist){
-//        playlistService.savePlaylist(playlist);
-//        return playlistService.getPlaylist(playlist.getId());
-//    }
-//
-//    @GetMapping(value = "/playlist/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(value = HttpStatus.OK)
-//    public List<Track> getPlaylistById(@PathVariable ("id") Integer id){
-//        trackService.getTrack()
-//        return playlistService.getPlaylist(id);
-//    }
+    @PostMapping(value = "/Playlist_Name", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public Playlist savePlaylist_name(@RequestBody Playlist playlist){
+        playlistService.save(playlist);
+        return playlistService.getPlaylist_name(playlist.getPlaylist_id());
+    }
+
+    @GetMapping(value = "/playlist_name/{playlist_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Playlist getPlaylistById(@PathVariable("id") Integer id){
+        return playlistService.getPlaylist_name(id);
+    }
 }

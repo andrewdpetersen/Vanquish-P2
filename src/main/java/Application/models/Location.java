@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Component
 @Table(name = "locations")
@@ -15,15 +16,39 @@ public class Location {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer location_id;
+    public Integer getLocation_id() {
+        return location_id;
+    }
+    public void setLocation_id(Integer location_id) {
+        this.location_id = location_id;
+    }
 
     @Column
     private String city;
+    public String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     @Column
     private String state;
+    public String getState() {
+        return state;
+    }
+    public void setState(String state) {
+        this.state = state;
+    }
 
-    @OneToOne
-    private UserInfo userInfo;
+    @OneToMany(mappedBy = "location")
+    private List<UserInfo> userInfoList;
+    public List<UserInfo> getUserInfoList() {
+        return userInfoList;
+    }
+    public void setUserInfoList(List<UserInfo> userInfoList) {
+        this.userInfoList = userInfoList;
+    }
 
     public Location(Integer location_id, String city, String state) {
         this.location_id = location_id;
@@ -32,30 +57,6 @@ public class Location {
     }
 
     public Location() {
-    }
-
-    public Integer getLocation_id() {
-        return location_id;
-    }
-
-    public void setLocation_id(Integer location_id) {
-        this.location_id = location_id;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     @Override
