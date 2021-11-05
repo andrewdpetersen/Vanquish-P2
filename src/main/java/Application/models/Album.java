@@ -38,14 +38,14 @@ public class Album implements Serializable {
     }
 
     @Column(name = "AlbumTitle")
-    private String album_title;
+    private String albumTitle;
 
     public String getAlbum_title() {
-        return album_title;
+        return albumTitle;
     }
 
     public void setAlbum_title(String album_title) {
-        this.album_title = album_title;
+        this.albumTitle = album_title;
     }
 
     @Column(name = "ReleaseDate")
@@ -91,7 +91,7 @@ public class Album implements Serializable {
     public String toString() {
         return "Album{" +
                 "ID=" + ID +
-                ", album_title='" + album_title + '\'' +
+                ", album_title='" + albumTitle + '\'' +
                 ", date=" + date +
                 ", artist=" + artist +
                 ", tracks=" + tracks +
