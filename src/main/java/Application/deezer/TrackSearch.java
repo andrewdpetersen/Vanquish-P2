@@ -2,15 +2,24 @@ package Application.deezer;
 
 import Application.models.Track;
 import Application.services.APIClientService;
+import org.json.JSONObject;
 
 import java.util.List;
 
 public class TrackSearch {
 
-//    public static List<Track> searchTracks(String track_title){
-//        String url = "https://api.deezer.com/search/track?q=" + track_title;
-//        String json_response = APIClientService.get(url);
-//    }
+    public static List<Track> searchTracks(String track_title){
+        String url = "https://api.deezer.com/search/track?q=" + track_title +"&index=0&limit=5";
+        String json_response = APIClientService.get(url);
+        //Convert this string to a list of our models
+        JSONObject jsonObject = new JSONObject(json_response);
+
+        String data = jsonObject.getString("data");
+        //If we have to, skip artist and album ids, just read the track ids
+
+        //respond to front end
+
+    }
 
 }
 //https://api.deezer.com/search/track?q=eminem
