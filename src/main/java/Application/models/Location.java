@@ -16,6 +16,16 @@ public class Location {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer location_id;
+
+    public Location(Integer location_id, String city, String state) {
+        this.location_id = location_id;
+        this.city = city;
+        this.state = state;
+    }
+
+    public Location() {
+    }
+
     public Integer getLocation_id() {
         return location_id;
     }
@@ -48,15 +58,6 @@ public class Location {
     }
     public void setUserInfoList(List<UserInfo> userInfoList) {
         this.userInfoList = userInfoList;
-    }
-
-    public Location(Integer location_id, String city, String state) {
-        this.location_id = location_id;
-        this.city = city;
-        this.state = state;
-    }
-
-    public Location() {
     }
 
     @Override

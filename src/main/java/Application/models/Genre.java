@@ -22,7 +22,7 @@ public class Genre {
     @Column
     private String image_url;
 
-    @ManyToMany(mappedBy = "genres_of_album")
+    @OneToMany
     private List<Album> albums_of_genre;
 
     public Genre(Integer genre_id, String genre_name, String image_url) {

@@ -19,13 +19,13 @@ public class PlaylistController {
     @PostMapping(value = "/Playlist_Name", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public Playlist savePlaylist_name(@RequestBody Playlist playlist){
-        playlistService.save(playlist);
-        return playlistService.getPlaylist_name(playlist.getPlaylist_id());
+        playlistService.savePlaylist(playlist);
+        return playlistService.getPlaylist(playlist.getPlaylist_id());
     }
 
     @GetMapping(value = "/playlist_name/{playlist_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Playlist getPlaylistById(@PathVariable("id") Integer id){
-        return playlistService.getPlaylist_name(id);
+        return playlistService.getPlaylist(id);
     }
 }
