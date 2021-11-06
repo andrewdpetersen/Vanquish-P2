@@ -28,7 +28,6 @@ public class Album implements Serializable {
 
     @Id
     @Column(name = "AlbumID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
     public Integer getID() {
         return ID;
@@ -49,11 +48,11 @@ public class Album implements Serializable {
     }
 
     @Column(name = "ReleaseDate")
-    private Date date;
-    public Date getDate() {
+    private String date;
+    public String getDate() {
         return date;
     }
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -77,15 +76,24 @@ public class Album implements Serializable {
         this.tracks = tracks;
     }
 
-    @ManyToMany
-    @JsonIgnore
-    private List<Genre> genres_of_album;
-    public List<Genre> getGenres_of_album() {
-        return genres_of_album;
+    @ManyToOne
+    @JoinColumn(name= "genre_id")
+    private Genre genre;
+    public Genre getGenre() {
+        return genre;
     }
-    public void setGenres_of_album(List<Genre> genres_of_album) {
-        this.genres_of_album = genres_of_album;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
+    //    @ManyToMany
+//    @JsonIgnore
+//    private List<Genre> genres_of_album;
+//    public List<Genre> getGenres_of_album() {
+//        return genres_of_album;
+//    }
+//    public void setGenres_of_album(List<Genre> genres_of_album) {
+//        this.genres_of_album = genres_of_album;
+//    }
 
     @Override
     public String toString() {
