@@ -29,7 +29,8 @@ public class P2Application {
 		TrackService service = context.getBean(TrackService.class);
 		ConcertService service2 = context.getBean(ConcertService.class);
 
-		List<Track> trackList = TrackSearch.searchTracks("and the bit just chokes them");
+		System.out.println("TESTING: TrackSearch for \"kiwi\"");
+		List<Track> trackList = TrackSearch.searchTracks("kiwi");
 		for(Track track:trackList){
 			System.out.println(track.toString());
 		}

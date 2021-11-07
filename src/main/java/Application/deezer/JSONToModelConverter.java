@@ -15,11 +15,22 @@ public class JSONToModelConverter {
         int track_id = jsonObject.getInt("id");
         String title = jsonObject.getString("title");
 
-        String artistString = jsonObject.getString("artist");
-        Artist artist = artistConverter(artistString);
-        String albumString = jsonObject.getString("album");
-        //call jsonToAlbumConverter
-        Album album = albumConverter(albumString);
+        //This gets the artist JSONObject and pulls data from it
+        JSONObject artistJson = jsonObject.getJSONObject("artist");
+        int artist_id = artistJson.getInt("id");
+        String name = artistJson.getString("name");
+        String pictureUrl = artistJson.getString("picture_medium");
+        Artist artist = new Artist(name,artist_id,pictureUrl);
+
+        JSONObject albumJson = jsonObject.getJSONObject("album");
+        int album_id = albumJson.getInt("id");
+        String album_title = albumJson.getString("title");
+        String release_date = albumJson.getString("release_date");
+
+        Album album = new Album();
+        album.setID(album_id);
+        album.setAlbum_title(title);
+        album.setDate(release_date);
 
         Track track = new Track();
         track.setTrack_id(track_id);

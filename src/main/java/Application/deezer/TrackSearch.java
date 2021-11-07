@@ -1,9 +1,7 @@
 package Application.deezer;
 
 import Application.models.Track;
-import Application.repositories.TrackRepository;
 import Application.services.APIClientService;
-import Application.services.TrackService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -30,11 +28,9 @@ public class TrackSearch {
             JSONArray data = jsonObject.getJSONArray("data");
             JSONObject jsonData = data.getJSONObject(0);
 
-            //Maybe call trackConverter from here?
-
             int id = jsonData.getInt("id");
 
-            //This sends a new request for the
+            //This sends a new request for the track by id
             String newURL = "https://api.deezer.com/track/" + id;
             String stringJsonTrack = APIClientService.get(newURL);
 
