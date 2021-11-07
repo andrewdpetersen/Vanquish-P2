@@ -16,6 +16,16 @@ public class Location {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer location_id;
+
+    public Location(Integer location_id, String city, String state) {
+        this.location_id = location_id;
+        this.city = city;
+        this.state = state;
+    }
+
+    public Location() {
+    }
+
     public Integer getLocation_id() {
         return location_id;
     }
@@ -58,6 +68,7 @@ public class Location {
         this.userInfoList = userInfoList;
     }
 
+<<<<<<< HEAD
     public Location(Integer location_id, String city, String state) {
         this.location_id = location_id;
         this.city = city;
@@ -68,6 +79,8 @@ public class Location {
 >>>>>>> bd93c80105452fa6d2fc22b344109e5ed39147a9
     }
 
+=======
+>>>>>>> 8e90d3f6432e5f951d03c17bfb24087ace83dc92
     @Override
     public String toString() {
         return "Location{" +

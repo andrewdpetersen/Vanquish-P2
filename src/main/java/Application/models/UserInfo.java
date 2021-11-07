@@ -13,6 +13,7 @@ public class UserInfo {
 
     @Id
     @Column(name = "userInfo_id")
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private int ID;
     public int getID() {
         return ID;

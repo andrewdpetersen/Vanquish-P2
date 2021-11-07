@@ -28,7 +28,6 @@ public class Album implements Serializable {
 
     @Id
     @Column(name = "AlbumID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
     public Integer getID() {
         return ID;
@@ -38,22 +37,22 @@ public class Album implements Serializable {
     }
 
     @Column(name = "AlbumTitle")
-    private String album_title;
+    private String albumTitle;
 
     public String getAlbum_title() {
-        return album_title;
+        return albumTitle;
     }
 
     public void setAlbum_title(String album_title) {
-        this.album_title = album_title;
+        this.albumTitle = album_title;
     }
 
     @Column(name = "ReleaseDate")
-    private Date date;
-    public Date getDate() {
+    private String date;
+    public String getDate() {
         return date;
     }
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -77,15 +76,24 @@ public class Album implements Serializable {
         this.tracks = tracks;
     }
 
-    @ManyToMany
-    @JsonIgnore
-    private List<Genre> genres_of_album;
-    public List<Genre> getGenres_of_album() {
-        return genres_of_album;
+    @ManyToOne
+    @JoinColumn(name= "genre_id")
+    private Genre genre;
+    public Genre getGenre() {
+        return genre;
     }
-    public void setGenres_of_album(List<Genre> genres_of_album) {
-        this.genres_of_album = genres_of_album;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
+    //    @ManyToMany
+//    @JsonIgnore
+//    private List<Genre> genres_of_album;
+//    public List<Genre> getGenres_of_album() {
+//        return genres_of_album;
+//    }
+//    public void setGenres_of_album(List<Genre> genres_of_album) {
+//        this.genres_of_album = genres_of_album;
+//    }
 
     public List<Genre> getGenres_of_album() {
         return genres_of_album;
@@ -99,7 +107,7 @@ public class Album implements Serializable {
     public String toString() {
         return "Album{" +
                 "ID=" + ID +
-                ", album_title='" + album_title + '\'' +
+                ", album_title='" + albumTitle + '\'' +
                 ", date=" + date +
                 ", artist=" + artist +
                 ", tracks=" + tracks +

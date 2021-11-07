@@ -9,16 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class PlaylistService {
-    private PlaylistRepository repo;
+    private PlaylistRepository playlistRepository;
 
     @Autowired
-    public PlaylistService(PlaylistRepository repo){
-        this.repo = repo;
+    public PlaylistService(PlaylistRepository playlistRepository) {
+        this.playlistRepository = playlistRepository;
     }
-    public void save(Playlist playlist){
-        repo.save(playlist);
+
+    public void savePlaylist(Playlist playlist){
+        playlistRepository.save(playlist);
     }
-    public Playlist getPlaylist_name (Integer playlist_id){
-        return repo.getById(playlist_id);
+
+    public Playlist getPlaylist(Integer id){
+        return playlistRepository.getById(id);
     }
 }

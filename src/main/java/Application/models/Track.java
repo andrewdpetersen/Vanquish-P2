@@ -74,6 +74,24 @@ public class Track implements Serializable {
         this.userDislikes = userDislikes;
     }
 
+    @ManyToOne
+    Artist artist;
+    public Artist getArtist() {
+        return artist;
+    }
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+
+    @ManyToOne
+    Album album;
+    public Album getAlbum() {
+        return album;
+    }
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
     /**
      * Full args constructor
      * @param id
