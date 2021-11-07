@@ -7,6 +7,7 @@ import Application.services.APIClientService;
 import Application.services.ConcertService;
 import Application.services.TrackService;
 import ch.qos.logback.core.net.SyslogOutputStream;
+import org.json.JSONException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -34,6 +35,23 @@ public class P2Application {
 		for(Track track:trackList){
 			System.out.println(track.toString());
 		}
+
+		/**
+		 * The following block shows an issue, the code throws a JSONException,
+		 * because there are no search results from deezer, we should be able to recover
+		 * from this, by sending a message back to the front end.
+		 */
+		try{
+			System.out.println("TESTING: TrackSearch for \"xxxxyxyxxxyx\"");
+			List<Track> trackListBadName = TrackSearch.searchTracks("xxxxyxyxxxyx");
+			for(Track track:trackListBadName){
+				System.out.println(track.toString());
+			}
+		}catch(JSONException jex){
+			System.out.println("No search results for this search");
+			jex.getClass();
+		}
+
 
 //		Track track = new Track(1,"Never Gonna Give You Up");
 //		service.save(track);
