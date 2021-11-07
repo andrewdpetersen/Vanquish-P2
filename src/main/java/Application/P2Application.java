@@ -1,6 +1,10 @@
 package Application;
 
+import Application.deezer.AlbumSearch;
+import Application.deezer.ArtistSearch;
 import Application.deezer.TrackSearch;
+import Application.models.Album;
+import Application.models.Artist;
 import Application.models.Concert;
 import Application.models.Track;
 import Application.services.APIClientService;
@@ -50,6 +54,22 @@ public class P2Application {
 		}catch(JSONException jex){
 			System.out.println("No search results for this search");
 			jex.getClass();
+		}
+
+		/**
+		 * Test of albumSearch *** If we ask for 8 results, and there are only 7 results in deezer
+		 * we will have an exception thrown, and return 0 results.
+		 */
+		List<Album> albumSearchTest = AlbumSearch.albumSearch("the%20ugly%20organ",2);
+		for(Album album:albumSearchTest){
+			System.out.println(album.toString());
+		}
+		/**
+		 * Test of artistSearch
+		 */
+		List<Artist> artistSearchTest = ArtistSearch.artistSearch("Cursive",2);
+		for(Artist artist:artistSearchTest){
+			System.out.println(artist.toString());
 		}
 
 
