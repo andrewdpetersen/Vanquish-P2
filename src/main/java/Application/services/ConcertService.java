@@ -32,4 +32,13 @@ public class ConcertService {
     public void delete(Concert concert) {
         concertRepository.delete(concert);
     }
+
+    public void deleteConcert(Concert concert) {
+        concertRepository.delete(concert);
+    }
+
+    public void deleteAllConcerts() {
+        concertRepository.deleteAll();
+    }
 }
+

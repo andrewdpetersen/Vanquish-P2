@@ -27,3 +27,8 @@ public class ArtistService {
         return artistRepository.findByName(name);
     }
 }
+
+//    public Artist getArtistByName(String name){
+//        return artistRepository.findByName(name);
+//    }
+

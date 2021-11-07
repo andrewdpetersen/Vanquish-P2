@@ -92,7 +92,6 @@
 			<version>2.5.5</version>
 		</dependency>
 
-		<!-- Spring Boot Testing -->
 <!--		<dependency>-->
 <!--			<groupId>org.springframework.boot</groupId>-->
 <!--			<artifactId>spring-boot-starter-tomcat</artifactId>-->
@@ -117,6 +116,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
+		<!--OK HTTP for sending get requests to third party API-->
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>4.9.2</version>
+		</dependency>
+
     </dependencies>
 
 	<build>

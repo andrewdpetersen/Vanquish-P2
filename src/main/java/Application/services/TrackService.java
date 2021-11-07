@@ -23,4 +23,9 @@ public class TrackService {
     public Track getTrack(Integer id){
         return repo.getById(id);
     }
+
+    public boolean trackExists(Integer id)
+    {
+        return repo.existsById(id);
+    }
 }

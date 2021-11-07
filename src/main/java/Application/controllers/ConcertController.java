@@ -38,5 +38,14 @@ public class ConcertController {
         return concertService.getConcert(id);
     }
 
+    @DeleteMapping(value = "/concert/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteLocation(@PathVariable ("id") Integer id){
+        if(id>0){
+            concertService.deleteConcert(concertService.getConcert(id));
+        }else{
+            concertService.deleteAllConcerts();
+        }
+    }
 }
 
