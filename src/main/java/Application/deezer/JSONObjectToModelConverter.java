@@ -76,4 +76,13 @@ public class JSONObjectToModelConverter {
 
         return new Genre(genre_id,name,pictureUrl);
     }
+
+    public static Track topTrackConverter(JSONObject jsonTrack,Artist artist,Album album){
+        int track_id = jsonTrack.getInt("id");
+        String title = jsonTrack.getString("title");
+        Track track = new Track(track_id,title);
+        track.setArtist(artist);
+        track.setAlbum(album);
+        return track;
+    }
 }

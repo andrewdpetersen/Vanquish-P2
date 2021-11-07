@@ -71,6 +71,10 @@ public class P2Application {
 		for(Artist artist:artistSearchTest){
 			System.out.println(artist.toString());
 		}
+		List<Track> topTracks = ArtistSearch.getTopTracks(artistSearchTest.get(0),2);
+		for(Track track:topTracks){
+			System.out.println(track.toString());
+		}
 
 
 //		Track track = new Track(1,"Never Gonna Give You Up");

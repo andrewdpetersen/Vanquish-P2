@@ -1,6 +1,8 @@
 package Application.deezer;
 
+import Application.models.Album;
 import Application.models.Artist;
+import Application.models.Track;
 import Application.services.APIClientService;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,5 +44,30 @@ public class ArtistSearch {
             artistSearch.add(resultArtist);
         }
         return artistSearch;
+    }
+
+    public static List<Track> getTopTracks(Artist artist,int numberOfTracks){
+
+        List<Track> topTracks = new ArrayList<>();
+        String request = "https://api.deezer.com/artist/"+artist.getID()+"/top?limit="+numberOfTracks;
+
+        String stringJsonTracks = APIClientService.get(request);
+        JSONObject jsonObject = new JSONObject(stringJsonTracks);
+
+        JSONArray data = jsonObject.getJSONArray("data");
+        for(int i=0;i<data.length();i++){
+
+            JSONObject jsonTrack = data.getJSONObject(i);
+            JSONObject jsonAlbum = jsonTrack.getJSONObject("album");
+            int albumID = jsonAlbum.getInt("id");
+
+            String albumRequest = "https://api.deezer.com/album/"+albumID;
+            String albumJsonString = APIClientService.get(albumRequest);
+            Album album = JSONStringToModelConverter.albumConverter(albumJsonString);
+
+            Track track = JSONObjectToModelConverter.topTrackConverter(jsonTrack,artist,album);
+            topTracks.add(track);
+        }
+        return topTracks;
     }
 }

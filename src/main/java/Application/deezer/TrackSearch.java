@@ -47,7 +47,9 @@ public class TrackSearch {
 }
 //https://api.deezer.com/search/track?q=eminem
 /**
- * Search by album, artist, track
+ * DONE: Search by album, artist, track
+ * DONE: Return results as a List of whichever model is requested (just for data transfer, no persistence)
+ *
  * Search-type comes from front end
  * Marshall the request String based on that information
  * Check if model exists, and add information as necessary
@@ -56,7 +58,7 @@ public class TrackSearch {
  * ...search by Track or album)
  * (If they request a track or album by name, search deezer, because different tracks can have the same name)
  * If not query Deezer
- * Return results as a List of whichever model is requested (just for data transfer, no persistence)
+ *
  * When the front end makes a selection from results, we send that model back
  * Find what information from Deezer we need to persist a consistent model in our database
  */
