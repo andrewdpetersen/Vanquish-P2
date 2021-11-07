@@ -35,7 +35,7 @@ public class P2Application {
 		ConcertService service2 = context.getBean(ConcertService.class);
 
 		System.out.println("TESTING: TrackSearch for \"kiwi\"");
-		List<Track> trackList = TrackSearch.searchTracks("kiwi",10);
+		List<Track> trackList = TrackSearch.searchTracks("kiwi",3);
 		for(Track track:trackList){
 			System.out.println(track.toString());
 		}
@@ -47,7 +47,7 @@ public class P2Application {
 		 */
 		try{
 			System.out.println("TESTING: TrackSearch for \"xxxxyxyxxxyx\"");
-			List<Track> trackListBadName = TrackSearch.searchTracks("xxxxyxyxxxyx",5);
+			List<Track> trackListBadName = TrackSearch.searchTracks("xxxxyxyxxxyx",1);
 			for(Track track:trackListBadName){
 				System.out.println(track.toString());
 			}
@@ -60,7 +60,7 @@ public class P2Application {
 		 * Test of albumSearch *** If we ask for 8 results, and there are only 7 results in deezer
 		 * we will have an exception thrown, and return 0 results.
 		 */
-		List<Album> albumSearchTest = AlbumSearch.albumSearch("the%20ugly%20organ",2);
+		List<Album> albumSearchTest = AlbumSearch.albumSearch("the%20ugly%20organ",3);
 		for(Album album:albumSearchTest){
 			System.out.println(album.toString());
 		}

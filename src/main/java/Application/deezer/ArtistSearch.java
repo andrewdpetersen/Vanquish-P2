@@ -26,6 +26,10 @@ public class ArtistSearch {
 
             //data is NOT a string, it is a JSONArray with 1 JSONObject in it...
             JSONArray data = jsonObject.getJSONArray("data");
+            if(data.isEmpty()){
+                return artistSearch;
+            }
+
             JSONObject jsonData = data.getJSONObject(0);
 
             int id = jsonData.getInt("id");
