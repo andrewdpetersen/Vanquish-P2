@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 public class JSONToModelConverter {
 
-    public Track trackConverter(String json){
+    public static Track trackConverter(String json){
 
         JSONObject jsonObject = new JSONObject(json);
         int track_id = jsonObject.getInt("id");
@@ -29,7 +29,7 @@ public class JSONToModelConverter {
         return track;
     }
 
-    public Artist artistConverter(String json){
+    public static Artist artistConverter(String json){
         JSONObject jsonObject = new JSONObject(json);
         int artist_id = jsonObject.getInt("id");
         String name = jsonObject.getString("name");
@@ -38,7 +38,7 @@ public class JSONToModelConverter {
         return new Artist(name,artist_id,pictureUrl);
     }
 
-    public Album albumConverter(String json){
+    public static Album albumConverter(String json){
         JSONObject jsonObject = new JSONObject(json);
         int album_id = jsonObject.getInt("id");
         String title = jsonObject.getString("title");
@@ -61,7 +61,7 @@ public class JSONToModelConverter {
         return album;
     }
 
-    public Genre genreConverter(String json){
+    public static Genre genreConverter(String json){
         JSONObject jsonObject = new JSONObject(json);
         int genre_id = jsonObject.getInt("id");
         String name = jsonObject.getString("name");

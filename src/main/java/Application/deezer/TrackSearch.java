@@ -1,24 +1,48 @@
 package Application.deezer;
 
 import Application.models.Track;
+import Application.repositories.TrackRepository;
 import Application.services.APIClientService;
+import Application.services.TrackService;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TrackSearch {
 
     public static List<Track> searchTracks(String track_title){
-        String url = "https://api.deezer.com/search/track?q=" + track_title +"&index=0&limit=5";
-        String json_response = APIClientService.get(url);
-        //Convert this string to a list of our models
-        JSONObject jsonObject = new JSONObject(json_response);
+        List<Track> trackSearch = new ArrayList<>();
 
-        String data = jsonObject.getString("data");
-        //If we have to, skip artist and album ids, just read the track ids
+        String urlStart = "https://api.deezer.com/search/track?q="+track_title+"&index=";
+        for(int i=0;i<5;i++) {
+            //This limits the results of our get request to 1 result per request
+            String url = urlStart + i + "&limit=1";
 
-        //respond to front end
+            //This sends the request and assigns the response to a String
+            String jsonResponse = APIClientService.get(url);
 
+            //This section gets the track id from the response
+            JSONObject jsonObject = new JSONObject(jsonResponse);
+
+            //data is NOT a string, it is a JSONArray with 1 JSONObject in it...
+            JSONArray data = jsonObject.getJSONArray("data");
+            JSONObject jsonData = data.getJSONObject(0);
+
+            //Maybe call trackConverter from here?
+
+            int id = jsonData.getInt("id");
+
+            //This sends a new request for the
+            String newURL = "https://api.deezer.com/track/" + id;
+            String stringJsonTrack = APIClientService.get(newURL);
+
+            Track resultTrack = JSONToModelConverter.trackConverter(stringJsonTrack);
+
+            trackSearch.add(resultTrack);
+        }
+        return trackSearch;
     }
 
 }

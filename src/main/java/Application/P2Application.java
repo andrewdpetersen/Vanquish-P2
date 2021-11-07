@@ -1,5 +1,6 @@
 package Application;
 
+import Application.deezer.TrackSearch;
 import Application.models.Concert;
 import Application.models.Track;
 import Application.services.APIClientService;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.xml.bind.SchemaOutputResolver;
+import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "Application")
 @EntityScan("Application")
@@ -27,6 +29,11 @@ public class P2Application {
 		TrackService service = context.getBean(TrackService.class);
 		ConcertService service2 = context.getBean(ConcertService.class);
 
+		List<Track> trackList = TrackSearch.searchTracks("and the bit just chokes them");
+		for(Track track:trackList){
+			System.out.println(track.toString());
+		}
+
 //		Track track = new Track(1,"Never Gonna Give You Up");
 //		service.save(track);
 //
@@ -38,7 +45,7 @@ public class P2Application {
 //		String json = APIClientService.get("https://api.deezer.com/track/3135556");
 //		System.out.println("Test track information: \n" + json);
 
-		Track track2 = service.getTrack(1);
-		System.out.println(track2.toString());
+//		Track track2 = service.getTrack(1);
+//		System.out.println(track2.toString());
 	}
 }
