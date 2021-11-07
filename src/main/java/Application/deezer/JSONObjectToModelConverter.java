@@ -7,11 +7,9 @@ import Application.models.Track;
 import Application.services.APIClientService;
 import org.json.JSONObject;
 
-public class JSONToModelConverter {
+public class JSONObjectToModelConverter {
+    public static Track trackConverter(JSONObject jsonObject){
 
-    public static Track trackConverter(String json){
-
-        JSONObject jsonObject = new JSONObject(json);
         int track_id = jsonObject.getInt("id");
         String title = jsonObject.getString("title");
 
@@ -40,8 +38,7 @@ public class JSONToModelConverter {
         return track;
     }
 
-    public static Artist artistConverter(String json){
-        JSONObject jsonObject = new JSONObject(json);
+    public static Artist artistConverter(JSONObject jsonObject){
         int artist_id = jsonObject.getInt("id");
         String name = jsonObject.getString("name");
         String pictureUrl = jsonObject.getString("picture_medium");
@@ -49,8 +46,7 @@ public class JSONToModelConverter {
         return new Artist(name,artist_id,pictureUrl);
     }
 
-    public static Album albumConverter(String json){
-        JSONObject jsonObject = new JSONObject(json);
+    public static Album albumConverter(JSONObject jsonObject){
         int album_id = jsonObject.getInt("id");
         String title = jsonObject.getString("title");
         String release_date = jsonObject.getString("release_date");

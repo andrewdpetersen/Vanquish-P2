@@ -34,7 +34,7 @@ public class TrackSearch {
             String newURL = "https://api.deezer.com/track/" + id;
             String stringJsonTrack = APIClientService.get(newURL);
 
-            Track resultTrack = JSONToModelConverter.trackConverter(stringJsonTrack);
+            Track resultTrack = JSONStringToModelConverter.trackConverter(stringJsonTrack);
 
             trackSearch.add(resultTrack);
         }
