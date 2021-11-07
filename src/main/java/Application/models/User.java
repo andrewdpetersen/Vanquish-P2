@@ -87,14 +87,6 @@ public class User {
         this.userInfo = userInfo;
     }
 
-    public List<Track> getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(List<Track> favorites) {
-        this.favorites = favorites;
-    }
-
     @Override
     public String toString() {
         return "User{" +

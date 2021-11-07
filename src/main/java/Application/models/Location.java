@@ -51,14 +51,6 @@ public class Location {
         this.state = state;
     }
 
-<<<<<<< HEAD
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
-=======
     @OneToMany(mappedBy = "location")
     private List<UserInfo> userInfoList;
     public List<UserInfo> getUserInfoList() {
@@ -68,19 +60,6 @@ public class Location {
         this.userInfoList = userInfoList;
     }
 
-<<<<<<< HEAD
-    public Location(Integer location_id, String city, String state) {
-        this.location_id = location_id;
-        this.city = city;
-        this.state = state;
-    }
-
-    public Location() {
->>>>>>> bd93c80105452fa6d2fc22b344109e5ed39147a9
-    }
-
-=======
->>>>>>> 8e90d3f6432e5f951d03c17bfb24087ace83dc92
     @Override
     public String toString() {
         return "Location{" +

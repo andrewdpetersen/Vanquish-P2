@@ -13,7 +13,7 @@ import javax.xml.bind.SchemaOutputResolver;
 
 
 @SpringBootApplication(scanBasePackages = "Application")
-@EntityScan("Application.models")
+@EntityScan("Application")
 @ComponentScan("Application")
 @EnableTransactionManagement
 
@@ -21,17 +21,6 @@ public class P2Application {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(P2Application.class, args);
-
-
-		Track bean = context.getBean(Track.class);
-		System.out.println(bean.getTitle());
-
-//		Track model = new Track(1, "test");
-//		Track model1 = new Track(2, "test2");
-//		Track model2 = new Track(3, "test3");
-//		service.save(model);
-//		service.save(model1);
-//		service.save(model2);
 
 		TrackService service = context.getBean(TrackService.class);
 		ConcertService service2 = context.getBean(ConcertService.class);

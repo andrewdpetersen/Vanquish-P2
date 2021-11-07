@@ -29,8 +29,5 @@ public class ArtistController {
     public Artist getArtistById(@PathVariable("id") Integer id) {
         return artistService.getArtist(id);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> bd93c80105452fa6d2fc22b344109e5ed39147a9
+
