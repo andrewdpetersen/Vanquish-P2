@@ -10,18 +10,18 @@ import java.util.List;
 
 public class TrackSearch {
 
-    public static List<Track> searchTracks(String track_title){
+    public static List<Track> searchTracks(String track_title, int numberOfResults){
         List<Track> trackSearch = new ArrayList<>();
 
         String urlStart = "https://api.deezer.com/search/track?q="+track_title+"&index=";
-        for(int i=0;i<5;i++) {
+        for(int i=0;i<numberOfResults;i++) {
             //This limits the results of our get request to 1 result per request
             String url = urlStart + i + "&limit=1";
 
             //This sends the request and assigns the response to a String
             String jsonResponse = APIClientService.get(url);
 
-            //This section gets the track id from the response
+            //This section gets the track data from the response
             JSONObject jsonObject = new JSONObject(jsonResponse);
 
             //data is NOT a string, it is a JSONArray with 1 JSONObject in it...

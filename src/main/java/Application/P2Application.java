@@ -31,7 +31,7 @@ public class P2Application {
 		ConcertService service2 = context.getBean(ConcertService.class);
 
 		System.out.println("TESTING: TrackSearch for \"kiwi\"");
-		List<Track> trackList = TrackSearch.searchTracks("kiwi");
+		List<Track> trackList = TrackSearch.searchTracks("kiwi",10);
 		for(Track track:trackList){
 			System.out.println(track.toString());
 		}
@@ -43,7 +43,7 @@ public class P2Application {
 		 */
 		try{
 			System.out.println("TESTING: TrackSearch for \"xxxxyxyxxxyx\"");
-			List<Track> trackListBadName = TrackSearch.searchTracks("xxxxyxyxxxyx");
+			List<Track> trackListBadName = TrackSearch.searchTracks("xxxxyxyxxxyx",5);
 			for(Track track:trackListBadName){
 				System.out.println(track.toString());
 			}
