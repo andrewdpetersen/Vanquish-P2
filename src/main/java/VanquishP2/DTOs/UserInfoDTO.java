@@ -3,9 +3,11 @@ package VanquishP2.DTOs;
 import VanquishP2.Application.Beans.Models.UserInfo;
 
 public class UserInfoDTO {
-    UserInfo user;
+    UserInfo userInfo;
 
     public UserInfoDTO(UserInfo userInfo) {
-        this.user = userInfo;
+        this.userInfo = userInfo;
     }
+
+
 }

@@ -1,8 +1,6 @@
 package VanquishP2.Application.Beans.Models;
 
-import VanquishP2.DTOs.UserRegistrationDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,18 +14,23 @@ import java.util.List;
 
 @Table(name = "USERS")
 @Entity
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"},
+        ignoreUnknown = true)
 public class User {
     public User() {
         this.role = Role.BASIC;
         this.myPlaylists = new ArrayList<>();
         this.favorites = new ArrayList<>();
+        this.likedTracks = new ArrayList<>();
+        this.dislikedTracks = new ArrayList<>();
         this.userInfo = null;
     }
 
     public User(Role role, UserInfo userInfo) {
         this.role = role;
         this.myPlaylists = new ArrayList<>();
+        this.likedTracks = new ArrayList<>();
+        this.dislikedTracks = new ArrayList<>();
         this.favorites = new ArrayList<>();
         this.userInfo = userInfo;
     }
@@ -44,7 +47,7 @@ public class User {
     }
 
     @Enumerated
-    Role role;
+    private Role role;
     public enum Role {
         BASIC,
         PREMIUM
@@ -57,7 +60,7 @@ public class User {
     }
 
     @OneToMany(mappedBy = "user")
-    List<Playlist> myPlaylists;
+    private List<Playlist> myPlaylists;
     public List<Playlist> getMyPlaylists() {
         return myPlaylists;
     }
@@ -66,7 +69,7 @@ public class User {
     }
 
     @OneToMany(mappedBy = "user")
-    List<Track> favorites;
+    private List<Track> favorites;
     public List<Track> getFavorites() {
         return favorites;
     }
@@ -75,12 +78,30 @@ public class User {
     }
 
     @OneToOne(mappedBy = "user")
-    UserInfo userInfo;
+    private UserInfo userInfo;
     public UserInfo getUserInfo() {
         return userInfo;
     }
     public void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
+    }
+
+    @ManyToMany
+    private List<Track> likedTracks;
+    public List<Track> getLikedTracks() {
+        return likedTracks;
+    }
+    public void setLikedTracks(List<Track> likedTracks) {
+        this.likedTracks = likedTracks;
+    }
+
+    @ManyToMany
+    private List<Track> dislikedTracks;
+    public List<Track> getDislikedTracks() {
+        return dislikedTracks;
+    }
+    public void setDislikedTracks(List<Track> dislikedTracks) {
+        this.dislikedTracks = dislikedTracks;
     }
 
     @Override
@@ -90,7 +111,6 @@ public class User {
                 "role: " + role + ",\n" +
                 "myPlaylists: " + myPlaylists + ",\n" +
                 "favorites: " + favorites + ",\n" +
-                "userInfo: " + userInfo + ",\n" +
                 '}';
     }
 }

@@ -13,7 +13,8 @@ import javax.persistence.*;
 
 @Table(name = "USERINFO")
 @Entity
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "location", "user"},
+        ignoreUnknown = true)
 public class UserInfo {
     public UserInfo() {
 
@@ -26,7 +27,7 @@ public class UserInfo {
     }
 
     public UserInfo(UserRegistrationDTO registration) {
-        this.location = registration.getLocation();
+        this.location = new Location(registration.getCity(), registration.getState());
         this.firstName = registration.getFirstName();
         this.lastName = registration.getLastName();
         this.username = registration.getUsername();
@@ -90,7 +91,7 @@ public class UserInfo {
         this.password = password;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Location location;
     public Location getLocation() {
         return location;
@@ -99,7 +100,7 @@ public class UserInfo {
         this.location = location;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     User user;
     public User getUser() {
         return user;
@@ -118,7 +119,6 @@ public class UserInfo {
                 "username: " + username + ",\n" +
                 "password: " + password + ",\n" +
                 "location: " + location + ",\n" +
-                "user: " + user + ",\n" +
                 '}';
     }
 }

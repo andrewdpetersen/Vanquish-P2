@@ -16,20 +16,18 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * UserController
  * Handles requests that involve the manipulating or retrieval of user data
  *
- * @Date 11/1/2021
- * @Author Kollier Martin
+ * @date 11/1/2021
+ * @author Kollier Martin
  */
 
 @RestController
-@RequestMapping(value = "/user", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/4TheMusic", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
 public class UserController {
     private final UserService userService;
-    private final JWTUtil jwtUtil;
 
     @Autowired
-    public UserController(UserService userService, JWTUtil jwtUtil) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.jwtUtil = jwtUtil;
     }
 
     /**
@@ -37,12 +35,16 @@ public class UserController {
      * @param id ID Integer to distinguish user
      * @return User Object
      */
-    @GetMapping("/{id}")
+    @GetMapping("/user/{id}")
     public User retrieve(@PathVariable int id) {
         return userService.getByID(id);
     }
 
-    @GetMapping("")
+    /**
+     * Get all users in DB
+     * @return List of Registered Users
+     */
+    @GetMapping("/user/all")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> allUsers = userService.getAllUsers();
 
@@ -55,31 +57,11 @@ public class UserController {
     }
 
     /**
-     *
-     * @param regData
-     * @return
+     * Delete user by ID
+     * @param id User ID
+     * @return Response Entity
      */
-    @PostMapping(value = "/register/basic", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public User registerBasicUser(@RequestBody @Valid UserRegistrationDTO regData){
-        return userService.registerUser(regData, User.Role.BASIC);
-    }
-
-    /**
-     *
-     * @param regData
-     * @return
-     */
-    @PostMapping(value = "/register/premium", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public User registerPremiumUser(@RequestBody @Valid UserRegistrationDTO regData){
-        return userService.registerUser(regData, User.Role.PREMIUM);
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/user/{id}")
     public ResponseEntity<User> delete(@PathVariable("id") int id) {
         User user = userService.getByID(id);
 

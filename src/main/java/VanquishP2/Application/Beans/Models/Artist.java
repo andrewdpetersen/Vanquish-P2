@@ -29,16 +29,21 @@ public class Artist {
         concerts = new ArrayList<>();
     }
 
+    public Artist(String name, int artistID, String imageURL) {
+        this.name = name;
+        this.artistID = artistID;
+        this.imageURL = imageURL;
+    }
+
     @Id
     @Column(name = "ArtistID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ID;
+    private int artistID;
     public int getID() {
-        return ID;
+        return artistID;
     }
-
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int artistID) {
+        this.artistID = artistID;
     }
 
     @Column(name = "Name")
@@ -89,7 +94,7 @@ public class Artist {
     @Override
     public String toString() {
         return "Artist {\n" +
-                "ID: " + ID + ",\n" +
+                "artistID: " + artistID + ",\n" +
                 "name: " + name + ",\n" +
                 "imageURL: " + imageURL + ",\n" +
                 "concerts: " + concerts + ",\n" +

@@ -1,7 +1,9 @@
 package VanquishP2.Application.Beans.ModelServices;
 
+import VanquishP2.Application.Beans.Models.Location;
 import VanquishP2.Application.Beans.Models.User;
 import VanquishP2.Application.Beans.Models.UserInfo;
+import VanquishP2.Application.Beans.Repos.LocationRepository;
 import VanquishP2.Application.Beans.Service.Logger;
 import VanquishP2.DTOs.UserRegistrationDTO;
 import VanquishP2.Exceptions.UserDoesNotExistException;
@@ -24,13 +26,16 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
+    private final LocationRepository locationRepository;
     private final String exceptionError = "User: %s does not exist.";
 
     @Autowired
     public UserService(UserRepository userRepository,
-                       UserInfoRepository userInfoRepository) {
+                       UserInfoRepository userInfoRepository,
+                       LocationRepository locationRepository) {
         this.userRepository = userRepository;
         this.userInfoRepository = userInfoRepository;
+        this.locationRepository = locationRepository;
     }
 
     /**
@@ -78,7 +83,7 @@ public class UserService {
     }
 
     /**
-     *
+     * Persist User to DB
      * @param user
      * @return
      */
@@ -87,7 +92,7 @@ public class UserService {
     }
 
     /**
-     *
+     * Delete User by ID
      * @param id
      * @return
      */
@@ -96,19 +101,23 @@ public class UserService {
     }
 
     /**
-     *
-     * @param data
-     * @return
+     * Register New User
+     * @param data UserRegistration data to persist
+     * @return The new persisted Object
      */
     public User registerUser(UserRegistrationDTO data, User.Role role) {
         User newUser;
         UserInfo newUserInfo;
+        Location userLocation;
 
+        userLocation = new Location(data.getCity(), data.getState());
         newUserInfo = new UserInfo(data);
         newUser = new User(role, newUserInfo);
 
+        locationRepository.save(userLocation);
         userRepository.save(newUser);
 
+        newUserInfo.setLocation(userLocation);
         newUserInfo.setUser(newUser);
         userInfoRepository.save(newUserInfo);
 

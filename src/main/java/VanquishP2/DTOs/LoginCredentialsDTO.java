@@ -28,4 +28,12 @@ public class LoginCredentialsDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "LoginCredentialsDTO {\n" +
+                "username: " + username + ",\n" +
+                "password: " + password + ",\n" +
+                '}';
+    }
 }

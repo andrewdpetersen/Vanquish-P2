@@ -1,4 +1,4 @@
-package VanquishP2.Application.Beans.ModelServices;
+package VanquishP2.Application.Beans.Service;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

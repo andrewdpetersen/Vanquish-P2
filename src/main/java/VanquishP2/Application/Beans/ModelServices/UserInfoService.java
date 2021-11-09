@@ -1,7 +1,9 @@
 package VanquishP2.Application.Beans.ModelServices;
 
+import VanquishP2.Application.Beans.Models.User;
 import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.Application.Beans.Repos.UserInfoRepository;
+import VanquishP2.Application.Beans.Service.Logger;
 import VanquishP2.Exceptions.UserDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,21 +60,6 @@ public class UserInfoService {
         return userInfoRepository.findByFirstName(firstName).get();
     }
 
-    public Optional<UserInfo> authenticate(String username, String password){
-        Optional<UserInfo> userInfo = userInfoRepository.findUserByUsernameAndPassword(username, password);
-
-        try {
-            if (!userInfo.isPresent()) {
-                throw new UserDoesNotExistException(exceptionError);
-            }
-        } catch (UserDoesNotExistException e) {
-            // log
-            e.printStackTrace();
-        }
-
-        return userInfo;
-    }
-
     public void save(UserInfo userInfo) {
         userInfoRepository.save(userInfo);
     }
@@ -86,5 +73,38 @@ public class UserInfoService {
      */
     public void deleteAllInfo(){
         userInfoRepository.deleteAll();
+    }
+
+    /**
+     * This method fetches all User Info in the DB
+     * @author Kollier Martin
+     * @date 11/8/2021
+     * @return List of users present in DB
+     */
+    public List<UserInfo> getAll() {
+        return userInfoRepository.findAll();
+    }
+
+    /**
+     * Authenticate User
+     * @date 11/8/2021
+     * @author Kollier Martin
+     * @param username Username
+     * @param password Password
+     * @return User Info, either null or not null
+     */
+    public Optional<UserInfo> authenticate(String username, String password){
+        Optional<UserInfo> userInfo = Optional.empty();
+
+        try {
+            userInfo = userInfoRepository.findByUsernameAndPassword(username, password);
+            if (!userInfo.isPresent()) {
+                throw new UserDoesNotExistException(exceptionError);
+            }
+        } catch (UserDoesNotExistException e) {
+            Logger.getFileLogger().writeLog(e.getMessage(), 3);
+        }
+
+        return userInfo;
     }
 }

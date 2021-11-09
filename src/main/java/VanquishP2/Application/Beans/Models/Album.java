@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,13 +23,12 @@ public class Album implements Serializable {
 
     @Id
     @Column(name = "AlbumID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
-    public Integer getID() {
-        return ID;
+    private Integer albumID;
+    public Integer getAlbumID() {
+        return albumID;
     }
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setAlbumID(Integer ID) {
+        this.albumID = ID;
     }
 
     @Column(name = "AlbumTitle")
@@ -43,11 +41,11 @@ public class Album implements Serializable {
     }
 
     @Column(name = "ReleaseDate")
-    private Date date;
-    public Date getDate() {
+    private String date;
+    public String getDate() {
         return date;
     }
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -69,24 +67,24 @@ public class Album implements Serializable {
         this.tracks = tracks;
     }
 
-    @ManyToMany
-    private List<Genre> albumGenres;
-    public List<Genre> getAlbumGenres() {
-        return albumGenres;
+    @ManyToOne
+    private Genre genre;
+    public Genre getGenre() {
+        return genre;
     }
-    public void setAlbumGenres(List<Genre> albumGenres) {
-        this.albumGenres = albumGenres;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     @Override
     public String toString() {
         return "Album {\n" +
-                "ID: " + ID + ",\n" +
+                "ID: " + albumID + ",\n" +
                 "albumTitle: " + albumTitle + ",\n" +
                 "date: " + date + ",\n" +
                 "artist: " + artist + ",\n" +
                 "tracks: " + tracks + ",\n" +
-                "albumGenres: " + albumGenres + ",\n" +
+                "genre: " + genre + ",\n" +
                 '}';
     }
 }

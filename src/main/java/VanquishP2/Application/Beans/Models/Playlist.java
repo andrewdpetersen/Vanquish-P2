@@ -55,7 +55,7 @@ public class Playlist {
         this.user = user;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist")
+    @ManyToMany
     List<Track> trackList;
     public List<Track> getTrackList() {
         return trackList;

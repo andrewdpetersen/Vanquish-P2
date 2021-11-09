@@ -3,6 +3,7 @@ package VanquishP2.Application.Beans.Models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * This class is used to declare the POJO, Track
@@ -18,8 +19,13 @@ public class Track {
 
     }
 
-    public Track(String trackName, String duration, Artist artist) {
-        this.trackName = trackName;
+    public Track(Integer id, String title) {
+        this.trackID = id;
+        this.title = title;
+    }
+
+    public Track(String title, String duration, Artist artist) {
+        this.title = title;
         this.duration = duration;
         this.artist = artist;
     }
@@ -27,21 +33,21 @@ public class Track {
     @Id
     @Column(name = "TrackID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
-    public Integer getID() {
-        return ID;
+    private Integer trackID;
+    public Integer getTrackID() {
+        return trackID;
     }
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setTrackID(Integer ID) {
+        this.trackID = ID;
     }
 
     @Column(name = "Title")
-    private String trackName;
-    public String getTrackName() {
-        return trackName;
+    private String title;
+    public String getTitle() {
+        return title;
     }
-    public void setTrackName(String trackName) {
-        this.trackName = trackName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Column(name = "Duration")
@@ -72,23 +78,50 @@ public class Track {
     }
 
     @ManyToOne
-    private Playlist playlist;
-    public Playlist getPlaylist() {
-        return playlist;
+    Album album;
+    public Album getAlbum() {
+        return album;
     }
-    public void setPlaylist(Playlist playlist) {
-        this.playlist = playlist;
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
+    @ManyToMany(mappedBy = "trackList")
+    private List<Playlist> playlists;
+    public List<Playlist> getPlaylists() {
+        return playlists;
+    }
+    public void setPlaylists(List<Playlist> playlists) {
+        this.playlists = playlists;
+    }
+
+    @ManyToMany(mappedBy = "likedTracks")
+    private List<User> userLikes;
+    public List<User> getUserLikes() {
+        return userLikes;
+    }
+    public void setUserLikes(List<User> userLikes) {
+        this.userLikes = userLikes;
+    }
+
+    @ManyToMany(mappedBy = "dislikedTracks")
+    private List<User> userDislikes;
+    public List<User> getUserDislikes() {
+        return userDislikes;
+    }
+    public void setUserDislikes(List<User> userDislikes) {
+        this.userDislikes = userDislikes;
     }
 
     @Override
     public String toString() {
         return "Track {\n" +
-                "ID: " + ID + ",\n" +
-                "trackName: " + trackName + ",\n" +
+                "ID: " + trackID + ",\n" +
+                "title: " + title + ",\n" +
                 "duration: " + duration + ",\n" +
                 "artist: " + artist + ",\n" +
                 "user: " + user + ",\n" +
-                "playlist: " + playlist + ",\n" +
+                "playlists: " + playlists + ",\n" +
                 '}';
     }
 }

@@ -11,10 +11,11 @@ import java.util.List;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Genre {
     public Genre() {
-        genreOfAlbums = new ArrayList<>();
+        albumsOfGenre = new ArrayList<>();
     }
 
     public Genre(Integer genreID, String genreName, String imageURL) {
+        albumsOfGenre = new ArrayList<>();
         this.genreID = genreID;
         this.genreName = genreName;
         this.imageURL = imageURL;
@@ -48,12 +49,22 @@ public class Genre {
         this.imageURL = imageURL;
     }
 
-    @ManyToMany(mappedBy = "albumGenres")
-    private List<Album> genreOfAlbums;
-    public List<Album> getGenreOfAlbums() {
-        return genreOfAlbums;
+    @OneToMany
+    private List<Album> albumsOfGenre;
+    public List<Album> getAlbumsOfGenre() {
+        return albumsOfGenre;
     }
-    public void setGenreOfAlbums(List<Album> genreOfAlbums) {
-        this.genreOfAlbums = genreOfAlbums;
+    public void setAlbumsOfGenre(List<Album> albumsOfGenre) {
+        this.albumsOfGenre = albumsOfGenre;
+    }
+
+    @Override
+    public String toString() {
+        return "Genre {\n" +
+                "genreID: " + genreID + ",\n" +
+                "genreName: " + genreName + ",\n" +
+                "imageURL: " + imageURL + ",\n" +
+                "albumsOfGenre: " + albumsOfGenre + ",\n" +
+                '}';
     }
 }

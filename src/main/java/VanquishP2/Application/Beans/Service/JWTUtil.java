@@ -5,16 +5,18 @@ import VanquishP2.Exceptions.AuthenticationException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.sql.Date;
 
 /**
  * JWTUtil
  * Class used for the creation/parsing of JWTs
+ * @author Kollier Martin
+ * @date 11/1/2021
  */
-@Service
+@Component
 public class JWTUtil {
 
     @Value("${jwt.header}")
@@ -28,7 +30,7 @@ public class JWTUtil {
 
     private Key key;
 
-    public void JWTUtil (){
+    public JWTUtil(){
         createKey();
     }
 
@@ -37,7 +39,6 @@ public class JWTUtil {
     }
 
     public String createJWT(UserInfo userInfo){
-        // Build the java web token and return it
         return Jwts.builder()
                 .setIssuer("Vanquish")
                 .setSubject(userInfo.getUsername())
@@ -46,11 +47,12 @@ public class JWTUtil {
                 .compact();
     }
 
-    public Jws<Claims> parseJWT(String token) throws AuthenticationException {
+    public Claims parseJWT(String token) throws AuthenticationException {
         return Jwts.parserBuilder()             // Creates parser instance
                 .setSigningKey(key)             // Specify the key to verify this jws signature
                 .build()                        // Returns a new, thread-safe, parser
-                .parseClaimsJws(token);
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     public String getHeader() {
@@ -65,7 +67,21 @@ public class JWTUtil {
         return expiration;
     }
 
-    public Key getSigningKey() {
+    public Key getKey() {
         return key;
+    }
+
+    @Override
+    public String toString() {
+        return "JWTUtil {\n" +
+                "header: " + header + ",\n" +
+                "prefix: " + prefix + ",\n" +
+                "expiration: " + expiration + ",\n" +
+                "key: " + key + ",\n" +
+                '}';
+    }
+
+    public void printVars(){
+        System.out.println(this);
     }
 }

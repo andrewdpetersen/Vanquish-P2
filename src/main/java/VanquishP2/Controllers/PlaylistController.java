@@ -25,7 +25,9 @@ public class PlaylistController {
 
     @GetMapping(value = "/playlist_name/{playlist_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Playlist getPlaylistById(@PathVariable("id") Integer id){
+    public Playlist getPlaylistById(@PathVariable("playlist_id") Integer id){
         return playlistService.getPlaylist_name(id);
     }
+
+
 }

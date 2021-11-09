@@ -22,11 +22,10 @@ public class TrackController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public Track saveTrack(@RequestBody Track track){
         trackService.save(track);
-        return trackService.getTrack(track.getID());
+        return trackService.getTrack(track.getTrackID());
     }
 
     @GetMapping(value = "/track/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    //@GetMapping(value = "/track?id=x", produces = MediaType.APPLICATION_JSON_VALUE) -> @RequestParam
     @ResponseStatus(value = HttpStatus.OK)
     public Track getTrackById(@PathVariable ("id") Integer id){
         return trackService.getTrack(id);

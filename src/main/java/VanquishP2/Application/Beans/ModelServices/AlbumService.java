@@ -43,7 +43,7 @@ public class AlbumService {
      * @throws AlbumDoesNotExistException Album does not exist in DB
      */
     public Album getByID(int id) throws AlbumDoesNotExistException {
-        return albumRepository.findByID(id)
+        return albumRepository.findByAlbumID(id)
                 .orElseThrow(AlbumDoesNotExistException::new);
     }
 

@@ -6,7 +6,10 @@ import VanquishP2.Application.Beans.Models.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/4TheMusic")
@@ -30,7 +33,8 @@ public class UserInfoController {
         return userInfoService.saveUserInfo(userInfo);
     }
 
-    @PutMapping(value = "/userinfo", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    // Kollier took out setLocation and setUser until we get the Front End together
+    @PutMapping(value = "/userinfo/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public UserInfo updateUserInfo(@RequestBody UserInfo userInfo){
         UserInfo updatedInfo = userInfoService.getUserInfoById(userInfo.getID());
@@ -38,8 +42,6 @@ public class UserInfoController {
         updatedInfo.setPassword(userInfo.getPassword());
         updatedInfo.setFirstName(userInfo.getFirstName());
         updatedInfo.setLastName(userInfo.getLastName());
-        updatedInfo.setUser(userInfo.getUser());
-        updatedInfo.setLocation(userInfo.getLocation());
         updatedInfo.setUsername(userInfo.getUsername());
         userInfoService.saveUserInfo(updatedInfo);
         return userInfoService.getUserInfoById(updatedInfo.getID());
@@ -53,5 +55,22 @@ public class UserInfoController {
         }else{
             userInfoService.deleteAllInfo();
         }
+    }
+
+    /**
+     * Get all users in DB
+     * @return List of Registered Users
+     * @author Kollier Martin
+     */
+    @GetMapping("/userinfo/all")
+    public ResponseEntity<List<UserInfo>> getAllUsers() {
+        List<UserInfo> allUsers = userInfoService.getAll();
+
+        if (allUsers == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else if (allUsers.isEmpty())
+            return new ResponseEntity<>(allUsers, HttpStatus.NO_CONTENT);
+        else
+            return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
 }
