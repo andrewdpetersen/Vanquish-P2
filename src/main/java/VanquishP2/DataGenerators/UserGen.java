@@ -35,10 +35,10 @@ public class UserGen {
     private void populate() {
         for (int i = 0; i < 20; i++) {
             UserRegistrationDTO userRegistrationDTO = new UserRegistrationDTO(getAFirstName(), getALastName(),
-                    getAUsername(), getAPassword(), getAEmail(), getACity(), getAState());
+                    getAUsername(), getAPassword(), getAEmail(), getALocation());
 
             UserInfo userInfo = new UserInfo(userRegistrationDTO);
-            locationService.save(new Location(userRegistrationDTO.getCity(), userRegistrationDTO.getState()));
+            locationService.save(userInfo.getLocation());
             userInfoService.save(userInfo);
 
             User user = new User(User.Role.BASIC, userInfo);
