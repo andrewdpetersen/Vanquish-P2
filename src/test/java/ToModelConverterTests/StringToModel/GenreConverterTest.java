@@ -17,7 +17,7 @@ public class GenreConverterTest {
 
     @Before //before each test starts
     public void before() {
-        json = "Genre{"+"id="+1+","+"name"+"="+"Genre Name"+","+"picture_medium"+"="+"pictureURL"+"}";
+        json = "{id:"+1+",name:Genre Name,picture_medium:pictureURL}";
     }
 
     @After //after each test completes
