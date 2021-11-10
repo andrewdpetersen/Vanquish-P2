@@ -58,9 +58,25 @@ public class User {
         this.myPlaylists = myPlaylists;
     }
 
-    @OneToMany(mappedBy = "track_id")
+    @ManyToMany
     @JsonIgnore
-    List<Track> favorites;
+    List<Track> liked_tracks;
+    public List<Track> getLiked_tracks() {
+        return liked_tracks;
+    }
+    public void setLiked_tracks(List<Track> liked_tracks) {
+        this.liked_tracks = liked_tracks;
+    }
+
+    @ManyToMany
+    @JsonIgnore
+    List<Track> disliked_tracks;
+    public List<Track> getDisliked_tracks() {
+        return disliked_tracks;
+    }
+    public void setDisliked_tracks(List<Track> disliked_tracks) {
+        this.disliked_tracks = disliked_tracks;
+    }
 
     @OneToOne(mappedBy = "user")
     UserInfo userInfo;
@@ -77,7 +93,8 @@ public class User {
                 "ID=" + ID +
                 ", role=" + role +
                 ", myPlaylists=" + myPlaylists +
-                ", favorites=" + favorites +
+                ", liked_tracks=" + liked_tracks +
+                ", disliked_tracks=" + disliked_tracks +
                 ", userInfo=" + userInfo +
                 '}';
     }

@@ -22,7 +22,7 @@ public class Genre {
     @Column
     private String image_url;
 
-    @ManyToMany(mappedBy = "genres_of_album")
+    @OneToMany
     private List<Album> albums_of_genre;
 
     public Genre(Integer genre_id, String genre_name, String image_url) {
@@ -56,6 +56,14 @@ public class Genre {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public List<Album> getAlbums_of_genre() {
+        return albums_of_genre;
+    }
+
+    public void setAlbums_of_genre(List<Album> albums_of_genre) {
+        this.albums_of_genre = albums_of_genre;
     }
 
     @Override

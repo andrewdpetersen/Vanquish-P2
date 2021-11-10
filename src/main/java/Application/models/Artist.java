@@ -25,9 +25,10 @@ public class Artist {
         concerts = new ArrayList<>();
     }
 
-    public Artist(String name, int ID) {
+    public Artist(String name, int ID, String picture) {
         this.name = name;
         this.ID = ID;
+        this.image_url = picture;
         tracks = new ArrayList<>();
         albums = new ArrayList<>();
         concerts = new ArrayList<>();
@@ -35,7 +36,6 @@ public class Artist {
 
     @Id
     @Column(name = "ArtistID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
     public int getID() {
         return ID;
@@ -60,7 +60,6 @@ public class Artist {
     public String getImage_url() {
         return image_url;
     }
-
     public void setImage_url(String image_url) {
         this.image_url = image_url;
     }

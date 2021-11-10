@@ -1,4 +1,4 @@
-package Application.service;
+package Application.services;
 
 import Application.models.Track;
 import Application.repositories.TrackRepository;
@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class TrackService {
-    private TrackRepository repo;
+    private final TrackRepository repo;
 
     @Autowired
     public TrackService(TrackRepository repo){
@@ -22,5 +22,10 @@ public class TrackService {
 
     public Track getTrack(Integer id){
         return repo.getById(id);
+    }
+
+    public boolean trackExists(Integer id)
+    {
+        return repo.existsById(id);
     }
 }
