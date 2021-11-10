@@ -29,7 +29,7 @@ public class JSONStringToModelConverter {
 
         Album album = new Album();
         album.setID(album_id);
-        album.setAlbum_title(title);
+        album.setAlbum_title(album_title);
         album.setDate(release_date);
 
         Track track = new Track();
