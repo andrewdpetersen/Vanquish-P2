@@ -1,10 +1,8 @@
 package VanquishP2.Application.Beans.ModelServices;
 
-import VanquishP2.Application.Beans.Models.Location;
 import VanquishP2.Application.Beans.Models.User;
 import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.Application.Beans.Repos.LocationRepository;
-import VanquishP2.Application.Beans.Service.Logger;
 import VanquishP2.DTOs.UserRegistrationDTO;
 import VanquishP2.Exceptions.UserDoesNotExistException;
 import VanquishP2.Application.Beans.Repos.UserInfoRepository;
@@ -24,6 +22,7 @@ import java.util.List;
 @Service
 @Transactional
 public class UserService {
+    private final LoggerService loggerService;
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
     private final LocationRepository locationRepository;
@@ -32,10 +31,12 @@ public class UserService {
     @Autowired
     public UserService(UserRepository userRepository,
                        UserInfoRepository userInfoRepository,
-                       LocationRepository locationRepository) {
+                       LocationRepository locationRepository,
+                       LoggerService loggerService) {
         this.userRepository = userRepository;
         this.userInfoRepository = userInfoRepository;
         this.locationRepository = locationRepository;
+        this.loggerService = loggerService;
     }
 
     /**
@@ -58,7 +59,7 @@ public class UserService {
             user = userRepository.findByID(ID)
                     .orElseThrow(() -> new UserDoesNotExistException(String.format(exceptionError, ID)));
         } catch (UserDoesNotExistException e) {
-            Logger.getFileLogger().writeLog(e.getMessage(), 3);
+
         }
 
         return user;
@@ -76,7 +77,7 @@ public class UserService {
             user = userRepository.findUserByUserInfo(userInfo)
                     .orElseThrow(() -> new UserDoesNotExistException(String.format(exceptionError, userInfo)));
         } catch (UserDoesNotExistException e) {
-            Logger.getFileLogger().writeLog(e.getMessage(), 3);
+            loggerService.writeLog(e.getMessage(), 3);
         }
 
         return user;

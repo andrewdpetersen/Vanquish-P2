@@ -2,7 +2,7 @@ package VanquishP2.Application.Beans.Filters;
 
 import VanquishP2.Application.Beans.Service.JWTUtil;
 import VanquishP2.DTOs.PrincipalDTO;
-import VanquishP2.Application.Beans.Service.Logger;
+import VanquishP2.Application.Beans.ModelServices.LoggerService;
 import VanquishP2.Exceptions.AuthenticationException;
 import io.jsonwebtoken.Claims;
 import org.springframework.context.ApplicationContext;
@@ -23,13 +23,14 @@ import java.io.IOException;
 
 @Component
 public class AuthenticationFilter implements Filter {
+    private LoggerService loggerService;
     private JWTUtil jwtUtil;
-    private final String errMessage = "Unauthorized user tried to barge their way in here! Don't worry, I caught this transgression. Error: %s";
 
     @Override
     public void init(FilterConfig config) {
         ApplicationContext container = WebApplicationContextUtils.getRequiredWebApplicationContext(config.getServletContext());
         this.jwtUtil = container.getBean(JWTUtil.class);
+        this.loggerService = container.getBean(LoggerService.class);
     }
 
     @Override
@@ -41,12 +42,13 @@ public class AuthenticationFilter implements Filter {
     }
 
     private void parseToken(HttpServletRequest request) {
+        String errMessage = "Unauthorized user tried to barge their way in here! Don't worry, I caught this transgression. Error: %s";
 
         try {
             String header = request.getHeader(jwtUtil.getHeader());
 
             if (header == null || !header.startsWith(jwtUtil.getPrefix())) {
-                Logger.getFileLogger().writeLog(errMessage, 3);
+                loggerService.writeLog(errMessage, 3);
                 return;
             }
 
@@ -57,7 +59,7 @@ public class AuthenticationFilter implements Filter {
             request.setAttribute("principal", principalDTO);
 
         } catch (AuthenticationException e) {
-            Logger.getFileLogger().writeLog(("Uh oh... Authentication Filter has a message: " + e.getMessage()), 3);
+            loggerService.writeLog(("Uh oh... Authentication Filter has a message: " + e.getMessage()), 3);
         }
     }
 }

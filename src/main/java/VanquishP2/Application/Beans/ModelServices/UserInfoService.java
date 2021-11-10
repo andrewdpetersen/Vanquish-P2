@@ -1,9 +1,7 @@
 package VanquishP2.Application.Beans.ModelServices;
 
-import VanquishP2.Application.Beans.Models.User;
 import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.Application.Beans.Repos.UserInfoRepository;
-import VanquishP2.Application.Beans.Service.Logger;
 import VanquishP2.Exceptions.UserDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +14,14 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserInfoService {
+    private final LoggerService loggerService;
     private final UserInfoRepository userInfoRepository;
     private final String exceptionError = "User: %s does not exist.";
 
     @Autowired
-    public UserInfoService(UserInfoRepository userInfoRepository) {
+    public UserInfoService(UserInfoRepository userInfoRepository, LoggerService loggerService) {
         this.userInfoRepository = userInfoRepository;
+        this.loggerService = loggerService;
     }
 
     public UserInfo saveUserInfo(UserInfo userInfo){
@@ -102,7 +102,7 @@ public class UserInfoService {
                 throw new UserDoesNotExistException(exceptionError);
             }
         } catch (UserDoesNotExistException e) {
-            Logger.getFileLogger().writeLog(e.getMessage(), 3);
+            loggerService.writeLog(e.getMessage(), 3);
         }
 
         return userInfo;

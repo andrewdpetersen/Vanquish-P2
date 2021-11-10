@@ -1,6 +1,9 @@
 package VanquishP2.Application.Beans.Service;
 
+import VanquishP2.Application.Beans.ModelServices.LoggerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -15,10 +18,16 @@ import java.util.Date;
 @Service
 public abstract class ServiceRequests {
     // The request count for this session
-    private static int requestCount = 0;
-    private static ArrayList<String> requestLog = new ArrayList<>();
+    private int requestCount = 0;
+    private final ArrayList<String> requestLog = new ArrayList<>();
+    private final LoggerService loggerService;
 
-    public static void writeSummary(){
+    @Autowired
+    public ServiceRequests(LoggerService loggerService) {
+        this.loggerService = loggerService;
+    }
+
+    public void writeSummary(){
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
 
@@ -36,11 +45,11 @@ public abstract class ServiceRequests {
 
             System.out.println("Request Summary has been written to designated to file.");
         } catch (IOException e) {
-            Logger.getFileLogger().writeLog(e.getMessage(), 2);
+            loggerService.writeLog(e.getMessage(), 2);
         }
     }
 
-    public static void addRequest(String requestInfo){
+    public void addRequest(String requestInfo){
         SimpleDateFormat formatter= new SimpleDateFormat("HH:mm:ss z");
 
         requestCount++;

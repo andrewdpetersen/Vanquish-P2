@@ -7,7 +7,7 @@ import okhttp3.Response;
 import java.io.IOException;
 
 public class APIClientService {
-    private static OkHttpClient apiClient = new OkHttpClient();
+    private static final OkHttpClient apiClient = new OkHttpClient();
 
     public static String get(String url) {
         Request req = new Request.Builder().url(url).build();
