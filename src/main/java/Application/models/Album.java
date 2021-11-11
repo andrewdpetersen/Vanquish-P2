@@ -1,13 +1,10 @@
 package Application.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +34,9 @@ public class Album implements Serializable {
 
     @Column(name = "AlbumTitle")
     private String albumTitle;
-
     public String getAlbum_title() {
         return albumTitle;
     }
-
     public void setAlbum_title(String album_title) {
         this.albumTitle = album_title;
     }

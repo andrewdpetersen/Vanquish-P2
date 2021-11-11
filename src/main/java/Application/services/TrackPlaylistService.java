@@ -2,10 +2,8 @@ package Application.services;
 
 import Application.models.Playlist;
 import Application.models.Track;
-import Application.models.User;
 import Application.repositories.PlaylistRepository;
 import Application.repositories.TrackRepository;
-import Application.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

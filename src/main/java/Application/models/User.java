@@ -1,9 +1,6 @@
 package Application.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
-
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +12,6 @@ import java.util.List;
  * @author Kollier Martin
  */
 
-@Component
 @Table(name = "users")
 @Entity
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"},

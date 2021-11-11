@@ -2,11 +2,9 @@ package Application.models;
 
 import Application.DTOs.UserRegistrationDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
-@Component
 @Entity
 @Table(name = "user_infos")
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "location", "user"},
