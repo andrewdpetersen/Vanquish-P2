@@ -4,74 +4,68 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@Component
 @Table(name = "genres")
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Genre {
+    public Genre() {
+        albumsOfGenre = new ArrayList<>();
+    }
+
+    public Genre(Integer genreID, String genreName, String imageURL) {
+        albumsOfGenre = new ArrayList<>();
+        this.genreID = genreID;
+        this.genreName = genreName;
+        this.imageURL = imageURL;
+    }
 
     @Id
     @Column
-    private Integer genre_id;
+    private Integer genreID;
+    public Integer getGenreID() {
+        return genreID;
+    }
+    public void setGenreID(Integer genreID) {
+        this.genreID = genreID;
+    }
 
     @Column
-    private String genre_name;
+    private String genreName;
+    public String getGenreName() {
+        return genreName;
+    }
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
+    }
 
     @Column
-    private String image_url;
+    private String imageURL;
+    public String getImageURL() {
+        return imageURL;
+    }
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 
     @OneToMany
-    private List<Album> albums_of_genre;
-
-    public Genre(Integer genre_id, String genre_name, String image_url) {
-        this.genre_id = genre_id;
-        this.genre_name = genre_name;
-        this.image_url = image_url;
+    private List<Album> albumsOfGenre;
+    public List<Album> getAlbumsOfGenre() {
+        return albumsOfGenre;
     }
-
-    public Genre() {
-    }
-
-    public Integer getGenre_id() {
-        return genre_id;
-    }
-
-    public void setGenre_id(Integer genre_id) {
-        this.genre_id = genre_id;
-    }
-
-    public String getGenre_name() {
-        return genre_name;
-    }
-
-    public void setGenre_name(String genre_name) {
-        this.genre_name = genre_name;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
-
-    public List<Album> getAlbums_of_genre() {
-        return albums_of_genre;
-    }
-
-    public void setAlbums_of_genre(List<Album> albums_of_genre) {
-        this.albums_of_genre = albums_of_genre;
+    public void setAlbumsOfGenre(List<Album> albumsOfGenre) {
+        this.albumsOfGenre = albumsOfGenre;
     }
 
     @Override
     public String toString() {
-        return "Genre{" +
-                "genre_id=" + genre_id +
-                ", genre_name='" + genre_name + '\'' +
-                ", image_url='" + image_url + '\'' +
+        return "Genre {\n" +
+                "genreID: " + genreID + ",\n" +
+                "genreName: " + genreName + ",\n" +
+                "imageURL: " + imageURL + ",\n" +
+                "albumsOfGenre: " + albumsOfGenre + ",\n" +
                 '}';
     }
 }

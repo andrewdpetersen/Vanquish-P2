@@ -1,4 +1,4 @@
-package VanquishP2.DTOs;
+package Application.DTOs;
 
 public class LoginCredentialsDTO {
 

@@ -1,6 +1,6 @@
-package VanquishP2.DTOs;
+package Application.DTOs;
 
-import VanquishP2.Application.Beans.Models.User;
+import Application.models.User;
 import io.jsonwebtoken.Claims;
 
 /**

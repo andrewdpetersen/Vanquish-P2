@@ -5,89 +5,68 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@Component
 @Entity
 @Table(name = "playlists")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class Playlist {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "playlist_id")
-    private int playlist_id;
+    public Playlist() {
+        trackList = new ArrayList<>();
+    }
 
-    @Column(name="playlist_name")
-    String playlist_name;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    //many tracks on many playlists
-    @JsonIgnore
-    @ManyToMany
-    private List<Track> trackList;
-
-    /**
-     * Full args constructor
-     * @param playlist_id
-     * @param playlist_name
-     * @param user
-     * @param trackList
-     */
-    public Playlist(int playlist_id, String playlist_name, User user, List<Track> trackList) {
-        this.playlist_id = playlist_id;
-        this.playlist_name = playlist_name;
+    public Playlist(String playlistName, User user, List<Track> trackList) {
+        this.playlistName = playlistName;
         this.user = user;
         this.trackList = trackList;
     }
 
-    /*
-     * No args constructor
-     */
-    public Playlist(){
-    }
-
-    public int getPlaylist_id() {
+    @Id
+    @Column(name = "PlaylistID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer playlist_id;
+    public Integer getPlaylist_id() {
         return playlist_id;
     }
-
-    public void setPlaylist_id(int playlist_id) {
+    public void setID(Integer playlist_id) {
         this.playlist_id = playlist_id;
     }
 
-    public String getPlaylist_name() {
-        return playlist_name;
+    @Column(name = "PlaylistName")
+    private String playlistName;
+    public String getPlaylistName() {
+        return playlistName;
+    }
+    public void setPlaylistName(String playlistName) {
+        this.playlistName = playlistName;
     }
 
-    public void setPlaylist_name(String playlist_name) {
-        this.playlist_name = playlist_name;
-    }
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    User user;
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
 
+    @ManyToMany
+    List<Track> trackList;
     public List<Track> getTrackList() {
         return trackList;
     }
-
-    public void setTrackList(List<Track> trackList) {
-        this.trackList = trackList;
+    public void setTrackList(List<Track> tracks) {
+        this.trackList = tracks;
     }
 
     @Override
     public String toString() {
-        return "Playlist{" +
-                "playlist_id=" + playlist_id +
-                ", playlist_name='" + playlist_name + '\'' +
-                ", user=" + user +
-                ", trackList=" + trackList +
+        return "Playlist {\n" +
+                "playlist_id: " + playlist_id + ",\n" +
+                "playlistName: " + playlistName + ",\n" +
+                "user: " + user + ",\n" +
+                "tracks: " + trackList + ",\n" +
                 '}';
     }
 }

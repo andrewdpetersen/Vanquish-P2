@@ -22,7 +22,7 @@ public class GenreController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public Genre saveGenre(@RequestBody Genre genre){
         genreService.save(genre);
-        return genreService.getGenre(genre.getGenre_id());
+        return genreService.getGenre(genre.getGenreID());
     }
 
     @GetMapping(value = "/genre/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

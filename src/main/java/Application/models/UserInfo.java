@@ -1,5 +1,6 @@
 package Application.models;
 
+import Application.DTOs.UserRegistrationDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.stereotype.Component;
 
@@ -8,12 +9,31 @@ import javax.persistence.*;
 @Component
 @Entity
 @Table(name = "user_infos")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "location", "user"},
+        ignoreUnknown = true)
 public class UserInfo {
+    public UserInfo() {
+
+    }
+
+    public UserInfo(String email, String username, String password) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+
+    public UserInfo(UserRegistrationDTO registration) {
+        this.location = registration.getLocation();
+        this.firstName = registration.getFirstName();
+        this.lastName = registration.getLastName();
+        this.username = registration.getUsername();
+        this.password = registration.getPassword();
+        this.email = registration.getEmail();
+    }
 
     @Id
     @Column(name = "userInfo_id")
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int ID;
     public int getID() {
         return ID;
@@ -49,7 +69,7 @@ public class UserInfo {
         this.password = password;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     User user;
     public User getUser() {
         return user;
@@ -76,7 +96,7 @@ public class UserInfo {
         this.lastName = lastName;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "location_id")
     private Location location;
     public Location getLocation() {

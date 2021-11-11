@@ -10,12 +10,13 @@ public class UserRegistrationDTO {
 
     @Length(min = 5, max = 20)
     @NotNull(message = "Null, a username can not be.")
-    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    @Pattern(message = "Username is not valid for the supreme overlord. Try again.",
+            regexp = "^[a-zA-Z0-9]*$")
     private String username;
 
-    @Length(min = 8, max = 20)
-    @NotNull(message = "Come on. Your password should be strong, like Russian.")
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–{}:;',?/*~$^+=<>])$")
+    @NotNull(message = "*crickets*. There's no password here.")
+    @Pattern(message = "Come on. Your password should be strong, like Russian.",
+            regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$")
     private String password;
 
     @Email(message = "This email is not valid >:(")
@@ -90,5 +91,17 @@ public class UserRegistrationDTO {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRegistrationDTO {\n" +
+                "username: " + username + ",\n" +
+                "password: " + password + ",\n" +
+                "email: " + email + ",\n" +
+                "firstName: " + firstName + ",\n" +
+                "lastName: " + lastName + ",\n" +
+                "location: " + location + ",\n" +
+                '}';
     }
 }

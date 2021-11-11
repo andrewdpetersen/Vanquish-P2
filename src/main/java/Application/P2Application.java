@@ -17,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.xml.bind.SchemaOutputResolver;
@@ -24,7 +25,7 @@ import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "Application")
 @EntityScan("Application")
-@ComponentScan("Application")
+@PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
 public class P2Application {
 

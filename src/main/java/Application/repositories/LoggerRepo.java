@@ -1,6 +1,6 @@
-package VanquishP2.Application.Beans.Repos;
+package Application.repositories;
 
-import VanquishP2.Application.Beans.Models.Logger;
+import Application.models.Logger;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

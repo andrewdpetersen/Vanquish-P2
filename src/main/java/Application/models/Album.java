@@ -17,10 +17,9 @@ import java.util.List;
  * @author Kollier Martin
  */
 
-@Component
 @Table(name = "albums")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class Album implements Serializable {
     public Album() {
         tracks = new ArrayList<>();
@@ -66,7 +65,6 @@ public class Album implements Serializable {
         this.artist = artist;
     }
 
-    @JsonIgnore
     @OneToMany(mappedBy = "track_id")
     private List<Track> tracks;
     public List<Track> getTracks() {
@@ -85,15 +83,6 @@ public class Album implements Serializable {
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
-    //    @ManyToMany
-//    @JsonIgnore
-//    private List<Genre> genres_of_album;
-//    public List<Genre> getGenres_of_album() {
-//        return genres_of_album;
-//    }
-//    public void setGenres_of_album(List<Genre> genres_of_album) {
-//        this.genres_of_album = genres_of_album;
-//    }
 
     @Override
     public String toString() {

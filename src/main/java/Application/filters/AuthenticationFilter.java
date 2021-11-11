@@ -1,9 +1,9 @@
-package VanquishP2.Application.Beans.Filters;
+package Application.filters;
 
-import VanquishP2.Application.Beans.Service.JWTUtil;
-import VanquishP2.DTOs.PrincipalDTO;
-import VanquishP2.Application.Beans.ModelServices.LoggerService;
-import VanquishP2.Exceptions.AuthenticationException;
+import Application.DTOs.PrincipalDTO;
+import Application.exceptions.AuthenticationException;
+import Application.services.LoggerService;
+import Application.utils.JWTUtil;
 import io.jsonwebtoken.Claims;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;

@@ -1,5 +1,6 @@
 package Application.services;
 
+import Application.exceptions.UserDoesNotExistException;
 import Application.models.UserInfo;
 import Application.repositories.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 public class UserInfoService {
+    private final LoggerService loggerService;
     private final UserInfoRepository userInfoRepository;
+    private final String exceptionError = "User: %s does not exist.";
 
     @Autowired
-    public UserInfoService(UserInfoRepository userInfoRepository) {
+    public UserInfoService(UserInfoRepository userInfoRepository, LoggerService loggerService) {
         this.userInfoRepository = userInfoRepository;
+        this.loggerService = loggerService;
     }
 
     public UserInfo saveUserInfo(UserInfo userInfo){
@@ -51,6 +56,14 @@ public class UserInfoService {
         return login;
     }
 
+    public UserInfo getByFirstName(String firstName) {
+        return userInfoRepository.findByFirstName(firstName).get();
+    }
+
+    public void save(UserInfo userInfo) {
+        userInfoRepository.save(userInfo);
+    }
+
     public void deleteUserInfo(UserInfo info){
         userInfoRepository.delete(info);
     }
@@ -60,5 +73,38 @@ public class UserInfoService {
      */
     public void deleteAllInfo(){
         userInfoRepository.deleteAll();
+    }
+
+    /**
+     * This method fetches all User Info in the DB
+     * @author Kollier Martin
+     * @date 11/8/2021
+     * @return List of users present in DB
+     */
+    public List<UserInfo> getAll() {
+        return userInfoRepository.findAll();
+    }
+
+    /**
+     * Authenticate User
+     * @date 11/8/2021
+     * @author Kollier Martin
+     * @param username Username
+     * @param password Password
+     * @return User Info, either null or not null
+     */
+    public Optional<UserInfo> authenticate(String username, String password){
+        Optional<UserInfo> userInfo = Optional.empty();
+
+        try {
+            userInfo = userInfoRepository.findByUsernameAndPassword(username, password);
+            if (!userInfo.isPresent()) {
+                throw new UserDoesNotExistException(exceptionError);
+            }
+        } catch (UserDoesNotExistException e) {
+            loggerService.writeLog(e.getMessage(), 3);
+        }
+
+        return userInfo;
     }
 }

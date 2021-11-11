@@ -14,12 +14,18 @@ import java.util.List;
  * @author Kollier Martin
  */
 
-@Component
 @Table(name = "artists")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class Artist {
     public Artist() {
+        tracks = new ArrayList<>();
+        albums = new ArrayList<>();
+        concerts = new ArrayList<>();
+    }
+
+    public Artist(String name) {
+        this.name = name;
         tracks = new ArrayList<>();
         albums = new ArrayList<>();
         concerts = new ArrayList<>();

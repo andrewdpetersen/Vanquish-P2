@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class LocationService {
@@ -21,8 +23,17 @@ public class LocationService {
         return locationRepository.getById(location.getLocation_id());
     }
 
+    // Kollier added this
+    public List<Location> getAll(){
+        return locationRepository.findAll();
+    }
+
     public Location getLocationById(Integer id){
         return locationRepository.getById(id);
+    }
+
+    public void save(Location location) {
+        locationRepository.save(location);
     }
 
     public void deleteLocationById(Integer id){
