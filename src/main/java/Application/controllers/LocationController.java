@@ -16,6 +16,14 @@ public class LocationController {
     public LocationController(LocationService locationService) {
         this.locationService = locationService;
     }
+    
+    // Kollier added this
+    @GetMapping(value = "/location/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<Location> getLocation(){
+        return locationService.getAll();
+    }
+
 
     @GetMapping(value = "/location/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
