@@ -3,28 +3,34 @@ package Application.controllers;
 import Application.models.Track;
 import Application.models.User;
 import Application.services.LikeDislikeService;
+import Application.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 @RequestMapping(value = "/4TheMusic")
 public class LikeDislikeController {
     private final LikeDislikeService likeDislikeService;
+    private final JWTUtil jwtUtil;
 
     @Autowired
-    public LikeDislikeController(LikeDislikeService likeDislikeService) {
+    public LikeDislikeController(JWTUtil jwtUtil, LikeDislikeService likeDislikeService) {
+        this.jwtUtil = jwtUtil;
         this.likeDislikeService = likeDislikeService;
     }
 
     @PostMapping(value = "/like", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Track likeTrack(@RequestBody Track track){
-        //get user from token that comes in through the authentication header
-        User user = new User();
-        //what really needs to happen
-        //User user = likeService.getUser(id or username);
+    public Track likeTrack(@RequestBody Track track, HttpServletResponse response){
+        /* Username from token - > From Kollier :D */
+        String username = jwtUtil.parseJWT(response.getHeader(jwtUtil.getHeader())).getSubject();
+
+        //get user from username
+        User user = likeDislikeService.getUserByUsername(username);
 
         //if track exists on our database already, grab it from there to update
         Track database = likeDislikeService.getTrack(track.getTrack_id());
@@ -50,11 +56,12 @@ public class LikeDislikeController {
 
     @PostMapping(value = "/dislike", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Track dislikeTrack(@RequestBody Track track){
-        //get user from token that comes in through the authentication header
-        User user = new User();
-        //what really needs to happen
-        //User user = LikeDislikeService.getUser(id or username);
+    public Track dislikeTrack(@RequestBody Track track, HttpServletResponse response){
+        /* Username from token - > From Kollier :D */
+        String username = jwtUtil.parseJWT(response.getHeader(jwtUtil.getHeader())).getSubject();
+
+        //get user from username
+        User user = likeDislikeService.getUserByUsername(username);
 
         //if track exists on our database already, grab it from there to update
         Track database = likeDislikeService.getTrack(track.getTrack_id());
