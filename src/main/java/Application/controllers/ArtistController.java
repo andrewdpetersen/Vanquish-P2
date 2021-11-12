@@ -1,10 +1,13 @@
 package Application.controllers;
+import Application.deezer.ArtistSearch;
 import Application.models.Artist;
 import Application.services.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/4TheMusic")
