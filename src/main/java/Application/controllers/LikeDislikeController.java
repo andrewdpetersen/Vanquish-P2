@@ -1,5 +1,6 @@
 package Application.controllers;
 
+import Application.exceptions.UserDoesNotExistException;
 import Application.models.Track;
 import Application.models.User;
 import Application.services.LikeDislikeService;
@@ -10,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/4TheMusic")
@@ -30,26 +32,34 @@ public class LikeDislikeController {
         String username = jwtUtil.parseJWT(response.getHeader(jwtUtil.getHeader())).getSubject();
 
         //get user from username
-        User user = likeDislikeService.getUserByUsername(username);
+        Optional<User> user = likeDislikeService.getUserByUsername(username);
 
-        //if track exists on our database already, grab it from there to update
-        Track database = likeDislikeService.getTrack(track.getTrack_id());
-        if(database != null)
+        if(user.isPresent())
         {
-            //add user to track's list of users who like it
-            database.getUserLikes().add(user);
-            likeDislikeService.saveTrack(database);
-        }
-        else //if it doesn't exist on our database already, we need to create it
-        {
-            //create new track with user on the list of users who like it
-            track.getUserLikes().add(user);
-            likeDislikeService.saveTrack(track);
-        }
+            User presentUser = new User(user.get().getRole(), user.get().getUserInfo());
+            //if track exists on our database already, grab it from there to update
+            Track database = likeDislikeService.getTrack(track.getTrack_id());
+            if(database != null)
+            {
+                //add user to track's list of users who like it
+                database.getUserLikes().add(presentUser);
+                likeDislikeService.saveTrack(database);
+            }
+            else //if it doesn't exist on our database already, we need to create it
+            {
+                //create new track with user on the list of users who like it
+                track.getUserLikes().add(presentUser);
+                likeDislikeService.saveTrack(track);
+            }
 
-        //add track to user's liked list after either creating a new track or updating current one
-        user.getLiked_tracks().add(likeDislikeService.getTrack(track.getTrack_id()));
-        likeDislikeService.saveUser(user);
+            //add track to user's liked list after either creating a new track or updating current one
+            presentUser.getLiked_tracks().add(likeDislikeService.getTrack(track.getTrack_id()));
+            likeDislikeService.saveUser(presentUser);
+        }
+        else
+        {
+            //throw userdoesnotexistexception
+        }
 
         return likeDislikeService.getTrack(track.getTrack_id());
     }
@@ -61,26 +71,34 @@ public class LikeDislikeController {
         String username = jwtUtil.parseJWT(response.getHeader(jwtUtil.getHeader())).getSubject();
 
         //get user from username
-        User user = likeDislikeService.getUserByUsername(username);
+        Optional<User> user = likeDislikeService.getUserByUsername(username);
 
-        //if track exists on our database already, grab it from there to update
-        Track database = likeDislikeService.getTrack(track.getTrack_id());
-        if(database != null)
+        if(user.isPresent())
         {
-            //add user to track's list of users who like it
-            database.getUserDislikes().add(user);
-            likeDislikeService.saveTrack(database);
-        }
-        else //if it doesn't exist on our database already, we need to create it
-        {
-            //create new track with user on the list of users who like it
-            track.getUserDislikes().add(user);
-            likeDislikeService.saveTrack(track);
-        }
+            User presentUser = new User(user.get().getRole(), user.get().getUserInfo());
+            //if track exists on our database already, grab it from there to update
+            Track database = likeDislikeService.getTrack(track.getTrack_id());
+            if(database != null)
+            {
+                //add user to track's list of users who like it
+                database.getUserDislikes().add(presentUser);
+                likeDislikeService.saveTrack(database);
+            }
+            else //if it doesn't exist on our database already, we need to create it
+            {
+                //create new track with user on the list of users who like it
+                track.getUserDislikes().add(presentUser);
+                likeDislikeService.saveTrack(track);
+            }
 
-        //add track to user's liked list after either creating a new track or updating current one
-        user.getDisliked_tracks().add(track);
-        likeDislikeService.saveUser(user);
+            //add track to user's liked list after either creating a new track or updating current one
+            presentUser.getDisliked_tracks().add(likeDislikeService.getTrack(track.getTrack_id()));
+            likeDislikeService.saveUser(presentUser);
+        }
+        else
+        {
+            //throw userdoesnotexistexception
+        }
 
         return likeDislikeService.getTrack(track.getTrack_id());
     }
