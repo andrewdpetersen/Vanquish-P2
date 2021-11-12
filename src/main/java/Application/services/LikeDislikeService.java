@@ -37,4 +37,9 @@ public class LikeDislikeService {
     {
         return userRepository.getById(id);
     }
+
+    public User getUserByUsername(String username)
+    {
+        return userRepository.getByUsername(username);
+    }
 }
