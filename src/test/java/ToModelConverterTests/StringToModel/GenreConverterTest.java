@@ -27,9 +27,9 @@ public class GenreConverterTest {
 
     @Test
     public void genreConverterTest(){
-        int genreID = genreConverter(json).getGenre_id();
-        String genreName = genreConverter(json).getGenre_name();
-        String genrePic = genreConverter(json).getImage_url();
+        int genreID = genreConverter(json).getGenreID();
+        String genreName = genreConverter(json).getGenreName();
+        String genrePic = genreConverter(json).getImageURL();
 
         Assert.assertEquals(genreID,1);
         Assert.assertEquals(genreName,"Genre Name");

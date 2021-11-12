@@ -1,20 +1,23 @@
 package Application.controllers;
 
+import Application.DTOs.LoginCredentialsDTO;
 import Application.DTOs.UserRegistrationDTO;
 import Application.models.User;
 import Application.models.UserInfo;
 import Application.services.UserInfoService;
 import Application.services.UserService;
-import VanquishP2.DTOs.LoginCredentialsDTO;
+import Application.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Optional;
-import static org.springframework.http.MediaType.*;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
  *

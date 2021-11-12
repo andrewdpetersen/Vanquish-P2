@@ -1,9 +1,6 @@
 package Application.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
-
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,13 +12,25 @@ import java.util.List;
  * @author Kollier Martin
  */
 
-@Component
 @Table(name = "users")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"},
+        ignoreUnknown = true)
 public class User {
     public User() {
-        myPlaylists = new ArrayList<>();
+        this.role = Role.BASIC;
+        this.myPlaylists = new ArrayList<>();
+        this.liked_tracks = new ArrayList<>();
+        this.disliked_tracks = new ArrayList<>();
+        this.userInfo = null;
+    }
+
+    public User(Role role, UserInfo userInfo) {
+        this.role = role;
+        this.myPlaylists = new ArrayList<>();
+        this.liked_tracks = new ArrayList<>();
+        this.disliked_tracks = new ArrayList<>();
+        this.userInfo = userInfo;
     }
 
     @Id
@@ -49,7 +58,6 @@ public class User {
     }
 
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
     List<Playlist> myPlaylists;
     public List<Playlist> getMyPlaylists() {
         return myPlaylists;
@@ -59,7 +67,6 @@ public class User {
     }
 
     @ManyToMany
-    @JsonIgnore
     List<Track> liked_tracks;
     public List<Track> getLiked_tracks() {
         return liked_tracks;
@@ -69,7 +76,6 @@ public class User {
     }
 
     @ManyToMany
-    @JsonIgnore
     List<Track> disliked_tracks;
     public List<Track> getDisliked_tracks() {
         return disliked_tracks;

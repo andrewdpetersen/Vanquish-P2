@@ -1,6 +1,7 @@
-package VanquishP2.DTOs;
+package Application.DTOs;
 
-import VanquishP2.Application.Beans.Models.UserInfo;
+
+import Application.models.UserInfo;
 
 public class UserInfoDTO {
     UserInfo userInfo;

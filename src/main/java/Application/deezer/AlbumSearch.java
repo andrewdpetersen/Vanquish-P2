@@ -1,7 +1,6 @@
 package Application.deezer;
 
 import Application.models.Album;
-import Application.models.Artist;
 import Application.services.APIClientService;
 import org.json.JSONArray;
 import org.json.JSONObject;

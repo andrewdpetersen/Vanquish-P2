@@ -1,22 +1,14 @@
 package Application.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Component
 @Table(name = "locations")
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Location {
-
-    @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer location_id;
-
     public Location(Integer location_id, String city, String state) {
         this.location_id = location_id;
         this.city = city;
@@ -26,6 +18,10 @@ public class Location {
     public Location() {
     }
 
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer location_id;
     public Integer getLocation_id() {
         return location_id;
     }

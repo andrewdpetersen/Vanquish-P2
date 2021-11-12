@@ -1,14 +1,11 @@
 package Application.controllers;
 
 import Application.models.Track;
-import Application.models.User;
 import Application.services.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/4TheMusic")

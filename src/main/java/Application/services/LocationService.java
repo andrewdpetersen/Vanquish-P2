@@ -23,8 +23,17 @@ public class LocationService {
         return locationRepository.getById(location.getLocation_id());
     }
 
+    // Kollier added this
+    public List<Location> getAll(){
+        return locationRepository.findAll();
+    }
+
     public Location getLocationById(Integer id){
         return locationRepository.getById(id);
+    }
+
+    public void save(Location location) {
+        locationRepository.save(location);
     }
 
     public void deleteLocationById(Integer id){
@@ -42,7 +51,5 @@ public class LocationService {
         locationRepository.deleteAll();
     }
 
-    public List<Location> getAll() {
-        return null;
-    }
 }
+

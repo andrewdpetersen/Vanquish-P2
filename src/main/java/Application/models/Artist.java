@@ -2,7 +2,6 @@ package Application.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,12 +13,18 @@ import java.util.List;
  * @author Kollier Martin
  */
 
-@Component
 @Table(name = "artists")
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class Artist {
     public Artist() {
+        tracks = new ArrayList<>();
+        albums = new ArrayList<>();
+        concerts = new ArrayList<>();
+    }
+
+    public Artist(String name) {
+        this.name = name;
         tracks = new ArrayList<>();
         albums = new ArrayList<>();
         concerts = new ArrayList<>();
@@ -40,7 +45,6 @@ public class Artist {
     public int getID() {
         return ID;
     }
-
     public void setID(int ID) {
         this.ID = ID;
     }
@@ -56,7 +60,6 @@ public class Artist {
 
     @Column(name = "picture")
     private String image_url;
-
     public String getImage_url() {
         return image_url;
     }
@@ -64,7 +67,6 @@ public class Artist {
         this.image_url = image_url;
     }
 
-    // Many artists, many concerts
     @ManyToMany
     @JsonIgnore
     private List<Concert> concerts;
@@ -75,7 +77,6 @@ public class Artist {
         this.concerts = concerts;
     }
 
-    // One artist, many albums
     @OneToMany(mappedBy = "artist")
     @JsonIgnore
     private List<Album> albums;
@@ -86,7 +87,6 @@ public class Artist {
         this.albums = albums;
     }
 
-    // One artist, many tracks
     @OneToMany
     @JsonIgnore
     private List<Track> tracks;

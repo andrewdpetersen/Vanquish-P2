@@ -2,14 +2,11 @@ package Application.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
+
 
 /**
  * If @Component (defines a java class as a bean) not added will throw a NoSuchBeanDefinitionException
@@ -18,11 +15,32 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-@Component
-@Entity
 @Table(name = "tracks")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Track implements Serializable {
+@Entity
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
+public class Track {
+    /**
+     * No args constructor
+     */
+    public Track() {
+    }
+
+    /**
+     * Full args constructor
+     * @param id
+     * @param title
+     */
+    public Track(Integer id, String title) {
+        this.track_id = id;
+        this.title = title;
+    }
+
+    public Track(String title, String duration, Artist artist) {
+        this.title = title;
+        this.duration = duration;
+        this.artist = artist;
+    }
+
     @Id
     private Integer track_id;
     public Integer getTrack_id() {
@@ -39,6 +57,15 @@ public class Track implements Serializable {
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Column(name = "Duration")
+    private String duration;
+    public String getDuration() {
+        return duration;
+    }
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     //many tracks, many playlists (we want a list of what playlists this track is on)
@@ -90,22 +117,6 @@ public class Track implements Serializable {
     }
     public void setAlbum(Album album) {
         this.album = album;
-    }
-
-    /**
-     * Full args constructor
-     * @param id
-     * @param title
-     */
-    public Track(Integer id, String title) {
-        this.track_id = id;
-        this.title = title;
-    }
-
-    /**
-     * No args constructor
-     */
-    public Track() {
     }
 
     @Override

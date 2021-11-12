@@ -1,9 +1,9 @@
 package Application.services;
 
+import Application.DTOs.UserRegistrationDTO;
 import Application.exceptions.UserDoesNotExistException;
 import Application.models.User;
 import Application.models.UserInfo;
-import Application.DTOs.UserRegistrationDTO;
 import Application.repositories.UserInfoRepository;
 import Application.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 
 /**
