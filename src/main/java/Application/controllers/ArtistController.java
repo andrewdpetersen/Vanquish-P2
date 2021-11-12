@@ -29,4 +29,16 @@ public class ArtistController {
     public Artist getArtistById(@PathVariable("id") Integer id) {
         return artistService.getArtist(id);
     }
+    
+    @GetMapping(value = "artist/search/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Artist[] searchForArtistsByName(@PathVariable ("name") String title){
+        System.out.println("Test: Artist");
+        List<Artist> artistList = ArtistSearch.artistSearch(title,5);
+        Artist[] artists = new Artist[5];
+        for (int i=0;i<5;i++) {
+            artists[i] = artistList.get(i);
+        }
+        return artists;
+    }
 }
