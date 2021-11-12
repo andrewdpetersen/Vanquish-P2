@@ -1,10 +1,15 @@
 package Application.controllers;
+import Application.deezer.ArtistSearch;
+import Application.deezer.TrackSearch;
 import Application.models.Artist;
+import Application.models.Track;
 import Application.services.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/4TheMusic")
@@ -28,5 +33,16 @@ public class ArtistController {
     @ResponseStatus(value = HttpStatus.OK)
     public Artist getArtistById(@PathVariable("id") Integer id) {
         return artistService.getArtist(id);
+    }
+
+    @GetMapping(value = "search/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Artist[] searchForTracksByTitle(@PathVariable ("name") String title){
+        List<Artist> artistList = ArtistSearch.artistSearch(title,5);
+        Artist[] artists = new Artist[5];
+        for (int i=0;i<5;i++) {
+            artists[i] = artistList.get(i);
+        }
+        return artists;
     }
 }

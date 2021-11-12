@@ -1,9 +1,13 @@
 package Application.controllers;
 
+import Application.deezer.AlbumSearch;
+import Application.deezer.ArtistSearch;
 import Application.models.Album;
+import Application.models.Artist;
 import Application.services.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -98,5 +102,16 @@ public class AlbumController {
             albumService.delete(album);
             return new ResponseEntity<>(album.get(), HttpStatus.NO_CONTENT);
         }
+    }
+
+    @GetMapping(value = "search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Album[] searchForTracksByTitle(@PathVariable ("title") String title){
+        List<Album> albumList = AlbumSearch.albumSearch(title,5);
+        Album[] albums = new Album[5];
+        for (int i=0;i<5;i++) {
+            albums[i] = albumList.get(i);
+        }
+        return albums;
     }
 }
