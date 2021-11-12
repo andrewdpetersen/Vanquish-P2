@@ -1,11 +1,14 @@
 package Application.controllers;
 
+import Application.deezer.TrackSearch;
 import Application.models.Track;
 import Application.services.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/4TheMusic")
@@ -29,5 +32,16 @@ public class TrackController {
     @ResponseStatus(value = HttpStatus.OK)
     public Track getTrackById(@PathVariable ("id") Integer id){
         return trackService.getTrack(id);
+    }
+
+    @GetMapping(value = "search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Track[] searchForTracksByTitle(@PathVariable ("title") String title){
+        List<Track> trackList = TrackSearch.searchTracks(title,5);
+        Track[] tracks = new Track[5];
+        for (int i=0;i<5;i++) {
+            tracks[i] = trackList.get(i);
+        }
+        return tracks;
     }
 }
