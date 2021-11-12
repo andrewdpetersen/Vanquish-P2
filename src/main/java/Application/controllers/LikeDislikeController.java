@@ -54,7 +54,7 @@ public class LikeDislikeController {
         //get user from token that comes in through the authentication header
         User user = new User();
         //what really needs to happen
-        //User user = likeService.getUser(id or username);
+        //User user = LikeDislikeService.getUser(id or username);
 
         //if track exists on our database already, grab it from there to update
         Track database = likeDislikeService.getTrack(track.getTrack_id());
@@ -76,5 +76,28 @@ public class LikeDislikeController {
         likeDislikeService.saveUser(user);
 
         return likeDislikeService.getTrack(track.getTrack_id());
+    }
+
+    @GetMapping(value="/track/ratio", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value=HttpStatus.OK)
+    public String likeDislikeRatio(@RequestBody Track track)
+    {
+        //get track id from the track that comes in
+        Integer id = track.getTrack_id();
+
+        //make sure it exists in our database, if it doesn't there are no likes or dislikes on it.
+        Track currentTrack = likeDislikeService.getTrack(id);
+        if(currentTrack == null)
+        {
+            //there is no like/dislike ratio because the track is not persisted in our database and therefore has no likes/dislikes
+            return "0/0";
+        }
+        else
+        {
+            //count how many users are on both lists and then build a string that displays those numbers for the premium user
+            int trackLikes = currentTrack.getUserLikes().size();
+            int trackDislikes = currentTrack.getUserDislikes().size();
+            return "Likes: " + trackLikes + " Dislikes: " + trackDislikes;
+        }
     }
 }
