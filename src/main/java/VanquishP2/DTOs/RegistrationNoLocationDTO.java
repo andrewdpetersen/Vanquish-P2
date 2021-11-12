@@ -1,8 +1,8 @@
 package VanquishP2.DTOs;
 
 import VanquishP2.Application.Beans.Models.Location;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -14,7 +14,7 @@ import javax.validation.constraints.Pattern;
  * @date 10/29/2021
  * @author Kollier Martin
  */
-public class UserRegistrationDTO {
+public class RegistrationNoLocationDTO {
 
     @Length(min = 5, max = 20)
     @NotNull(message = "Null, a username can not be.")
@@ -32,23 +32,20 @@ public class UserRegistrationDTO {
 
     private String firstName, lastName, city, state;
 
-    private Location location;
-
-    public UserRegistrationDTO() {
+    public RegistrationNoLocationDTO() {
 
     }
 
-    public UserRegistrationDTO(String firstName, String lastName,
-                               String username, String password, String email, Location location) {
+    public RegistrationNoLocationDTO(String firstName, String lastName,
+                                     String username, String password, String email, String city, String state) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.location = location;
         this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public UserRegistrationDTO(String username, String password, String email) {
+    public RegistrationNoLocationDTO(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -110,23 +107,16 @@ public class UserRegistrationDTO {
         this.state = state;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
     @Override
     public String toString() {
-        return "UserRegistrationDTO {\n" +
+        return "RegistrationNoLocationDTO {\n" +
                 "username: " + username + ",\n" +
                 "password: " + password + ",\n" +
                 "email: " + email + ",\n" +
                 "firstName: " + firstName + ",\n" +
                 "lastName: " + lastName + ",\n" +
-                "location: " + location + ",\n" +
+                "city: " + city + ",\n" +
+                "state: " + state + ",\n" +
                 '}';
     }
 }

@@ -7,6 +7,8 @@ import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.Application.Beans.Service.JWTUtil;
 import VanquishP2.DTOs.LoginCredentialsDTO;
 import VanquishP2.DTOs.UserRegistrationDTO;
+import jdk.nashorn.api.scripting.JSObject;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,6 +45,7 @@ public class AuthenticationController {
      */
     @PostMapping(value = "/login", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public UserInfo authenticate(@RequestBody LoginCredentialsDTO credentials, HttpServletResponse response) {
+        System.out.println(credentials);
         Optional<UserInfo> userInfo = userInfoService.authenticate(credentials.getUsername(), credentials.getPassword());
 
         if (userInfo.isPresent()) {
@@ -60,7 +63,7 @@ public class AuthenticationController {
      */
     @PostMapping(value = "/register/basic", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public User registerBasicUser(@RequestBody @Valid UserRegistrationDTO regData, HttpServletResponse response){
-        User user = userService.registerUser(regData, User.Role.BASIC);
+        User user = userService.registerUser(regData, User.Role.PREMIUM);
         String jwt = jwtUtil.createJWT(user.getUserInfo());
         response.setHeader(jwtUtil.getHeader(), jwt);
         return user;
@@ -73,7 +76,6 @@ public class AuthenticationController {
      */
     @PostMapping(value = "/register/premium", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public User registerPremiumUser(@RequestBody @Valid UserRegistrationDTO regData, HttpServletResponse response){
-        System.out.println(regData);
         User user = userService.registerUser(regData, User.Role.PREMIUM);
         String jwt = jwtUtil.createJWT(user.getUserInfo());
         response.setHeader(jwtUtil.getHeader(), jwt);

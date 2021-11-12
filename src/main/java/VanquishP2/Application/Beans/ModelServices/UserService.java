@@ -1,5 +1,6 @@
 package VanquishP2.Application.Beans.ModelServices;
 
+import VanquishP2.Application.Beans.Models.Location;
 import VanquishP2.Application.Beans.Models.User;
 import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.Application.Beans.Repos.LocationRepository;

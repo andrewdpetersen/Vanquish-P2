@@ -26,18 +26,13 @@ public class LoggerService {
     }
 
     private String getCurrentDateTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return formatter.format(System.currentTimeMillis());
     }
 
     private String formatLogEntry(String message){
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-        StringBuilder stackTrace = new StringBuilder();
-
-        for(StackTraceElement element : stackTraceElements) {
-            stackTrace.append("\n").append(element);
-        }
-
+        String stackTrace = stackTraceElements[stackTraceElements.length - 1].toString();
 
         return String.format("[%s]  %s%n", stackTrace, message);
     }

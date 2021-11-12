@@ -5,7 +5,6 @@ import VanquishP2.Exceptions.AuthenticationException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.sql.Date;
