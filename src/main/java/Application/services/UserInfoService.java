@@ -61,4 +61,8 @@ public class UserInfoService {
     public void deleteAllInfo(){
         userInfoRepository.deleteAll();
     }
+
+    public List<UserInfo> getAll() {
+        return null;
+    }
 }

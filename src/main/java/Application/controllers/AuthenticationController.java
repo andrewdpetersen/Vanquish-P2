@@ -1,12 +1,11 @@
-package VanquishP2.Controllers;
+package Application.controllers;
 
-import VanquishP2.Application.Beans.ModelServices.UserInfoService;
-import VanquishP2.Application.Beans.ModelServices.UserService;
-import VanquishP2.Application.Beans.Models.User;
-import VanquishP2.Application.Beans.Models.UserInfo;
-import VanquishP2.Application.Beans.Service.JWTUtil;
+import Application.DTOs.UserRegistrationDTO;
+import Application.models.User;
+import Application.models.UserInfo;
+import Application.services.UserInfoService;
+import Application.services.UserService;
 import VanquishP2.DTOs.LoginCredentialsDTO;
-import VanquishP2.DTOs.UserRegistrationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
