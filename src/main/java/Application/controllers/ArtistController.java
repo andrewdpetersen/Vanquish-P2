@@ -35,9 +35,10 @@ public class ArtistController {
         return artistService.getArtist(id);
     }
 
-    @GetMapping(value = "search/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "artist/search/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Artist[] searchForTracksByTitle(@PathVariable ("name") String title){
+    public Artist[] searchForArtistsByName(@PathVariable ("name") String title){
+        System.out.println("Test: Artist");
         List<Artist> artistList = ArtistSearch.artistSearch(title,5);
         Artist[] artists = new Artist[5];
         for (int i=0;i<5;i++) {

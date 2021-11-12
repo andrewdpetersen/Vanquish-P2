@@ -36,9 +36,10 @@ public class TrackController {
         return trackService.getTrack(id);
     }
 
-    @GetMapping(value = "search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "track/search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Track[] searchForTracksByTitle(@PathVariable ("title") String title){
+        System.out.println("Test: Track");
         List<Track> trackList = TrackSearch.searchTracks(title,5);
         Track[] tracks = new Track[5];
         for (int i=0;i<5;i++) {

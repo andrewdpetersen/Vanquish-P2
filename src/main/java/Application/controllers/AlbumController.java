@@ -23,7 +23,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  */
 
 @RestController
-@RequestMapping(value = "/album", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/4TheMusic")
 public class AlbumController {
     private final AlbumService albumService;
 
@@ -36,7 +36,7 @@ public class AlbumController {
      * This functions returns all albums cached into DB
      * @return ResponseEntity with HttpStatus and/or content
      */
-    @GetMapping("")
+    @GetMapping("/albums")
     public ResponseEntity<List<Album>> getAllAlbums() {
         List<Album> allAlbums = albumService.getAll();
 
@@ -104,9 +104,10 @@ public class AlbumController {
         }
     }
 
-    @GetMapping(value = "search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/album/search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Album[] searchForTracksByTitle(@PathVariable ("title") String title){
+    public Album[] searchForAlbumsByTitle(@PathVariable ("title") String title){
+        System.out.println("Test: Album");
         List<Album> albumList = AlbumSearch.albumSearch(title,5);
         Album[] albums = new Album[5];
         for (int i=0;i<5;i++) {
