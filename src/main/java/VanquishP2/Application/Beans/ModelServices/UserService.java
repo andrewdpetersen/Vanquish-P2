@@ -110,14 +110,16 @@ public class UserService {
     public User registerUser(UserRegistrationDTO data, User.Role role) {
         User newUser;
         UserInfo newUserInfo;
+        Location location;
 
+        location = new Location(data.getCity(), data.getState());
         newUserInfo = new UserInfo(data);
         newUser = new User(role, newUserInfo);
 
-        locationRepository.save(data.getLocation());
+        locationRepository.save(location);
         userRepository.save(newUser);
 
-        newUserInfo.setLocation(data.getLocation());
+        newUserInfo.setLocation(location);
         newUserInfo.setUser(newUser);
         userInfoRepository.save(newUserInfo);
 

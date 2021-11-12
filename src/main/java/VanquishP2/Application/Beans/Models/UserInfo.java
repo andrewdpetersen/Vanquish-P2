@@ -38,7 +38,7 @@ public class UserInfo {
     }
 
     public UserInfo(UserRegistrationDTO registration) {
-        this.location = registration.getLocation();
+        this.location = new Location(registration.getCity(), registration.getState());
         this.firstName = registration.getFirstName();
         this.lastName = registration.getLastName();
         this.username = registration.getUsername();

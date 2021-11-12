@@ -37,8 +37,8 @@ class UserDBTest {
                 "KMART23",
                 "3t3styG=5!",
                 "astronomical@space.net",
-                new Location("Mars",
-                "Milky Way")));
+                "Mars",
+                "Milky Way"));
 
         userInfoRepository.save(userInfo);
 

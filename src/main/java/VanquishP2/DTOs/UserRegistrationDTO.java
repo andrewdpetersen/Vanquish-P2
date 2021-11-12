@@ -32,17 +32,14 @@ public class UserRegistrationDTO {
 
     private String firstName, lastName, city, state;
 
-    private Location location;
-
     public UserRegistrationDTO() {
 
     }
 
     public UserRegistrationDTO(String firstName, String lastName,
-                               String username, String password, String email, Location location) {
+                                     String username, String password, String email, String city, String state) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.location = location;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -110,14 +107,6 @@ public class UserRegistrationDTO {
         this.state = state;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
     @Override
     public String toString() {
         return "UserRegistrationDTO {\n" +
@@ -126,7 +115,8 @@ public class UserRegistrationDTO {
                 "email: " + email + ",\n" +
                 "firstName: " + firstName + ",\n" +
                 "lastName: " + lastName + ",\n" +
-                "location: " + location + ",\n" +
+                "city: " + city + ",\n" +
+                "state: " + state + ",\n" +
                 '}';
     }
 }

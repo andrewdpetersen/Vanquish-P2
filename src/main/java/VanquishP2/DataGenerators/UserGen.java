@@ -35,7 +35,7 @@ public class UserGen {
     private void populate() {
         for (int i = 0; i < 20; i++) {
             UserRegistrationDTO userRegistrationDTO = new UserRegistrationDTO(getAFirstName(), getALastName(),
-                    getAUsername(), getAPassword(), getAEmail(), getALocation());
+                    getAUsername(), getAPassword(), getAEmail(), getACity(), getAState());
 
             UserInfo userInfo = new UserInfo(userRegistrationDTO);
             locationService.save(userInfo.getLocation());
@@ -48,12 +48,6 @@ public class UserGen {
             userInfo.setUser(user);
             userInfoService.save(userInfo);
         }
-    }
-
-    public static Location getALocation() {
-        Random rand = new Random();
-        int index = rand.nextInt(cities.length);
-        return new Location(cities[index], states[index]);
     }
 
     public static String getACity(){
