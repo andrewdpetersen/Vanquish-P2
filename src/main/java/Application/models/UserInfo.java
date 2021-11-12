@@ -31,7 +31,7 @@ public class UserInfo {
     }
 
     public UserInfo(UserRegistrationDTO registration) {
-        this.location = registration.getLocation();
+        this.location = new Location(registration.getCity(), registration.getState());
         this.firstName = registration.getFirstName();
         this.lastName = registration.getLastName();
         this.username = registration.getUsername();
@@ -116,15 +116,14 @@ public class UserInfo {
 
     @Override
     public String toString() {
-        return "UserInfo{" +
-                "ID=" + ID +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", user=" + user +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", location=" + location +
+        return "UserInfo {\n" +
+                "ID: " + ID + ",\n" +
+                "firstName: " + firstName + ",\n" +
+                "lastName: " + lastName + ",\n" +
+                "email: " + email + ",\n" +
+                "username: " + username + ",\n" +
+                "password: " + password + ",\n" +
+                "location: " + location + ",\n" +
                 '}';
     }
 }
