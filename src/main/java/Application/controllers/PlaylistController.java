@@ -17,14 +17,14 @@ public class PlaylistController {
         this.playlistService = playlistService;
     }
 
-    @PostMapping(value = "/name", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/playlist", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public Playlist savePlaylist_name(@RequestBody Playlist playlist){
         playlistService.savePlaylist(playlist);
         return playlistService.getPlaylist(playlist.getPlaylist_id());
     }
 
-    @GetMapping(value = "/name/{playlist_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/playlist/{playlist_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Playlist getPlaylistById(@PathVariable("playlist_id") Integer id){
         return playlistService.getPlaylist(id);
