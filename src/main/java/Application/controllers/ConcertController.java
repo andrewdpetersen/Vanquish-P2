@@ -44,7 +44,7 @@ public class ConcertController {
         return concertService.getConcert(id);
     }
 
-    @DeleteMapping(value = "/concert/{id}")
+    @DeleteMapping(value = "/concert/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteLocation(@PathVariable ("id") Integer id){
         if(id>0){
