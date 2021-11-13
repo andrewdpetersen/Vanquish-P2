@@ -21,7 +21,7 @@ public class PlaylistController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public Playlist savePlaylist_name(@RequestBody Playlist playlist){
         playlistService.savePlaylist(playlist);
-        return playlistService.getPlaylist(playlist.getPlaylist_id());
+        return playlistService.getPlaylist(playlistService.getMaxPlaylistId());
     }
 
     @GetMapping(value = "/playlist/{playlist_id}", produces = MediaType.APPLICATION_JSON_VALUE)

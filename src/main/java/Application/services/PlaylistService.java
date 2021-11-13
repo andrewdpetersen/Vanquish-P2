@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class PlaylistService {
@@ -22,5 +24,16 @@ public class PlaylistService {
 
     public Playlist getPlaylist(Integer id){
         return playlistRepository.getById(id);
+    }
+
+    public int getMaxPlaylistId(){
+        List<Playlist> allPlaylists = playlistRepository.findAll();
+        int max = 0;
+        for (Playlist playlist:allPlaylists) {
+            if(playlist.getPlaylist_id()>max){
+                max=playlist.getPlaylist_id();
+            }
+        }
+        return max;
     }
 }
