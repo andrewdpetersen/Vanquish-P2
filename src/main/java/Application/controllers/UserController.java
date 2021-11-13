@@ -1,6 +1,7 @@
 package Application.controllers;
 
-import Application.DTOs.UserRegistrationDTO;
+import Application.DTOs.RegistrationNoLocationDTO;
+
 import Application.models.User;
 import Application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +60,7 @@ public class UserController {
      * @return The registered User
      */
     @PostMapping(value = "/user/register/basic", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public User registerBasicUser(@RequestBody @Valid UserRegistrationDTO regData){
+    public User registerBasicUser(@RequestBody @Valid RegistrationNoLocationDTO regData){
         return userService.registerUser(regData, User.Role.BASIC);
     }
 
@@ -69,7 +70,7 @@ public class UserController {
      * @return The registered User
      */
     @PostMapping(value = "/user/register/premium", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public User registerPremiumUser(@RequestBody @Valid UserRegistrationDTO regData){
+    public User registerPremiumUser(@RequestBody @Valid RegistrationNoLocationDTO regData){
         return userService.registerUser(regData, User.Role.PREMIUM);
     }
 

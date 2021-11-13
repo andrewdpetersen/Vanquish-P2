@@ -1,6 +1,6 @@
 package Application.services;
 
-import Application.DTOs.UserRegistrationDTO;
+import Application.DTOs.RegistrationNoLocationDTO;
 import Application.exceptions.UserDoesNotExistException;
 import Application.models.User;
 import Application.models.UserInfo;
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -101,7 +102,7 @@ public class UserService {
      * @param data
      * @return
      */
-    public User registerUser(UserRegistrationDTO data, User.Role role) {
+    public User registerUser(@Valid RegistrationNoLocationDTO data, User.Role role) {
 //        User newUser;
 //        UserInfo newUserInfo;
 //

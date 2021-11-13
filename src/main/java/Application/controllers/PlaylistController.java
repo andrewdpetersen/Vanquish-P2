@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(value = "/4TheMusic")
 public class PlaylistController {
     private final PlaylistService playlistService;
 

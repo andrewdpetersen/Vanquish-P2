@@ -1,6 +1,6 @@
 package Application.models;
 
-import Application.DTOs.UserRegistrationDTO;
+import Application.DTOs.RegistrationNoLocationDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -19,9 +19,18 @@ public class UserInfo {
         this.username = username;
         this.password = password;
     }
+    public UserInfo(Location location, String firstName, String lastName, String username, String password, String email, User user)
+    {
+        this.location = location;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.user = user;
+    }
 
-    public UserInfo(UserRegistrationDTO registration) {
-        this.location = registration.getLocation();
+    public UserInfo(RegistrationNoLocationDTO registration) {
         this.firstName = registration.getFirstName();
         this.lastName = registration.getLastName();
         this.username = registration.getUsername();

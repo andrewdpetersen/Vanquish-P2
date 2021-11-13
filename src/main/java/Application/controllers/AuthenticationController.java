@@ -1,7 +1,7 @@
 package Application.controllers;
 
 import Application.DTOs.LoginCredentialsDTO;
-import Application.DTOs.UserRegistrationDTO;
+import Application.DTOs.RegistrationNoLocationDTO;
 import Application.models.User;
 import Application.models.UserInfo;
 import Application.services.UserInfoService;
@@ -61,7 +61,8 @@ public class AuthenticationController {
      * @return The new registered User Data
      */
     @PostMapping(value = "/register/basic", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public User registerBasicUser(@RequestBody @Valid UserRegistrationDTO regData, HttpServletResponse response){
+    public User registerBasicUser(@RequestBody @Valid RegistrationNoLocationDTO regData, HttpServletResponse response){
+        System.out.println(regData);
         User user = userService.registerUser(regData, User.Role.BASIC);
         String jwt = jwtUtil.createJWT(user.getUserInfo());
         response.setHeader(jwtUtil.getHeader(), jwt);
@@ -74,7 +75,7 @@ public class AuthenticationController {
      * @return The new registered User Data
      */
     @PostMapping(value = "/register/premium", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public User registerPremiumUser(@RequestBody @Valid UserRegistrationDTO regData, HttpServletResponse response){
+    public User registerPremiumUser(@RequestBody @Valid RegistrationNoLocationDTO regData, HttpServletResponse response){
         System.out.println(regData);
         User user = userService.registerUser(regData, User.Role.PREMIUM);
         String jwt = jwtUtil.createJWT(user.getUserInfo());

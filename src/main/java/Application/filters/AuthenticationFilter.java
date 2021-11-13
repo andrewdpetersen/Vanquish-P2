@@ -37,10 +37,16 @@ public class AuthenticationFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
-        parseToken(request);
+
+        if (!request.getRequestURI().equals("4TheMusic/login")
+                || !request.getRequestURI().equals("4TheMusic/register/basic")
+                || !request.getRequestURI().equals("4TheMusic/register/premium")) {
+            parseToken(request);
+        }
+        System.out.println(request.getRequestURI());
+
         chain.doFilter(request, response);
     }
-
     private void parseToken(HttpServletRequest request) {
         String errMessage = "Unauthorized user tried to barge their way in here! Don't worry, I caught this transgression. Error: %s";
 

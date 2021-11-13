@@ -1,13 +1,18 @@
 package Application.DTOs;
-
-import Application.models.Location;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-public class UserRegistrationDTO {
+/**
+ * UserRegistrationDTO
+ * The DTO for User Registration
+ *
+ * @date 10/29/2021
+ * @author Kollier Martin
+ */
+public class RegistrationNoLocationDTO {
 
     @Length(min = 5, max = 20)
     @NotNull(message = "Null, a username can not be.")
@@ -23,24 +28,22 @@ public class UserRegistrationDTO {
     @Email(message = "This email is not valid >:(")
     private String email;
 
-    private String firstName, lastName;
-    private Location location;
+    private String firstName, lastName, city, state;
 
-    public UserRegistrationDTO() {
+    public RegistrationNoLocationDTO() {
 
     }
 
-    public UserRegistrationDTO(String firstName, String lastName,
-                               String username, String password, String email, Location location) {
+    public RegistrationNoLocationDTO(String firstName, String lastName,
+                                     String username, String password, String email, String city, String state) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.location = location;
         this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public UserRegistrationDTO(String username, String password, String email) {
+    public RegistrationNoLocationDTO(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -86,23 +89,33 @@ public class UserRegistrationDTO {
         this.lastName = lastName;
     }
 
-    public Location getLocation() {
-        return location;
+    public String getCity() {
+        return city;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     @Override
     public String toString() {
-        return "UserRegistrationDTO {\n" +
+        return "RegistrationNoLocationDTO {\n" +
                 "username: " + username + ",\n" +
                 "password: " + password + ",\n" +
                 "email: " + email + ",\n" +
                 "firstName: " + firstName + ",\n" +
                 "lastName: " + lastName + ",\n" +
-                "location: " + location + ",\n" +
+                "city: " + city + ",\n" +
+                "state: " + state + ",\n" +
                 '}';
     }
 }
+
