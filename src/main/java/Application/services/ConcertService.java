@@ -36,4 +36,6 @@ public class ConcertService {
     public void deleteAllConcerts() {
         concertRepository.deleteAll();
     }
+
+    public Concert findByName(String name){return concertRepository.findByName(name);}
 }
