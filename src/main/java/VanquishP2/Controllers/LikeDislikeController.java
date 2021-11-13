@@ -3,7 +3,6 @@ package VanquishP2.Controllers;
 import VanquishP2.Application.Beans.ModelServices.LikeDislikeService;
 import VanquishP2.Application.Beans.Models.Track;
 import VanquishP2.Application.Beans.Models.User;
-import VanquishP2.Application.Beans.Service.JWTUtil;
 import VanquishP2.Exceptions.UserDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,18 +16,17 @@ import java.util.Optional;
 @RequestMapping(value = "/4TheMusic")
 public class LikeDislikeController {
     private final LikeDislikeService likeDislikeService;
-    private final JWTUtil jwtUtil;
 
     @Autowired
-    public LikeDislikeController(JWTUtil jwtUtil, LikeDislikeService likeDislikeService) {
-        this.jwtUtil = jwtUtil;
+    public LikeDislikeController(LikeDislikeService likeDislikeService) {
         this.likeDislikeService = likeDislikeService;
     }
 
     @PostMapping(value = "/like", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Track likeTrack(@RequestBody Track track, HttpServletResponse response) throws UserDoesNotExistException {
-        String username = jwtUtil.parseJWT(response.getHeader(jwtUtil.getHeader())).getSubject();
+    public Track likeTrack(@RequestBody Track track) throws UserDoesNotExistException {
+        track = likeDislikeService.getTrack(track.getTrackID());
+        String username = track.getUser().getUserInfo().getUsername();
 
         Optional<User> user = likeDislikeService.getUserByUsername(username);
 
@@ -55,8 +53,10 @@ public class LikeDislikeController {
 
     @PostMapping(value = "/dislike", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Track dislikeTrack(@RequestBody Track track, HttpServletResponse response) throws UserDoesNotExistException{
-        String username = jwtUtil.parseJWT(response.getHeader(jwtUtil.getHeader())).getSubject();
+    public Track dislikeTrack(@RequestBody Track track) throws UserDoesNotExistException{
+        track = likeDislikeService.getTrack(track.getTrackID());
+        String username = track.getUser().getUserInfo().getUsername();
+
         Optional<User> user = likeDislikeService.getUserByUsername(username);
 
         if(user.isPresent())
