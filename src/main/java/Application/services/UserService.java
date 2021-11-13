@@ -79,7 +79,7 @@ public class UserService {
     }
 
     /**
-     *
+     * Persist User to DB
      * @param user
      * @return
      */
@@ -88,7 +88,7 @@ public class UserService {
     }
 
     /**
-     *
+     * Delete User by ID
      * @param id
      * @return
      */
@@ -97,24 +97,26 @@ public class UserService {
     }
 
     /**
-     *
-     * @param data
-     * @return
+     * Register New User
+     * @param data UserRegistration data to persist
+     * @return The new persisted Object
      */
     public User registerUser(UserRegistrationDTO data, User.Role role) {
-//        User newUser;
-//        UserInfo newUserInfo;
-//
-//        newUserInfo = new UserInfo(data);
-//        newUser = new User(role, newUserInfo);
-//
-//        userRepository.save(newUser);
-//
-//        newUserInfo.setUser(newUser);
-//        userInfoRepository.save(newUserInfo);
-//
-//        return newUser;
+        User newUser;
+        UserInfo newUserInfo;
+        Location location;
 
-        return null;
+        location = new Location(data.getCity(), data.getState());
+        newUserInfo = new UserInfo(data);
+        newUser = new User(role, newUserInfo);
+
+        locationRepository.save(location);
+        userRepository.save(newUser);
+
+        newUserInfo.setLocation(location);
+        newUserInfo.setUser(newUser);
+        userInfoRepository.save(newUserInfo);
+
+        return newUser;
     }
 }

@@ -23,18 +23,16 @@ public class UserRegistrationDTO {
     @Email(message = "This email is not valid >:(")
     private String email;
 
-    private String firstName, lastName;
-    private Location location;
+    private String firstName, lastName, city, state;
 
     public UserRegistrationDTO() {
 
     }
 
     public UserRegistrationDTO(String firstName, String lastName,
-                               String username, String password, String email, Location location) {
+                                     String username, String password, String email, String city, String state) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.location = location;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -86,12 +84,20 @@ public class UserRegistrationDTO {
         this.lastName = lastName;
     }
 
-    public Location getLocation() {
-        return location;
+    public String getCity() {
+        return city;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     @Override
@@ -102,7 +108,8 @@ public class UserRegistrationDTO {
                 "email: " + email + ",\n" +
                 "firstName: " + firstName + ",\n" +
                 "lastName: " + lastName + ",\n" +
-                "location: " + location + ",\n" +
+                "city: " + city + ",\n" +
+                "state: " + state + ",\n" +
                 '}';
     }
 }
