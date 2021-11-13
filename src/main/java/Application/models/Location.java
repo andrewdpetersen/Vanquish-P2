@@ -18,6 +18,11 @@ public class Location {
     public Location() {
     }
 
+    public Location(String city, String state) {
+        this.city = city;
+        this.state = state;
+    }
+
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

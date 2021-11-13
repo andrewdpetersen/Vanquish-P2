@@ -2,8 +2,10 @@ package Application.services;
 
 import Application.DTOs.UserRegistrationDTO;
 import Application.exceptions.UserDoesNotExistException;
+import Application.models.Location;
 import Application.models.User;
 import Application.models.UserInfo;
+import Application.repositories.LocationRepository;
 import Application.repositories.UserInfoRepository;
 import Application.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +28,14 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
     private final String exceptionError = "User: %s does not exist.";
+    private final LocationRepository locationRepository;
 
     @Autowired
     public UserService(UserRepository userRepository,
-                       UserInfoRepository userInfoRepository) {
+                       UserInfoRepository userInfoRepository,LocationRepository locationRepository) {
         this.userRepository = userRepository;
         this.userInfoRepository = userInfoRepository;
+        this.locationRepository = locationRepository;
     }
 
     /**
