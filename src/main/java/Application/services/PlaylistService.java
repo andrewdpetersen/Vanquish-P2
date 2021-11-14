@@ -1,21 +1,26 @@
 package Application.services;
 
 import Application.models.Playlist;
+import Application.models.Track;
 import Application.repositories.PlaylistRepository;
+import Application.repositories.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
 @Transactional
 public class PlaylistService {
     private PlaylistRepository playlistRepository;
+    private TrackRepository trackRepository;
 
     @Autowired
-    public PlaylistService(PlaylistRepository playlistRepository) {
+    public PlaylistService(PlaylistRepository playlistRepository,TrackRepository trackRepository) {
         this.playlistRepository = playlistRepository;
+        this.trackRepository = trackRepository;
     }
 
     public void savePlaylist(Playlist playlist){
@@ -35,5 +40,22 @@ public class PlaylistService {
             }
         }
         return max;
+    }
+
+    public List<Track> getTracksByPlaylist(Integer playlist_id){
+        List<Track> trackList = new LinkedList<>();
+        List<Integer> idList = playlistRepository.getTrackIDsByPlaylistId(playlist_id);
+        for (Integer id:idList) {
+            trackList.add(trackRepository.getById(id));
+        }
+        return trackList;
+    }
+
+    public String getPlaylistName(Integer playlist_id){
+        return playlistRepository.getPlaylistName(playlist_id);
+    }
+
+    public Integer getUserId(Integer playlist_id){
+        return playlistRepository.getUserId(playlist_id);
     }
 }
