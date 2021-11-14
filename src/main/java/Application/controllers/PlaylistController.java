@@ -1,12 +1,15 @@
 package Application.controllers;
 
 import Application.models.Playlist;
+import Application.models.Track;
 import Application.services.PlaylistService;
 import Application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/4TheMusic")
@@ -38,5 +41,11 @@ public class PlaylistController {
         respPlaylist.setTrackList(playlistService.getTracksByPlaylist(id));
         System.out.println(respPlaylist.getTrackList().size());
         return respPlaylist;
+    }
+
+    @GetMapping(value = "/playlist/tracks/{playlist_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<Track> getTracksFromPlaylist(@PathVariable ("playlist_id") Integer id){
+        return playlistService.getTracksByPlaylist(id);
     }
 }
