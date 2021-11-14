@@ -49,17 +49,6 @@ public class AuthenticationController {
     }
 
     /**
-     * Register Basic User
-     * @param regData Registration Data from Frontend
-     * @return The new registered User Data
-     */
-    @PostMapping(value = "/register/basic", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> registerBasicUser(@RequestBody @Valid UserRegistrationDTO regData) {
-        User user = userService.registerUser(regData, User.Role.BASIC);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-    /**
      * Register Premium User
      * @param regData Registration Data from Frontend
      * @return The new registered User Data
@@ -67,6 +56,17 @@ public class AuthenticationController {
     @PostMapping(value = "/register/premium", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<User> registerPremiumUser(@RequestBody @Valid UserRegistrationDTO regData){
         User user = userService.registerUser(regData, User.Role.PREMIUM);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    /**
+     * Register Basic User
+     * @param regData Registration Data from Frontend
+     * @return The new registered User Data
+     */
+    @PostMapping(value = "/register/basic", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> registerBasicUser(@RequestBody @Valid UserRegistrationDTO regData) {
+        User user = userService.registerUser(regData, User.Role.BASIC);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }
