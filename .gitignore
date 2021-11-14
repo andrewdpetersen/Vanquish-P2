@@ -19,6 +19,12 @@
 *.tar.gz
 *.rar
 
+# Resources
+src/main/resources
+
+# Properties files
+*.properties
+
 # IntelliJ
 \.idea
 

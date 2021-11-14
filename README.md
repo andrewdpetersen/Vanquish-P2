@@ -35,11 +35,11 @@ the users that like particular artists.
 * As a user, I can look up an artist and see a [limited] list of their songs.
 * As a premium user, I can schedule a concert.
 * As a premium user, I can cancel a concert.
-* As a premium user, I can see a list of liked songs for a user.
 * As a premium user, I can see a like/dislike ratio for a particular song.
 
 ### Bonus Stories
 * As a user, I can view a list of users who like the same songs.
+* As a premium user, I can see a list of liked songs for a user.
 * As a premium user, I can see a like/dislike ratio for an entire artist.
 
 ## Tech Stack
