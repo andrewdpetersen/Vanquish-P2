@@ -34,6 +34,7 @@ public class PlaylistController {
         respPlaylist.setID(id);
         respPlaylist.setPlaylistName(playlistService.getPlaylistName(id));
         respPlaylist.setUser(userService.getByID(playlistService.getUserId(id)));
+        System.out.println(respPlaylist.getUser().getUserInfo().getUsername());
         respPlaylist.setTrackList(playlistService.getTracksByPlaylist(id));
         System.out.println(respPlaylist.getTrackList().size());
         return respPlaylist;

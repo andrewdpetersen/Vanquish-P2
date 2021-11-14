@@ -1,6 +1,7 @@
 package Application.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -60,6 +61,7 @@ public class Album implements Serializable {
         this.artist = artist;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "track_id")
     private List<Track> tracks;
     public List<Track> getTracks() {
