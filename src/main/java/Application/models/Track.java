@@ -2,16 +2,36 @@ package Application.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Component
-@Entity
 @Table(name = "tracks")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Entity
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class Track {
+    /**
+     * No args constructor
+     */
+    public Track() {
+    }
+
+    /**
+     * Full args constructor
+     * @param id
+     * @param title
+     */
+    public Track(Integer id, String title) {
+        this.track_id = id;
+        this.title = title;
+    }
+
+    public Track(String title, String duration, Artist artist) {
+        this.title = title;
+        this.duration = duration;
+        this.artist = artist;
+    }
+
     @Id
     private Integer track_id;
     public Integer getTrack_id() {
@@ -28,6 +48,15 @@ public class Track {
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Column(name = "Duration")
+    private String duration;
+    public String getDuration() {
+        return duration;
+    }
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     //many tracks, many playlists (we want a list of what playlists this track is on)
@@ -79,22 +108,6 @@ public class Track {
     }
     public void setAlbum(Album album) {
         this.album = album;
-    }
-
-    /**
-     * Full args constructor
-     * @param id
-     * @param title
-     */
-    public Track(Integer id, String title) {
-        this.track_id = id;
-        this.title = title;
-    }
-
-    /**
-     * No args constructor
-     */
-    public Track() {
     }
 
     @Override

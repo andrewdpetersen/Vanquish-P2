@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ConcertRepository extends JpaRepository<Concert, Integer> {
-
+    Concert findByName(String name);
 }

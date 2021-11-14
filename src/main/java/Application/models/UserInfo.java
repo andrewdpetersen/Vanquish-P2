@@ -1,19 +1,47 @@
 package Application.models;
 
+import Application.DTOs.UserRegistrationDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
-@Component
 @Entity
 @Table(name = "user_infos")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "location", "user"},
+        ignoreUnknown = true)
 public class UserInfo {
+    public UserInfo() {
+
+    }
+
+    public UserInfo(String email, String username, String password) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+    public UserInfo(Location location, String firstName, String lastName, String username, String password, String email, User user)
+    {
+        this.location = location;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.user = user;
+    }
+
+    public UserInfo(UserRegistrationDTO registration) {
+        this.location = new Location(registration.getCity(), registration.getState());
+        this.firstName = registration.getFirstName();
+        this.lastName = registration.getLastName();
+        this.username = registration.getUsername();
+        this.password = registration.getPassword();
+        this.email = registration.getEmail();
+    }
 
     @Id
     @Column(name = "userInfo_id")
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int ID;
     public int getID() {
         return ID;
@@ -49,7 +77,7 @@ public class UserInfo {
         this.password = password;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     User user;
     public User getUser() {
         return user;
@@ -76,7 +104,7 @@ public class UserInfo {
         this.lastName = lastName;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "location_id")
     private Location location;
     public Location getLocation() {
@@ -88,15 +116,14 @@ public class UserInfo {
 
     @Override
     public String toString() {
-        return "UserInfo{" +
-                "ID=" + ID +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", user=" + user +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", location=" + location +
+        return "UserInfo {\n" +
+                "ID: " + ID + ",\n" +
+                "firstName: " + firstName + ",\n" +
+                "lastName: " + lastName + ",\n" +
+                "email: " + email + ",\n" +
+                "username: " + username + ",\n" +
+                "password: " + password + ",\n" +
+                "location: " + location + ",\n" +
                 '}';
     }
 }

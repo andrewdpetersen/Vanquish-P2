@@ -5,26 +5,22 @@ import Application.deezer.ArtistSearch;
 import Application.deezer.TrackSearch;
 import Application.models.Album;
 import Application.models.Artist;
-import Application.models.Concert;
 import Application.models.Track;
-import Application.services.APIClientService;
 import Application.services.ConcertService;
 import Application.services.TrackService;
-import ch.qos.logback.core.net.SyslogOutputStream;
 import org.json.JSONException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "Application")
 @EntityScan("Application")
-@ComponentScan("Application")
+@PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
 public class P2Application {
 

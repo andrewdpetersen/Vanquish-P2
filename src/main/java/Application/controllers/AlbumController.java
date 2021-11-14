@@ -1,7 +1,7 @@
 package Application.controllers;
 
 import Application.deezer.AlbumSearch;
-import Application.deezer.ArtistSearch;
+
 import Application.models.Album;
 import Application.models.Artist;
 import Application.services.AlbumService;
@@ -10,8 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
@@ -36,7 +38,8 @@ public class AlbumController {
      * This functions returns all albums cached into DB
      * @return ResponseEntity with HttpStatus and/or content
      */
-    @GetMapping("/albums")
+
+    @GetMapping("/album/all")
     public ResponseEntity<List<Album>> getAllAlbums() {
         List<Album> allAlbums = albumService.getAll();
 
@@ -53,7 +56,7 @@ public class AlbumController {
      * @param id ID Integer to distinguish album
      * @return Album Object
      */
-    @GetMapping("/{id}")
+    @GetMapping("/album/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Album retrieve(@PathVariable int id) {
         return albumService.getByID(id);
@@ -64,7 +67,7 @@ public class AlbumController {
      * @param name Name String to distinguish album
      * @return Album Object
      */
-    @GetMapping("/{name}")
+    @GetMapping("/album/{name}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Album retrieve(@PathVariable String name) {
         return albumService.getByTitle(name);
@@ -75,7 +78,7 @@ public class AlbumController {
      * @param id Album ID
      * @return ResponseEntity depending on success or failure
      */
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/album{/id}")
     public ResponseEntity<?> remove(@PathVariable int id) {
         Optional<Album> album = Optional.ofNullable(albumService.getByID(id));
 
@@ -92,7 +95,7 @@ public class AlbumController {
      * @param title Album title
      * @return ResponseEntity depending on success or failure
      */
-    @DeleteMapping("{/title}")
+    @DeleteMapping("/album/{title}")
     public ResponseEntity<?> remove(@PathVariable String title) {
         Optional<Album> album = Optional.ofNullable(albumService.getByTitle(title));
 
@@ -116,3 +119,4 @@ public class AlbumController {
         return albums;
     }
 }
+

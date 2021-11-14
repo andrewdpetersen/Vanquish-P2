@@ -1,9 +1,11 @@
 package Application.services;
 
+import Application.DTOs.UserRegistrationDTO;
 import Application.exceptions.UserDoesNotExistException;
+import Application.models.Location;
 import Application.models.User;
 import Application.models.UserInfo;
-import Application.DTOs.UserRegistrationDTO;
+import Application.repositories.LocationRepository;
 import Application.repositories.UserInfoRepository;
 import Application.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 
 /**
@@ -27,12 +28,14 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
     private final String exceptionError = "User: %s does not exist.";
+    private final LocationRepository locationRepository;
 
     @Autowired
     public UserService(UserRepository userRepository,
-                       UserInfoRepository userInfoRepository) {
+                       UserInfoRepository userInfoRepository,LocationRepository locationRepository) {
         this.userRepository = userRepository;
         this.userInfoRepository = userInfoRepository;
+        this.locationRepository = locationRepository;
     }
 
     /**
@@ -80,7 +83,7 @@ public class UserService {
     }
 
     /**
-     *
+     * Persist User to DB
      * @param user
      * @return
      */
@@ -89,7 +92,7 @@ public class UserService {
     }
 
     /**
-     *
+     * Delete User by ID
      * @param id
      * @return
      */
@@ -98,24 +101,26 @@ public class UserService {
     }
 
     /**
-     *
-     * @param data
-     * @return
+     * Register New User
+     * @param data UserRegistration data to persist
+     * @return The new persisted Object
      */
     public User registerUser(UserRegistrationDTO data, User.Role role) {
-//        User newUser;
-//        UserInfo newUserInfo;
-//
-//        newUserInfo = new UserInfo(data);
-//        newUser = new User(role, newUserInfo);
-//
-//        userRepository.save(newUser);
-//
-//        newUserInfo.setUser(newUser);
-//        userInfoRepository.save(newUserInfo);
-//
-//        return newUser;
+        User newUser;
+        UserInfo newUserInfo;
+        Location location;
 
-        return null;
+        location = new Location(data.getCity(), data.getState());
+        newUserInfo = new UserInfo(data);
+        newUser = new User(role, newUserInfo);
+
+        locationRepository.save(location);
+        userRepository.save(newUser);
+
+        newUserInfo.setLocation(location);
+        newUserInfo.setUser(newUser);
+        userInfoRepository.save(newUserInfo);
+
+        return newUser;
     }
 }

@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
@@ -20,15 +22,13 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  */
 
 @RestController
-@RequestMapping(value = "/user", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/4TheMusic", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
 public class UserController {
     private final UserService userService;
-    //private final JWTUtil jwtUtil;
 
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
-        //this.jwtUtil = jwtUtil;
     }
 
     /**
@@ -36,7 +36,7 @@ public class UserController {
      * @param id ID Integer to distinguish user
      * @return User Object
      */
-    @GetMapping("/{id}")
+    @GetMapping("/user/{id}")
     public User retrieve(@PathVariable int id) {
         return userService.getByID(id);
     }
@@ -54,31 +54,31 @@ public class UserController {
     }
 
     /**
-     *
-     * @param regData
-     * @return
+     * Register Basic User to server
+     * @param regData Registration Data
+     * @return The registered User
      */
-    @PostMapping(value = "/register/basic", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/user/register/basic", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public User registerBasicUser(@RequestBody @Valid UserRegistrationDTO regData){
         return userService.registerUser(regData, User.Role.BASIC);
     }
 
     /**
-     *
-     * @param regData
-     * @return
+     * Register Register User to server
+     * @param regData Registration Data
+     * @return The registered User
      */
-    @PostMapping(value = "/register/premium", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/user/register/premium", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public User registerPremiumUser(@RequestBody @Valid UserRegistrationDTO regData){
         return userService.registerUser(regData, User.Role.PREMIUM);
     }
 
     /**
-     *
-     * @param id
-     * @return
+     * Delete User from DB
+     * @param id User ID
+     * @return An empty user object to show that the user is gone
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/user/{id}")
     public ResponseEntity<User> delete(@PathVariable("id") int id) {
         User user = userService.getByID(id);
 

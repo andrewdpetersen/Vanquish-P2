@@ -23,7 +23,7 @@ public class GenreController {
     public Genre saveGenre(@RequestBody Genre genre){
         System.out.println("POST");
         genreService.save(genre);
-        return genreService.getGenre(genre.getGenre_id());
+        return genreService.getGenre(genre.getGenreID());
     }
 
     @GetMapping(value = "/genre/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

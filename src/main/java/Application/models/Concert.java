@@ -1,18 +1,27 @@
 package Application.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-@Component
 @Entity
 @Table(name = "concerts")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 public class Concert implements Serializable {
+    public Concert(Integer concert_id, String date, String name, Location location, List<Artist> concert_lineup) {
+        this.concert_id = concert_id;
+        this.date = date;
+        this.name = name;
+        this.location = location;
+        this.concert_lineup = concert_lineup;
+    }
+
+    public Concert() {
+        this.concert_lineup = new ArrayList<>();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,20 +37,8 @@ public class Concert implements Serializable {
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "concerts")
     private List<Artist> concert_lineup;
-
-    public Concert(Integer concert_id, String date, String name, Location location, List<Artist> concert_lineup) {
-        this.concert_id = concert_id;
-        this.date = date;
-        this.name = name;
-        this.location = location;
-        this.concert_lineup = concert_lineup;
-    }
-
-    public Concert() {
-    }
 
     public Integer getConcert_id() {
         return concert_id;

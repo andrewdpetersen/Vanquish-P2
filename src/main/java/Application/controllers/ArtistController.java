@@ -1,6 +1,6 @@
 package Application.controllers;
 import Application.deezer.ArtistSearch;
-import Application.deezer.TrackSearch;
+
 import Application.models.Artist;
 import Application.models.Track;
 import Application.services.ArtistService;
@@ -47,3 +47,4 @@ public class ArtistController {
         return artists;
     }
 }
+
