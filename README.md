@@ -8,7 +8,7 @@ Team Vanquish Project 2 Implementation
 - [ ] Client/Server communication is done with JSON in HTTP request and response bodies.
 - [ ] All low-level persistence logic is abstracted away with Hibernate/Spring Data
 - [ ] Documentation (all classes and methods have adequate Javadoc comments)
-- [ ] All Exceptions are caught and logged to a file/database
+- [ ] All VanquishP2.Exceptions are caught and logged to a file/database
 - [ ] Data useful to the application is retrieved from a third party API
 - [ ] Adequate test coverage for the service-layer
 - [ ] DevOps CI/CD pipeline is used to build and deploy project to a publicly available remote location
@@ -32,7 +32,7 @@ the users that like particular artists.
 * As a user, I can add or remove songs from a playlist.
 * As a user, I can rate a song with a like or dislike.
 * As a user, I can look up an album and see what songs are on it.
-* As a user, I can look up an artist and see a list of their top 5 songs.
+* As a user, I can look up an artist and see a [limited] list of their songs.
 * As a premium user, I can schedule a concert.
 * As a premium user, I can cancel a concert.
 * As a premium user, I can see a like/dislike ratio for a particular song.
