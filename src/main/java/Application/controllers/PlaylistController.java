@@ -1,7 +1,8 @@
 package Application.controllers;
 
-import Application.models.Playlist;
-import Application.models.Track;
+import Application.deezer.JSONStringToModelConverter;
+import Application.models.*;
+import Application.services.APIClientService;
 import Application.services.PlaylistService;
 import Application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/4TheMusic")
@@ -23,10 +25,22 @@ public class PlaylistController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/playlist", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/playlist/{currentUser}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Playlist savePlaylist_name(@RequestBody Playlist playlist){
-        playlistService.savePlaylist(playlist);
+    public Playlist savePlaylist_name(@RequestBody Playlist playlist, @PathVariable String currentUser){
+        //get user from database
+        Optional<User> user = playlistService.getUserByUsername(currentUser);
+
+        if(user.isPresent())
+        {
+            //add user to playlist because right now it's null
+            playlist.setUser(user.get());
+            playlistService.savePlaylist(playlist);
+        }
+        else
+        {
+            //throw userdoesnotexistexception
+        }
         return playlistService.getPlaylist(playlistService.getMaxPlaylistId());
     }
 

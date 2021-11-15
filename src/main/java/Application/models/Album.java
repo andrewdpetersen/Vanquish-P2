@@ -73,7 +73,6 @@ public class Album implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "track_id")
-    @JsonIgnore
     private List<Track> tracks;
     public List<Track> getTracks() {
         return tracks;
