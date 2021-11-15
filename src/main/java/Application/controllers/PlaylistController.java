@@ -2,6 +2,8 @@ package Application.controllers;
 
 import Application.models.Playlist;
 import Application.models.Track;
+import Application.models.User;
+import Application.models.UserInfo;
 import Application.services.PlaylistService;
 import Application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +46,20 @@ public class PlaylistController {
         return respPlaylist;
     }
 
-//    @GetMapping(value = "/playlist/user/{user_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(value = HttpStatus.OK)
-//    public List<Playlist> getPlaylistsByUser(@PathVariable ("user_id") Integer user_id){
-//        List<Playlist> userLists = new LinkedList<>();
-//        return playlistService.getPlaylistByUserId(user_id);
-//    }
+    @GetMapping(value = "/playlist/user/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<Playlist> getPlaylistsByUser(@PathVariable ("username") String username){
+        List<User> userList= userService.getAllUsers();
+        Integer user_id=0;
+        User trueUser = null;
+        for (User user:userList) {
+            UserInfo info = user.getUserInfo();
+            if(info.getUsername().equals(username)){
+                trueUser = user;
+            }
+        }
+        return playlistService.getPlaylistByUser(trueUser);
+    }
 
     @GetMapping(value = "/playlist/tracks/{playlist_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)

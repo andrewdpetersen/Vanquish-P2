@@ -2,6 +2,7 @@ package Application.services;
 
 import Application.models.Playlist;
 import Application.models.Track;
+import Application.models.User;
 import Application.repositories.PlaylistRepository;
 import Application.repositories.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +60,7 @@ public class PlaylistService {
         return playlistRepository.getUserId(playlist_id);
     }
 
-    public void getPlaylistByUserId(Integer user_id) {
-        playlistRepository.getPlaylistsByUserId(user_id);
+    public List<Playlist> getPlaylistByUser(User user) {
+        return playlistRepository.getPlaylistsByUser(user);
     }
 }
