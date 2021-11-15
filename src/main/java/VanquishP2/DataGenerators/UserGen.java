@@ -3,11 +3,11 @@ package VanquishP2.DataGenerators;
 import VanquishP2.Application.Beans.ModelServices.LocationService;
 import VanquishP2.Application.Beans.ModelServices.UserInfoService;
 import VanquishP2.Application.Beans.ModelServices.UserService;
-import VanquishP2.Application.Beans.Models.Location;
 import VanquishP2.Application.Beans.Models.User;
 import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.DTOs.UserRegistrationDTO;
 import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;

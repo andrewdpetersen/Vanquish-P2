@@ -1,7 +1,7 @@
 package VanquishP2.Application.Beans.ModelServices;
 
-import VanquishP2.Application.Beans.Repos.LoggerRepo;
 import VanquishP2.Application.Beans.Models.Logger;
+import VanquishP2.Application.Beans.Repos.LoggerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

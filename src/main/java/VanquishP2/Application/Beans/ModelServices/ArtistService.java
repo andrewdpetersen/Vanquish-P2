@@ -1,6 +1,7 @@
 package VanquishP2.Application.Beans.ModelServices;
-import VanquishP2.Application.Beans.Repos.ArtistRepository;
+
 import VanquishP2.Application.Beans.Models.Artist;
+import VanquishP2.Application.Beans.Repos.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

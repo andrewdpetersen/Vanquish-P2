@@ -46,7 +46,7 @@ public class LikeDislikeService {
         return userRepository.getById(id);
     }
 
-    public Optional<User> getUserByUsername(String username)
+    public Optional<User> getUserByUsername(String username) throws UserDoesNotExistException
     {
         Optional<UserInfo> optionalUserInfo = userInfoRepository.findByUsername(username);
         return optionalUserInfo

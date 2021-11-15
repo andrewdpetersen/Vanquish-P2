@@ -4,12 +4,13 @@ import VanquishP2.Application.Beans.Models.Location;
 import VanquishP2.Application.Beans.Models.User;
 import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.Application.Beans.Repos.LocationRepository;
-import VanquishP2.DTOs.UserRegistrationDTO;
-import VanquishP2.Exceptions.UserDoesNotExistException;
 import VanquishP2.Application.Beans.Repos.UserInfoRepository;
 import VanquishP2.Application.Beans.Repos.UserRepository;
+import VanquishP2.DTOs.UserRegistrationDTO;
+import VanquishP2.Exceptions.UserDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.util.List;
 

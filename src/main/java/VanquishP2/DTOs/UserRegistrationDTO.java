@@ -1,8 +1,7 @@
 package VanquishP2.DTOs;
 
-import VanquishP2.Application.Beans.Models.Location;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -43,6 +42,8 @@ public class UserRegistrationDTO {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.city = city;
+        this.state = state;
     }
 
     public UserRegistrationDTO(String username, String password, String email) {

@@ -7,21 +7,20 @@ import VanquishP2.Application.Beans.Models.UserInfo;
 import VanquishP2.Application.Beans.Service.JWTUtil;
 import VanquishP2.DTOs.LoginCredentialsDTO;
 import VanquishP2.DTOs.UserRegistrationDTO;
-import jdk.nashorn.api.scripting.JSObject;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Optional;
-import static org.springframework.http.MediaType.*;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
  *

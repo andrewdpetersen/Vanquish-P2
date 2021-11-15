@@ -2,7 +2,6 @@ package VanquishP2.Application.Beans.Filters;
 
 import VanquishP2.Application.Beans.Service.JWTUtil;
 import VanquishP2.DTOs.PrincipalDTO;
-import VanquishP2.Application.Beans.ModelServices.LoggerService;
 import VanquishP2.Exceptions.AuthenticationException;
 import io.jsonwebtoken.Claims;
 import org.springframework.context.ApplicationContext;

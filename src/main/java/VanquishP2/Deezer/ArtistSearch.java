@@ -1,9 +1,9 @@
 package VanquishP2.Deezer;
 
-import VanquishP2.Application.Beans.Service.APIClientService;
 import VanquishP2.Application.Beans.Models.Album;
 import VanquishP2.Application.Beans.Models.Artist;
 import VanquishP2.Application.Beans.Models.Track;
+import VanquishP2.Application.Beans.Service.APIClientService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
