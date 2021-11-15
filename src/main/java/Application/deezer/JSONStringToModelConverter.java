@@ -6,7 +6,12 @@ import Application.models.Genre;
 import Application.models.Track;
 import Application.services.APIClientService;
 import org.json.JSONObject;
-
+/**
+ * JSONStringToModelConverter
+ * Takes JSON string (usually from our 3rd party API Deezer) and converts it into our current models
+ * @date 11/6/21
+ * @author Michael Reece, Andrew Petersen
+ */
 public class JSONStringToModelConverter {
 
     public static Track trackConverter(String json){

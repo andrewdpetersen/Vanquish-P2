@@ -8,6 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * TrackPlaylistController
+ * Handles requests that involve the manipulating or retrieval of playlists, including tracks
+ * @date 11/09/21
+ * @author Andrew Petersen, Michael Reece
+ */
 @RestController
 @RequestMapping(value = "/4TheMusic")
 public class TrackPlaylistController {
@@ -17,7 +23,7 @@ public class TrackPlaylistController {
     public TrackPlaylistController(TrackPlaylistService trackPlaylistService) {
         this.trackPlaylistService = trackPlaylistService;
     }
-
+    
     @PostMapping(value = "/add/{playlist_id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Playlist addTrack(@RequestBody Track track, @PathVariable Integer playlist_id){

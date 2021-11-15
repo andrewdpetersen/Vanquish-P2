@@ -10,6 +10,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ArtistSearch
+ * Handles putting together requests to our 3rd party API and returning the results
+ * @date 11/6/21
+ * @author Michael Reece, Andrew Petersen
+ */
 public class ArtistSearch {
 
     public static List<Artist> artistSearch(String artistName, int numberOfResults){

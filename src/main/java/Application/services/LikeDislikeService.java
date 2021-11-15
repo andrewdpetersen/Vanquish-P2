@@ -9,6 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * TrackPlaylistService
+ * The middle man, or service, that connects to the persistence layer for everything relating to the like/dislike functionality for tracks.
+ *
+ * @date 11/9/21
+ * @author Michael Reece
+ */
 @Service
 @Transactional
 public class LikeDislikeService {
@@ -97,5 +104,13 @@ public class LikeDislikeService {
             //user does not exist exception
         }
         return Optional.empty();
+    }
+
+    public Integer getTotalLikes(Integer track_id){
+        return trackRepository.getLikesByTrackId(track_id).size();
+    }
+
+    public Integer getTotalDislikes(Integer track_id){
+        return trackRepository.getDislikesByTrackId(track_id).size();
     }
 }

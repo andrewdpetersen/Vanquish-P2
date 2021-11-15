@@ -7,6 +7,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is used to declare the POJO, Track
+ * @date 11/1/21
+ * @author Michael Reece
+ */
 @Table(name = "tracks")
 @Entity
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)

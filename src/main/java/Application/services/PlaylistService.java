@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Optional; 
 
 @Service
 @Transactional
@@ -80,7 +80,7 @@ public class PlaylistService {
         return Optional.empty();
     }
 
-    public void getPlaylistByUserId(Integer user_id) {
-        playlistRepository.getPlaylistsByUserId(user_id);
+    public List<Playlist> getPlaylistByUser(User user) {
+        return playlistRepository.getPlaylistsByUser(user);
     }
 }

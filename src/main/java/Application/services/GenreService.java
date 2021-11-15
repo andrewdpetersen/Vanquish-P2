@@ -6,6 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * GenreService
+ * The middle man, or service, that connects to the persistence layer for everything Genre related
+ *
+ * @date 11/4/21
+ * @author Michael Reece
+ */
 @Service
 @Transactional
 public class GenreService {

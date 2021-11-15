@@ -11,6 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * TrackPlaylistService
+ * The middle man, or service, that connects to the persistence layer for everything relating to both a track and a playlist.
+ *
+ * @date 11/9/21
+ * @author Michael Reece, Andrew Petersen
+ */
 @Service
 @Transactional
 public class TrackPlaylistService {
@@ -43,6 +50,5 @@ public class TrackPlaylistService {
 
     public void removeTrackFromPlaylist(Integer playlist_id,Integer track_id){
         playlistRepository.removeTrackFromPlaylist(playlist_id,track_id);
-
     }
 }

@@ -3,7 +3,12 @@ package Application.controllers;
 import Application.deezer.JSONStringToModelConverter;
 import Application.models.*;
 import Application.services.APIClientService;
+import Application.models.Playlist;
+import Application.models.Track;
+import Application.models.User;
+import Application.models.UserInfo;
 import Application.services.PlaylistService;
+import Application.services.UserInfoService;
 import Application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,29 +24,25 @@ import java.util.Optional;
 public class PlaylistController {
     private final PlaylistService playlistService;
     private final UserService userService;
+    private final UserInfoService userInfoService;
 
     @Autowired
-    public PlaylistController(PlaylistService playlistService, UserService userService){
+    public PlaylistController(PlaylistService playlistService, UserService userService, UserInfoService userInfoService){
         this.playlistService = playlistService;
         this.userService = userService;
+        this.userInfoService = userInfoService;
     }
 
-    @PostMapping(value = "/playlist/{currentUser}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/playlist/{username}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Playlist savePlaylist_name(@RequestBody Playlist playlist, @PathVariable String currentUser){
-        //get user from database
-        Optional<User> user = playlistService.getUserByUsername(currentUser);
-
-        if(user.isPresent())
-        {
-            //add user to playlist because right now it's null
-            playlist.setUser(user.get());
-            playlistService.savePlaylist(playlist);
+    public Playlist savePlaylist_name(@RequestBody Playlist playlist,@PathVariable ("username") String username){
+        List<UserInfo> infoList = userInfoService.getAll();
+        for (UserInfo info:infoList) {
+            if(info.getUsername().equals(username)){
+                playlist.setUser(info.getUser());
+            }
         }
-        else
-        {
-            //throw userdoesnotexistexception
-        }
+        playlistService.savePlaylist(playlist);
         return playlistService.getPlaylist(playlistService.getMaxPlaylistId());
     }
 
@@ -58,12 +59,20 @@ public class PlaylistController {
         return respPlaylist;
     }
 
-//    @GetMapping(value = "/playlist/user/{user_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(value = HttpStatus.OK)
-//    public List<Playlist> getPlaylistsByUser(@PathVariable ("user_id") Integer user_id){
-//        List<Playlist> userLists = new LinkedList<>();
-//        return playlistService.getPlaylistByUserId(user_id);
-//    }
+    @GetMapping(value = "/playlist/user/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<Playlist> getPlaylistsByUser(@PathVariable ("username") String username){
+        List<User> userList= userService.getAllUsers();
+        Integer user_id=0;
+        User trueUser = null;
+        for (User user:userList) {
+            UserInfo info = user.getUserInfo();
+            if(info.getUsername().equals(username)){
+                trueUser = user;
+            }
+        }
+        return playlistService.getPlaylistByUser(trueUser);
+    }
 
     @GetMapping(value = "/playlist/tracks/{playlist_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)

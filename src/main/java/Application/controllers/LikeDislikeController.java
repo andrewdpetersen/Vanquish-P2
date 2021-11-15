@@ -12,8 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import Application.services.APIClientService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
+/**
+ * LikeDislikeController
+ * Handles requests that involve the manipulating or retrieval of tracks in regards to like/dislike
+ * @date 11/09/21
+ * @author Michael Reece
+ */
 @RestController
 @RequestMapping(value = "/4TheMusic")
 public class LikeDislikeController {
@@ -26,6 +34,12 @@ public class LikeDislikeController {
         this.likeDislikeService = likeDislikeService;
     }
 
+    /**
+     * Like a track for the current user
+     * @param track from the RequestBody
+     * @param currentUser from the path variable
+     * @return the track after a successful 'like'
+     */
     @PostMapping(value = "/like/{currentUser}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Track likeTrack(@RequestBody Track track,@PathVariable String currentUser,HttpServletRequest request){
@@ -85,6 +99,12 @@ public class LikeDislikeController {
         return likeDislikeService.getTrack(track.getTrack_id());
     }
 
+    /**
+     * Dislike a track for the current user
+     * @param track from the RequestBody
+     * @param currentUser from the path variable
+     * @return the track after a successful 'dislike'
+     */
     @PostMapping(value = "/dislike/{currentUser}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Track dislikeTrack(@RequestBody Track track,@PathVariable String currentUser,HttpServletRequest request){
@@ -141,5 +161,16 @@ public class LikeDislikeController {
         }
 
         return likeDislikeService.getTrack(track.getTrack_id());
+    }
+
+    @GetMapping(value="/getRatio/{track_id}")
+    @ResponseStatus(value=HttpStatus.OK)
+    public List<Integer> getRatioByTrackId(@PathVariable ("track_id") Integer track_id){
+        Integer likes = likeDislikeService.getTotalLikes(track_id);
+        Integer dislikes = likeDislikeService.getTotalDislikes(track_id);
+        List<Integer> ratio = new LinkedList<>();
+        ratio.add(likes);
+        ratio.add(dislikes);
+        return ratio;
     }
 }

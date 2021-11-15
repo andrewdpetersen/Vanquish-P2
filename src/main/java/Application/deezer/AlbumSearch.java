@@ -8,6 +8,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * AlbumSearch
+ * Handles putting together requests to our 3rd party API and returning the results
+ * @date 11/6/21
+ * @author Michael Reece, Andrew Petersen
+ */
 public class AlbumSearch {
     public static List<Album> albumSearch(String albumTitle, int numberOfResults){
         List<Album> albumSearch = new ArrayList<>();

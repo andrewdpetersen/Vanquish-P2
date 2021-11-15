@@ -6,14 +6,28 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is used to declare the POJO, Genre
+ * @date 11/4/21
+ * @author Michael Reece
+ */
 @Table(name = "genres")
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Genre {
+    /**
+     * No args constructor
+     */
     public Genre() {
         albumsOfGenre = new ArrayList<>();
     }
 
+    /**
+     * Full args constructor
+     * @param genreID
+     * @param genreName
+     * @param imageURL
+     */
     public Genre(Integer genreID, String genreName, String imageURL) {
         albumsOfGenre = new ArrayList<>();
         this.genreID = genreID;
