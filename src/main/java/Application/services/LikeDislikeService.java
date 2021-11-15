@@ -1,15 +1,12 @@
 package Application.services;
 
-import Application.models.Track;
-import Application.models.User;
-import Application.models.UserInfo;
-import Application.repositories.TrackRepository;
-import Application.repositories.UserInfoRepository;
-import Application.repositories.UserRepository;
+import Application.models.*;
+import Application.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,12 +15,18 @@ public class LikeDislikeService {
     private final TrackRepository trackRepository;
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
+    private final ArtistRepository artistRepository;
+    private final AlbumRepository albumRepository;
+    private final GenreRepository genreRepository;
 
     @Autowired
-    public LikeDislikeService(TrackRepository trackRepository, UserRepository userRepository, UserInfoRepository userInfoRepository){
+    public LikeDislikeService(TrackRepository trackRepository, UserRepository userRepository, UserInfoRepository userInfoRepository, ArtistRepository artistRepository, AlbumRepository albumRepository, GenreRepository genreRepository){
         this.trackRepository = trackRepository;
         this.userRepository = userRepository;
         this.userInfoRepository = userInfoRepository;
+        this.albumRepository = albumRepository;
+        this.artistRepository = artistRepository;
+        this.genreRepository = genreRepository;
     }
 
     public void saveTrack(Track track){
@@ -31,7 +34,43 @@ public class LikeDislikeService {
     }
 
     public Track getTrack(Integer id){
-        return trackRepository.getById(id);
+       List<Integer> getTracks = trackRepository.getTracksById(id);
+        if(getTracks.size() != 0)
+        {
+            return trackRepository.getById(getTracks.get((0)));
+        }
+
+        return null;
+    }
+
+    public void saveGenre(Genre genre)
+    {
+        genreRepository.save(genre);
+    }
+
+    public Genre getGenre(Integer id)
+    {
+        return genreRepository.getById(id);
+    }
+
+    public void saveArtist(Artist artist)
+    {
+        artistRepository.save(artist);
+    }
+
+    public Artist getArtist(Integer id)
+    {
+       return artistRepository.getById(id);
+    }
+
+    public void saveAlbum(Album album)
+    {
+        albumRepository.save(album);
+    }
+
+    public Album getAlbum(Integer id)
+    {
+        return albumRepository.getById(id);
     }
 
     public void saveUser(User user)

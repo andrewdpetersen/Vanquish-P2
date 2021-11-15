@@ -23,6 +23,16 @@ public class Album implements Serializable {
         tracks = new ArrayList<>();
     }
 
+    public Album(Integer id, String albumTitle, String releaseDate, Artist artist, Genre genre)
+    {
+        this.ID = id;
+        this.albumTitle = albumTitle;
+        this.date = releaseDate;
+        this.artist = artist;
+        this.genre = genre;
+        this.tracks = new ArrayList<>();
+    }
+
     @Id
     @Column(name = "AlbumID")
     private Integer ID;
@@ -63,6 +73,7 @@ public class Album implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "track_id")
+    @JsonIgnore
     private List<Track> tracks;
     public List<Track> getTracks() {
         return tracks;
