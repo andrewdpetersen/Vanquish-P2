@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +57,13 @@ public class PlaylistController {
         System.out.println(respPlaylist.getTrackList().size());
         return respPlaylist;
     }
+
+//    @GetMapping(value = "/playlist/user/{user_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseStatus(value = HttpStatus.OK)
+//    public List<Playlist> getPlaylistsByUser(@PathVariable ("user_id") Integer user_id){
+//        List<Playlist> userLists = new LinkedList<>();
+//        return playlistService.getPlaylistByUserId(user_id);
+//    }
 
     @GetMapping(value = "/playlist/tracks/{playlist_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)

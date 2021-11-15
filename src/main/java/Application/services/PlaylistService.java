@@ -19,8 +19,8 @@ import java.util.Optional;
 @Service
 @Transactional
 public class PlaylistService {
-    private PlaylistRepository playlistRepository;
-    private TrackRepository trackRepository;
+    private final PlaylistRepository playlistRepository;
+    private final TrackRepository trackRepository;
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
 
@@ -68,19 +68,19 @@ public class PlaylistService {
         return playlistRepository.getUserId(playlist_id);
     }
 
-    public Optional<User> getUserByUsername(String username)
-    {
+    public Optional<User> getUserByUsername(String username) {
         Optional<UserInfo> optionalUserInfo = userInfoRepository.findByUsername(username);
-        if(optionalUserInfo.isPresent())
-        {
-            UserInfo currentUserInfo = new UserInfo(optionalUserInfo.get().getLocation(),optionalUserInfo.get().getFirstName(),optionalUserInfo.get().getLastName(),
-                    optionalUserInfo.get().getUsername(),optionalUserInfo.get().getPassword(),optionalUserInfo.get().getEmail(),optionalUserInfo.get().getUser());
+        if (optionalUserInfo.isPresent()) {
+            UserInfo currentUserInfo = new UserInfo(optionalUserInfo.get().getLocation(), optionalUserInfo.get().getFirstName(), optionalUserInfo.get().getLastName(),
+                    optionalUserInfo.get().getUsername(), optionalUserInfo.get().getPassword(), optionalUserInfo.get().getEmail(), optionalUserInfo.get().getUser());
             return userRepository.findUserByUserInfo(currentUserInfo);
-        }
-        else
-        {
+        } else {
             //user does not exist exception
         }
         return Optional.empty();
+    }
+
+    public void getPlaylistByUserId(Integer user_id) {
+        playlistRepository.getPlaylistsByUserId(user_id);
     }
 }
