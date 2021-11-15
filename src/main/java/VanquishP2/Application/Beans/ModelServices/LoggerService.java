@@ -19,21 +19,13 @@ public class LoggerService {
     }
 
     public void writeLog(String message, int level) {
-        Logger logger = new Logger(getCurrentDateTime(), formatLogEntry(message), level);
+        Logger logger = new Logger(getCurrentDateTime(), message, level);
 
         repo.save(logger);
-
     }
 
     private String getCurrentDateTime() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return formatter.format(System.currentTimeMillis());
-    }
-
-    private String formatLogEntry(String message){
-        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-        String stackTrace = stackTraceElements[stackTraceElements.length - 1].toString();
-
-        return String.format("[%s]  %s%n", stackTrace, message);
     }
 }
