@@ -12,6 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author Andrew Petersen
+ * @date 11/06/21
+ */
 @Service
 @Transactional
 public class PlaylistService {
