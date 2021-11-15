@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import Application.services.APIClientService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -141,5 +143,16 @@ public class LikeDislikeController {
         }
 
         return likeDislikeService.getTrack(track.getTrack_id());
+    }
+
+    @GetMapping(value="/getRatio/{track_id}")
+    @ResponseStatus(value=HttpStatus.OK)
+    public List<Integer> getRatioByTrackId(@PathVariable ("track_id") Integer track_id){
+        Integer likes = likeDislikeService.getTotalLikes(track_id);
+        Integer dislikes = likeDislikeService.getTotalDislikes(track_id);
+        List<Integer> ratio = new LinkedList<>();
+        ratio.add(likes);
+        ratio.add(dislikes);
+        return ratio;
     }
 }

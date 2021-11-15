@@ -98,4 +98,13 @@ public class LikeDislikeService {
         }
         return Optional.empty();
     }
+
+    public Integer getTotalLikes(Integer track_id){
+        return trackRepository.getLikesByTrackId(track_id).size();
+    }
+
+    public Integer getTotalDislikes(Integer track_id){
+        return trackRepository.getDislikesByTrackId(track_id).size();
+
+    }
 }
