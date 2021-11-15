@@ -43,6 +43,8 @@ public class UserRegistrationDTO {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.city = city;
+        this.state = state;
     }
 
     public UserRegistrationDTO(String username, String password, String email) {

@@ -46,7 +46,7 @@ public class Location {
         this.state = state;
     }
 
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE)
     private List<UserInfo> userLocations;
     public List<UserInfo> getUserInfo() {
         return userLocations;

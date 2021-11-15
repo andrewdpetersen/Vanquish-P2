@@ -117,7 +117,7 @@ public class UserService {
         newUser = new User(role, newUserInfo);
 
         locationRepository.save(location);
-        userRepository.save(newUser);
+        newUser = userRepository.save(newUser);
 
         newUserInfo.setLocation(location);
         newUserInfo.setUser(newUser);

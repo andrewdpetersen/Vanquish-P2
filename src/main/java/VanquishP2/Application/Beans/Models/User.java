@@ -77,7 +77,7 @@ public class User {
         this.favorites = favorites;
     }
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private UserInfo userInfo;
     public UserInfo getUserInfo() {
         return userInfo;
