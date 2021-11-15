@@ -58,4 +58,8 @@ public class PlaylistService {
     public Integer getUserId(Integer playlist_id){
         return playlistRepository.getUserId(playlist_id);
     }
+
+    public void getPlaylistByUserId(Integer user_id) {
+        playlistRepository.getPlaylistsByUserId(user_id);
+    }
 }
