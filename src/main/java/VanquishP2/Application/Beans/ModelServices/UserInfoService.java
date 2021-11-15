@@ -14,14 +14,12 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserInfoService {
-    private final LoggerService loggerService;
     private final UserInfoRepository userInfoRepository;
     private final String exceptionError = "User: %s does not exist.";
 
     @Autowired
-    public UserInfoService(UserInfoRepository userInfoRepository, LoggerService loggerService) {
+    public UserInfoService(UserInfoRepository userInfoRepository) {
         this.userInfoRepository = userInfoRepository;
-        this.loggerService = loggerService;
     }
 
     public UserInfo saveUserInfo(UserInfo userInfo){
@@ -93,16 +91,13 @@ public class UserInfoService {
      * @param password Password
      * @return User Info, either null or not null
      */
-    public Optional<UserInfo> authenticate(String username, String password){
-        Optional<UserInfo> userInfo = Optional.empty();
+    public Optional<UserInfo> authenticate(String username, String password) throws UserDoesNotExistException {
+        Optional<UserInfo> userInfo;
 
-        try {
-            userInfo = userInfoRepository.findByUsernameAndPassword(username, password);
-            if (!userInfo.isPresent()) {
-                throw new UserDoesNotExistException(exceptionError);
-            }
-        } catch (UserDoesNotExistException e) {
-            loggerService.writeLog(e.getMessage(), 3);
+        userInfo = userInfoRepository.findByUsernameAndPassword(username, password);
+
+        if (!userInfo.isPresent()) {
+            throw new UserDoesNotExistException(exceptionError);
         }
 
         return userInfo;

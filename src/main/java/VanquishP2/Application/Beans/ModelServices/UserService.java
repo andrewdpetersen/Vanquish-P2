@@ -23,7 +23,6 @@ import java.util.List;
 @Service
 @Transactional
 public class UserService {
-    private final LoggerService loggerService;
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
     private final LocationRepository locationRepository;
@@ -32,12 +31,10 @@ public class UserService {
     @Autowired
     public UserService(UserRepository userRepository,
                        UserInfoRepository userInfoRepository,
-                       LocationRepository locationRepository,
-                       LoggerService loggerService) {
+                       LocationRepository locationRepository) {
         this.userRepository = userRepository;
         this.userInfoRepository = userInfoRepository;
         this.locationRepository = locationRepository;
-        this.loggerService = loggerService;
     }
 
     /**
@@ -53,15 +50,12 @@ public class UserService {
      * @param ID User ID
      * @return User object
      */
-    public User getByID(int ID) {
-        User user = null;
+    public User getByID(int ID) throws UserDoesNotExistException {
+        User user;
 
-        try {
-            user = userRepository.findByID(ID)
-                    .orElseThrow(() -> new UserDoesNotExistException(String.format(exceptionError, ID)));
-        } catch (UserDoesNotExistException e) {
+        user = userRepository.findByID(ID)
+                .orElseThrow(() -> new UserDoesNotExistException(String.format(exceptionError, ID)));
 
-        }
 
         return user;
     }
@@ -72,22 +66,18 @@ public class UserService {
      * @return User object
      */
     public User getByUserInfo(UserInfo userInfo) {
-        User user = null;
+        User user;
 
-        try {
-            user = userRepository.findUserByUserInfo(userInfo)
+        user = userRepository.findUserByUserInfo(userInfo)
                     .orElseThrow(() -> new UserDoesNotExistException(String.format(exceptionError, userInfo)));
-        } catch (UserDoesNotExistException e) {
-            loggerService.writeLog(e.getMessage(), 3);
-        }
 
         return user;
     }
 
     /**
      * Persist User to DB
-     * @param user
-     * @return
+     * @param user User Object
+     * @return Persisted User Object
      */
     public void save(User user) {
         userRepository.save(user);
@@ -95,8 +85,8 @@ public class UserService {
 
     /**
      * Delete User by ID
-     * @param id
-     * @return
+     * @param id User ID
+     * @return User of the specific ID
      */
     public void delete(int id) throws UserDoesNotExistException {
         userRepository.deleteByID(id);

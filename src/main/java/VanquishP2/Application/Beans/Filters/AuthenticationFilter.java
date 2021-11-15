@@ -23,14 +23,12 @@ import java.io.IOException;
 
 @Component
 public class AuthenticationFilter implements Filter {
-    private LoggerService loggerService;
     private JWTUtil jwtUtil;
 
     @Override
     public void init(FilterConfig config) {
         ApplicationContext container = WebApplicationContextUtils.getRequiredWebApplicationContext(config.getServletContext());
         this.jwtUtil = container.getBean(JWTUtil.class);
-        this.loggerService = container.getBean(LoggerService.class);
     }
 
     @Override
@@ -38,34 +36,29 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
 
-        if (!request.getRequestURI().equals("4TheMusic/login")
-                || !request.getRequestURI().equals("4TheMusic/register/basic")
-                || !request.getRequestURI().equals("4TheMusic/register/premium")) {
+        if (!request.getRequestURI().equals("/4TheMusic/login")
+                && !request.getRequestURI().equals("/4TheMusic/register/basic")
+                && !request.getRequestURI().equals("/4TheMusic/register/premium")
+                && !request.getRequestURI().equals("/4TheMusic/user/all")) {
             parseToken(request);
         }
 
         chain.doFilter(request, response);
     }
 
-    private void parseToken(HttpServletRequest request) {
+    private void parseToken(HttpServletRequest request) throws AuthenticationException {
         String errMessage = "Unauthorized user tried to barge their way in here! Don't worry, I caught this transgression. Error: %s";
 
-        try {
-            String header = request.getHeader(jwtUtil.getHeader());
+        String header = request.getHeader(jwtUtil.getHeader());
 
-            if (header == null || !header.startsWith(jwtUtil.getPrefix())) {
-                loggerService.writeLog(errMessage, 3);
-                return;
-            }
-
+        if (header == null || !header.startsWith(jwtUtil.getPrefix())) {
+            throw new AuthenticationException(errMessage);
+        } else {
             String token = header.replaceAll(jwtUtil.getPrefix(), "");
 
             Claims jwtClaims = jwtUtil.parseJWT(token);
             PrincipalDTO principalDTO = new PrincipalDTO(jwtClaims);
             request.setAttribute("principal", principalDTO);
-
-        } catch (AuthenticationException e) {
-            loggerService.writeLog(("Uh oh... Authentication Filter has a message: " + e.getMessage()), 3);
         }
     }
 }
