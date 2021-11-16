@@ -43,7 +43,7 @@ public class AuthenticationController {
      * @param response The HTTP Response
      * @return The new user and their key
      */
-    @PostMapping(value = "/user/login", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/login", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public UserInfo authenticate(@RequestBody LoginCredentialsDTO credentials, HttpServletResponse response) {
         Optional<UserInfo> userInfo = userInfoService.authenticate(credentials.getUsername(), credentials.getPassword());
 
