@@ -63,11 +63,18 @@ public class JSONStringToModelConverter {
         //call genreConverter here
         Genre genre = genreConverter(genre_json_response);
 
+        JSONObject artistJson = jsonObject.getJSONObject("artist");
+        int artist_id = artistJson.getInt("id");
+        String name = artistJson.getString("name");
+        String pictureUrl = artistJson.getString("picture_medium");
+        Artist artist = new Artist(name,artist_id,pictureUrl);
+
         Album album = new Album();
         album.setID(album_id);
         album.setAlbum_title(title);
         album.setDate(release_date);
         album.setGenre(genre);
+        album.setArtist(artist);
 
         return album;
     }
