@@ -14,6 +14,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class P2Application {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(P2Application.class, args);
+		SpringApplication.run(P2Application.class, args);
 	}
 }

@@ -23,12 +23,12 @@ public class LoggerAspect {
         this.loggerService = loggerService;
     }
 
-    @Pointcut("within(Application.*.*)")
+    @Pointcut("within(Application.*.*) && !within(Application.filters..*) && !within(Application.configs..*)")
     public void logAll() {
 
     }
 
-    @Around("within(Application.*.*)")
+    @Around("within(Application.*.*) && !within(Application.filters..*) && !within(Application.configs..*)")
     public void logAroundAll(ProceedingJoinPoint joinPoint) throws Throwable {
         try {
             joinPoint.proceed();
