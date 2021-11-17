@@ -1,6 +1,8 @@
 package Application.controllers;
 import Application.deezer.ArtistSearch;
+
 import Application.models.Artist;
+import Application.models.Track;
 import Application.services.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,7 +34,7 @@ public class ArtistController {
     public Artist getArtistById(@PathVariable("id") Integer id) {
         return artistService.getArtist(id);
     }
-    
+
     @GetMapping(value = "artist/search/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Artist[] searchForArtistsByName(@PathVariable ("name") String title){
@@ -45,3 +47,4 @@ public class ArtistController {
         return artists;
     }
 }
+

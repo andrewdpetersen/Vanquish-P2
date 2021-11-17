@@ -1,0 +1,34 @@
+Remaining:
+
+* We want logic to like/dislike a song: we receive the track and like/dislike flag from front end, persist it
+  in the DB and send the change back.
+
+* Logic to create a playlist: we receive a user and playlist name from the front end, and persist it
+
+* Logic to add a song to a playlist/remove a song from a playlist: we receive the track and playlist from the
+  front end, then update the DB and send back (a success message? the updated playlist?)
+
+* Logic to add/cancel a concert (premium): We receive the date, name, location, and any artists from the
+  front end, persist it, then send back the concert info, or a cancellation message.
+
+* Logic to add an artist to a concert (premium): we receive the concert and artist from the front end,
+  update the DB, then send back the updated concert.
+
+* Logic to see ratio for a song (premium): We receive the track from the front end, find the likes and
+  dislikes in the DB, then send the ratio back.
+
+BONUS:
+
+* View users who like the same song: We receive a track from the front end, check our DB, then send
+  a list of users back to the front end.
+
+* Logic to see likes/dislikes for an artist (premium): We receive an artist from the front end, query our
+  DB for tracks limited by that artist field, then send back the aggregate likes/dislikes.
+
+* Logic to see another user's favorites list (premium): We receive the user from the front end, and
+  send back the playlist that we have persisted in the DB.
+
+* Logic to add an album to a playlist: We receive an album and playlist from the frontend, request the tracks
+  from that album from deezer, and update the playlist, then send it back to the frontend.
+
+DONE:

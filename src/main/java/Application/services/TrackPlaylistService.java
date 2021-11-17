@@ -40,4 +40,9 @@ public class TrackPlaylistService {
     {
         playlistRepository.save(playlist);
     }
+
+    public void removeTrackFromPlaylist(Integer playlist_id,Integer track_id){
+        playlistRepository.removeTrackFromPlaylist(playlist_id,track_id);
+
+    }
 }

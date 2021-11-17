@@ -27,9 +27,6 @@ public class P2Application {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(P2Application.class, args);
 
-		TrackService service = context.getBean(TrackService.class);
-		ConcertService service2 = context.getBean(ConcertService.class);
-
 		System.out.println("TESTING: TrackSearch for \"kiwi\"");
 		List<Track> trackList = TrackSearch.searchTracks("kiwi",3);
 		for(Track track:trackList){

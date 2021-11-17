@@ -1,5 +1,6 @@
 package Application.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -57,6 +58,7 @@ public class User {
         this.role = role;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     List<Playlist> myPlaylists;
     public List<Playlist> getMyPlaylists() {

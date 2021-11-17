@@ -8,6 +8,11 @@ import org.json.JSONObject;
 
 import static Application.deezer.JSONObjectToModelConverter.topTrackConverter;
 
+/**
+ * This class tests the TopTrackConverter method in (Application.deezer.JSONObjectToModelConverter.topTrackConverter)
+ * @author Andrew Petersen
+ * @date 11/08/21
+ */
 public class TopTrackConverterTest {
 
     private Album album;
