@@ -2,6 +2,7 @@ package Application.services;
 
 import Application.models.Playlist;
 import Application.models.Track;
+import Application.models.User;
 import Application.repositories.PlaylistRepository;
 import Application.repositories.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author Andrew Petersen
+ * @date 11/06/21
+ */
 @Service
 @Transactional
 public class PlaylistService {
@@ -57,5 +62,9 @@ public class PlaylistService {
 
     public Integer getUserId(Integer playlist_id){
         return playlistRepository.getUserId(playlist_id);
+    }
+
+    public List<Playlist> getPlaylistByUser(User user) {
+        return playlistRepository.getPlaylistsByUser(user);
     }
 }

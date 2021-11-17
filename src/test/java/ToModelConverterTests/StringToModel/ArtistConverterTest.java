@@ -5,6 +5,11 @@ import org.junit.*;
 
 import static Application.deezer.JSONStringToModelConverter.artistConverter;
 
+/**
+ * This class tests the ArtistConverter method in (Application.deezer.JSONStringToModelConverter.artistConverter)
+ * @author Andrew Petersen
+ * @date 11/08/21
+ */
 public class ArtistConverterTest {
     private String artistJson;
 

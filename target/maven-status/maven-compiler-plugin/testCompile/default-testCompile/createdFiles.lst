@@ -1,0 +1,5 @@
+ToModelConverterTests\ObjectToModel\GenreConverterTest.class
+ToModelConverterTests\ObjectToModel\TopTrackConverterTest.class
+ToModelConverterTests\StringToModel\GenreConverterTest.class
+ToModelConverterTests\StringToModel\ArtistConverterTest.class
+ToModelConverterTests\StringToModel\TrackConverterTest.class

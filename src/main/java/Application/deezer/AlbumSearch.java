@@ -37,7 +37,6 @@ public class AlbumSearch {
             String stringJsonAlbum = APIClientService.get(newUrl);
 
             Album resultAlbum = JSONStringToModelConverter.albumConverter(stringJsonAlbum);
-
             albumSearch.add(resultAlbum);
         }
         return albumSearch;

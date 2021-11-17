@@ -21,6 +21,7 @@ public class GenreController {
     @PostMapping(value = "/genre", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public Genre saveGenre(@RequestBody Genre genre){
+        System.out.println("POST");
         genreService.save(genre);
         return genreService.getGenre(genre.getGenreID());
     }
@@ -28,6 +29,7 @@ public class GenreController {
     @GetMapping(value = "/genre/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Genre getGenre(@PathVariable ("id") Integer id){
+        System.out.println("GET");
         return genreService.getGenre(id);
     }
 

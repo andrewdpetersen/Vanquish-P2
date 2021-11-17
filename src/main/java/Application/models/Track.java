@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "tracks")
@@ -30,6 +31,27 @@ public class Track {
         this.title = title;
         this.duration = duration;
         this.artist = artist;
+    }
+
+    public Track(Integer id, String title, Artist artist, Album album)
+    {
+        this.track_id = id;
+        this.title = title;
+        this.artist = artist;
+        this.album = album;
+        this.userLikes = new ArrayList<>();
+        this.userDislikes = new ArrayList<>();
+    }
+
+    public Track(Integer track_id, String title, String duration, List<Playlist> playlists, List<User> userLikes, List<User> userDislikes, Artist artist, Album album) {
+        this.track_id = track_id;
+        this.title = title;
+        this.duration = duration;
+        this.playlists = playlists;
+        this.userLikes = userLikes;
+        this.userDislikes = userDislikes;
+        this.artist = artist;
+        this.album = album;
     }
 
     @Id

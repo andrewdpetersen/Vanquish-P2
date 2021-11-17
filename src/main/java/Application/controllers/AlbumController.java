@@ -1,7 +1,9 @@
 package Application.controllers;
 
 import Application.deezer.AlbumSearch;
+
 import Application.models.Album;
+import Application.models.Artist;
 import Application.services.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +38,7 @@ public class AlbumController {
      * This functions returns all albums cached into DB
      * @return ResponseEntity with HttpStatus and/or content
      */
+
     @GetMapping("/album/all")
     public ResponseEntity<List<Album>> getAllAlbums() {
         List<Album> allAlbums = albumService.getAll();
@@ -103,7 +106,7 @@ public class AlbumController {
             return new ResponseEntity<>(album.get(), HttpStatus.NO_CONTENT);
         }
     }
-    
+
     @GetMapping(value = "/album/search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Album[] searchForAlbumsByTitle(@PathVariable ("title") String title){
@@ -116,3 +119,4 @@ public class AlbumController {
         return albums;
     }
 }
+

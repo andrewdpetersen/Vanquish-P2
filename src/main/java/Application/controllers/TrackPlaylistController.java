@@ -54,4 +54,14 @@ public class TrackPlaylistController {
 
         return currentPlaylist;
     }
+
+    @DeleteMapping(value="/remove/{playlist_id}/{track_id}")
+    @ResponseStatus(value =HttpStatus.OK)
+    public void removeTrackFromPlaylist(@PathVariable ("playlist_id") Integer playlist_id, @PathVariable ("track_id") Integer track_id){
+        System.out.println("Reached");
+        trackPlaylistService.removeTrackFromPlaylist(playlist_id,track_id);
+//        trackPlaylistService.savePlaylist(trackPlaylistService.getPlaylist(playlist_id));
+//        trackPlaylistService.saveTrack(trackPlaylistService.getTrack(track_id));
+        System.out.println("Done");
+    }
 }

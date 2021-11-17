@@ -5,9 +5,12 @@ import org.junit.*;
 
 import static Application.deezer.JSONStringToModelConverter.trackConverter;
 
+/**
+ * This class tests the TrackConverter method in (Application.deezer.JSONStringToModelConverter.trackConverter)
+ * @author Andrew Petersen
+ * @date 11/08/21
+ */
 public class TrackConverterTest {
-//    private String artistJson;
-//    private String albumJson;
     private String trackJson;
 
     @BeforeClass //before ALL tests have started

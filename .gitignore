@@ -33,3 +33,4 @@ hs_err_pid*
 
 # ignore any .properties files
 *.properties
+/.jpb/
