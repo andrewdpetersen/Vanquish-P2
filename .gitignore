@@ -19,12 +19,15 @@
 *.tar.gz
 *.rar
 
+<<<<<<< HEAD
 # Resources
 src/main/resources
 
 # Properties files
 *.properties
 
+=======
+>>>>>>> ce793d902e0374fe41c8edd9e05657e1adfc1a66
 # IntelliJ
 \.idea
 
@@ -33,3 +36,4 @@ hs_err_pid*
 
 # ignore any .properties files
 *.properties
+/.jpb/

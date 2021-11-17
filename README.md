@@ -8,7 +8,11 @@ Team Vanquish Project 2 Implementation
 - [ ] Client/Server communication is done with JSON in HTTP request and response bodies.
 - [ ] All low-level persistence logic is abstracted away with Hibernate/Spring Data
 - [ ] Documentation (all classes and methods have adequate Javadoc comments)
+<<<<<<< HEAD
 - [ ] All Exceptions are caught and logged to a file/database
+=======
+- [ ] All VanquishP2.Exceptions are caught and logged to a file/database
+>>>>>>> ce793d902e0374fe41c8edd9e05657e1adfc1a66
 - [ ] Data useful to the application is retrieved from a third party API
 - [ ] Adequate test coverage for the service-layer
 - [ ] DevOps CI/CD pipeline is used to build and deploy project to a publicly available remote location
@@ -32,14 +36,24 @@ the users that like particular artists.
 * As a user, I can add or remove songs from a playlist.
 * As a user, I can rate a song with a like or dislike.
 * As a user, I can look up an album and see what songs are on it.
+<<<<<<< HEAD
 * As a user, I can look up an artist and see a list of their top 5 songs.
 * As a premium user, I can schedule a concert.
 * As a premium user, I can cancel a concert.
+=======
+* As a user, I can look up an artist and see a [limited] list of their songs.
+* As a premium user, I can schedule a concert.
+* As a premium user, I can cancel a concert.
+* As a premium user, I can see a list of liked songs for a user.
+>>>>>>> ce793d902e0374fe41c8edd9e05657e1adfc1a66
 * As a premium user, I can see a like/dislike ratio for a particular song.
 
 ### Bonus Stories
 * As a user, I can view a list of users who like the same songs.
+<<<<<<< HEAD
 * As a premium user, I can see a list of liked songs for a user.
+=======
+>>>>>>> ce793d902e0374fe41c8edd9e05657e1adfc1a66
 * As a premium user, I can see a like/dislike ratio for an entire artist.
 
 ## Tech Stack
