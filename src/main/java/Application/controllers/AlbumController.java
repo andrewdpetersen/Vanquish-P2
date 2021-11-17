@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
 /**
  * AlbumController
  * Handles requests that involve the manipulating or retrieval of album data
