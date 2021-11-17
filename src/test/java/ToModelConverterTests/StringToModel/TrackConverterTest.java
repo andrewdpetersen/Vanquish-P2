@@ -1,6 +1,7 @@
 package ToModelConverterTests.StringToModel;
 
 import Application.models.Track;
+import org.json.JSONException;
 import org.junit.*;
 
 import static Application.deezer.JSONStringToModelConverter.trackConverter;
@@ -30,7 +31,7 @@ public class TrackConverterTest {
     }
 
     @Test
-    public void trackConverterTest(){
+    public void trackConverterTest() throws JSONException {
         int track_id = trackConverter(trackJson).getTrack_id();
         String track_title = trackConverter(trackJson).getTitle();
 

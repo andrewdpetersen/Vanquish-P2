@@ -5,11 +5,12 @@ import Application.models.Artist;
 import Application.models.Genre;
 import Application.models.Track;
 import Application.services.APIClientService;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JSONStringToModelConverter {
 
-    public static Track trackConverter(String json){
+    public static Track trackConverter(String json) throws JSONException {
 
         JSONObject jsonObject = new JSONObject(json);
         int track_id = jsonObject.getInt("id");
@@ -40,7 +41,7 @@ public class JSONStringToModelConverter {
         return track;
     }
 
-    public static Artist artistConverter(String json){
+    public static Artist artistConverter(String json) throws JSONException {
         JSONObject jsonObject = new JSONObject(json);
         int artist_id = jsonObject.getInt("id");
         String name = jsonObject.getString("name");
@@ -49,7 +50,7 @@ public class JSONStringToModelConverter {
         return new Artist(name,artist_id,pictureUrl);
     }
 
-    public static Album albumConverter(String json){
+    public static Album albumConverter(String json) throws JSONException {
         JSONObject jsonObject = new JSONObject(json);
         int album_id = jsonObject.getInt("id");
         String title = jsonObject.getString("title");
@@ -72,7 +73,7 @@ public class JSONStringToModelConverter {
         return album;
     }
 
-    public static Genre genreConverter(String json){
+    public static Genre genreConverter(String json) throws JSONException {
         JSONObject jsonObject = new JSONObject(json);
         int genre_id = jsonObject.getInt("id");
         String name = jsonObject.getString("name");

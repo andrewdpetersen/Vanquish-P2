@@ -1,5 +1,6 @@
 package ToModelConverterTests.StringToModel;
 
+import org.json.JSONException;
 import org.junit.*;
 
 import static Application.deezer.JSONStringToModelConverter.albumConverter;
@@ -27,7 +28,7 @@ public class AlbumConverterTest {
     }
 
     @Test
-    public void albumConverterTest(){
+    public void albumConverterTest() throws JSONException {
         int album_id = albumConverter(albumJson).getID();
         String title = albumConverter(albumJson).getAlbum_title();
         String date = albumConverter(albumJson).getDate();

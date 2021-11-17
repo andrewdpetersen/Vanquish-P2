@@ -1,6 +1,7 @@
 package ToModelConverterTests.StringToModel;
 
 import Application.models.Artist;
+import org.json.JSONException;
 import org.junit.*;
 
 import static Application.deezer.JSONStringToModelConverter.artistConverter;
@@ -27,7 +28,7 @@ public class ArtistConverterTest {
     }
 
     @Test
-    public void artistConverterTest(){
+    public void artistConverterTest() throws JSONException {
         int artist_id = artistConverter(artistJson).getID();
         String name = artistConverter(artistJson).getName();
         String picURL = artistConverter(artistJson).getImage_url();

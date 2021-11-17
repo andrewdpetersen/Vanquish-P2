@@ -6,6 +6,7 @@ import Application.models.Track;
 import Application.services.APIClientService;
 import Application.services.TrackService;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class TrackController {
 
     @GetMapping(value = "track/search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Track[] searchForTracksByTitle(@PathVariable ("title") String title){
+    public Track[] searchForTracksByTitle(@PathVariable ("title") String title) throws JSONException {
         List<Track> trackList = TrackSearch.searchTracks(title,5);
         Track[] tracks = new Track[5];
         for (int i=0;i<5;i++) {
@@ -51,7 +52,7 @@ public class TrackController {
 
     @GetMapping(value = "track/byAlbum/{id}")
     @ResponseStatus(value = HttpStatus.OK)
-    public Track[] getTracksByAlbum(@PathVariable ("id") Integer album_id){
+    public Track[] getTracksByAlbum(@PathVariable ("id") Integer album_id) throws JSONException {
         String url = "https://api.deezer.com/album/"+album_id+"/tracks";
         String jsonResponse = APIClientService.get(url);
         JSONObject jsonObject = new JSONObject(jsonResponse);

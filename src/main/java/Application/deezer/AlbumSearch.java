@@ -3,13 +3,14 @@ package Application.deezer;
 import Application.models.Album;
 import Application.services.APIClientService;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AlbumSearch {
-    public static List<Album> albumSearch(String albumTitle, int numberOfResults){
+    public static List<Album> albumSearch(String albumTitle, int numberOfResults) throws JSONException {
         List<Album> albumSearch = new ArrayList<>();
 
         String urlStart = "https://api.deezer.com/search/album?q="+albumTitle+"&index=";
@@ -26,7 +27,7 @@ public class AlbumSearch {
             //data is NOT a string, it is a JSONArray with 1 JSONObject in it...
             JSONArray data = jsonObject.getJSONArray("data");
 
-            if(data.isEmpty()){
+            if(data.length()==0){
                 return albumSearch;
             }
             JSONObject jsonData = data.getJSONObject(0);

@@ -2,6 +2,7 @@ package Application.controllers;
 import Application.deezer.ArtistSearch;
 import Application.models.Artist;
 import Application.services.ArtistService;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,7 +36,7 @@ public class ArtistController {
     
     @GetMapping(value = "artist/search/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Artist[] searchForArtistsByName(@PathVariable ("name") String title){
+    public Artist[] searchForArtistsByName(@PathVariable ("name") String title) throws JSONException {
         System.out.println("Test: Artist");
         List<Artist> artistList = ArtistSearch.artistSearch(title,5);
         Artist[] artists = new Artist[5];

@@ -1,5 +1,6 @@
 package ToModelConverterTests.ObjectToModel;
 
+import org.json.JSONException;
 import org.junit.*;
 
 import static Application.deezer.JSONObjectToModelConverter.genreConverter;
@@ -27,7 +28,7 @@ public class GenreConverterTest {
     }
 
     @Test
-    public void genreConverterTest(){
+    public void genreConverterTest() throws JSONException {
         int genreID = genreConverter(json).getGenreID();
         String genreName = genreConverter(json).getGenreName();
         String genrePic = genreConverter(json).getImageURL();

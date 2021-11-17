@@ -5,10 +5,11 @@ import Application.models.Artist;
 import Application.models.Genre;
 import Application.models.Track;
 import Application.services.APIClientService;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JSONObjectToModelConverter {
-    public static Track trackConverter(JSONObject jsonObject){
+    public static Track trackConverter(JSONObject jsonObject) throws JSONException {
 
         int track_id = jsonObject.getInt("id");
         String title = jsonObject.getString("title");
@@ -38,7 +39,7 @@ public class JSONObjectToModelConverter {
         return track;
     }
 
-    public static Artist artistConverter(JSONObject jsonObject){
+    public static Artist artistConverter(JSONObject jsonObject) throws JSONException {
         int artist_id = jsonObject.getInt("id");
         String name = jsonObject.getString("name");
         String pictureUrl = jsonObject.getString("picture_medium");
@@ -46,7 +47,7 @@ public class JSONObjectToModelConverter {
         return new Artist(name,artist_id,pictureUrl);
     }
 
-    public static Album albumConverter(JSONObject jsonObject){
+    public static Album albumConverter(JSONObject jsonObject) throws JSONException {
         int album_id = jsonObject.getInt("id");
         String title = jsonObject.getString("title");
         String release_date = jsonObject.getString("release_date");
@@ -68,7 +69,7 @@ public class JSONObjectToModelConverter {
         return album;
     }
 
-    public static Genre genreConverter(String json){
+    public static Genre genreConverter(String json) throws JSONException {
         JSONObject jsonObject = new JSONObject(json);
         int genre_id = jsonObject.getInt("id");
         String name = jsonObject.getString("name");
@@ -77,7 +78,7 @@ public class JSONObjectToModelConverter {
         return new Genre(genre_id,name,pictureUrl);
     }
 
-    public static Track topTrackConverter(JSONObject jsonTrack,Artist artist,Album album){
+    public static Track topTrackConverter(JSONObject jsonTrack,Artist artist,Album album) throws JSONException {
         int track_id = jsonTrack.getInt("id");
         String title = jsonTrack.getString("title");
         Track track = new Track(track_id,title);

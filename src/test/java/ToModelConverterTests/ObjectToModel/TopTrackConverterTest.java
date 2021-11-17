@@ -3,6 +3,7 @@ package ToModelConverterTests.ObjectToModel;
 import Application.models.Album;
 import Application.models.Artist;
 import Application.models.Track;
+import org.json.JSONException;
 import org.junit.*;
 import org.json.JSONObject;
 
@@ -24,7 +25,7 @@ public class TopTrackConverterTest {
     }
 
     @Before //before each test starts
-    public void before() {
+    public void before() throws JSONException {
         album = new Album();
         album.setID(2);
         album.setAlbum_title("Album Title");
@@ -48,7 +49,7 @@ public class TopTrackConverterTest {
     }
 
     @Test
-    public void testTopTrackConverter(){
+    public void testTopTrackConverter() throws JSONException {
         int trackID = topTrackConverter(jsonTrack,artist,album).getTrack_id();
         String trackTitle = topTrackConverter(jsonTrack,artist,album).getTitle();
         Class thisClass = topTrackConverter(jsonTrack,artist,album).getClass();

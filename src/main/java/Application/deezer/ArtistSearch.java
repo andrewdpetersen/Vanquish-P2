@@ -5,6 +5,7 @@ import Application.models.Artist;
 import Application.models.Track;
 import Application.services.APIClientService;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class ArtistSearch {
 
-    public static List<Artist> artistSearch(String artistName, int numberOfResults){
+    public static List<Artist> artistSearch(String artistName, int numberOfResults) throws JSONException {
         List<Artist> artistSearch = new ArrayList<>();
 
         String urlStart = "https://api.deezer.com/search/artist?q="+artistName+"&index=";
@@ -28,7 +29,7 @@ public class ArtistSearch {
 
             //data is NOT a string, it is a JSONArray with 1 JSONObject in it...
             JSONArray data = jsonObject.getJSONArray("data");
-            if(data.isEmpty()){
+            if(data.length()==0){
                 return artistSearch;
             }
 
@@ -46,7 +47,7 @@ public class ArtistSearch {
         return artistSearch;
     }
 
-    public static List<Track> getTopTracks(Artist artist,int numberOfTracks){
+    public static List<Track> getTopTracks(Artist artist,int numberOfTracks) throws JSONException {
 
         List<Track> topTracks = new ArrayList<>();
         String request = "https://api.deezer.com/artist/"+artist.getID()+"/top?limit="+numberOfTracks;

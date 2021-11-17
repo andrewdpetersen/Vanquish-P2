@@ -3,6 +3,7 @@ package Application.controllers;
 import Application.deezer.AlbumSearch;
 import Application.models.Album;
 import Application.services.AlbumService;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -106,7 +107,7 @@ public class AlbumController {
     
     @GetMapping(value = "/album/search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public Album[] searchForAlbumsByTitle(@PathVariable ("title") String title){
+    public Album[] searchForAlbumsByTitle(@PathVariable ("title") String title) throws JSONException {
         System.out.println("Test: Album");
         List<Album> albumList = AlbumSearch.albumSearch(title,5);
         Album[] albums = new Album[5];
