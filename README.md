@@ -20,11 +20,10 @@ Team Vanquish Project 2 Implementation
 while allowing premium users to gain valuable insights from user trends and analytics.
 
 Users can create and share playlists of their favorite songs and artists,
-along with viewing songs by similar artists and genres, and connecting to the social media accounts of their
-favorite artists.
+along with viewing songs by similar artists and genres, and view how popular their favorite songs are among other users.
 
 Premium users (concert organizers, artists, tour managers, etc.) can browse artists and see high-level, real-time analytics on
-the users that like particular artists.
+the users that like particular tracks.
 
 
 ### Minimum Viable Product
