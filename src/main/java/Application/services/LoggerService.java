@@ -8,6 +8,13 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
 
+/**
+ * LoggerService
+ * Handles logging error information to the database
+ *
+ * @author Kollier Martin
+ * @date 11/10/2021
+ */
 @Service
 @Transactional
 public class LoggerService {

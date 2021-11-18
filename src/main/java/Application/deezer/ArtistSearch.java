@@ -10,6 +10,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ArtistSearch
+ * Uses Deezer API calls to search for an Artist
+ *
+ * @author Andrew Peterson and Michael Reece
+ * @date 11/6/2021
+ */
 public class ArtistSearch {
 
     public static List<Artist> artistSearch(String artistName, int numberOfResults){
@@ -17,16 +24,12 @@ public class ArtistSearch {
 
         String urlStart = "https://api.deezer.com/search/artist?q="+artistName+"&index=";
         for(int i=0;i<numberOfResults;i++){
-            //This limits the results of our get request to 1 result per request
             String url = urlStart + i + "&limit=1";
 
-            //This sends the request and assigns the response to a String
             String jsonResponse = APIClientService.get(url);
 
-            //This section gets the artist data from the response
             JSONObject jsonObject = new JSONObject(jsonResponse);
 
-            //data is NOT a string, it is a JSONArray with 1 JSONObject in it...
             JSONArray data = jsonObject.getJSONArray("data");
             if(data.isEmpty()){
                 return artistSearch;

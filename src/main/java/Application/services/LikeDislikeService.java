@@ -1,5 +1,6 @@
 package Application.services;
 
+import Application.exceptions.UserDoesNotExistException;
 import Application.models.*;
 import Application.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * LikeDislikeService
+ * The middle man, or service, that connects to the persistence layer for everything relating to the like/dislike functionality for tracks.
+ *
+ * @date 11/9/21
+ * @author Michael Reece
+ */
 @Service
 @Transactional
 public class LikeDislikeService {
@@ -83,8 +91,7 @@ public class LikeDislikeService {
         return userRepository.getById(id);
     }
 
-    public Optional<User> getUserByUsername(String username)
-    {
+    public Optional<User> getUserByUsername(String username) {
         Optional<UserInfo> optionalUserInfo = userInfoRepository.findByUsername(username);
         if(optionalUserInfo.isPresent())
         {
@@ -94,9 +101,8 @@ public class LikeDislikeService {
         }
         else
         {
-            //user does not exist exception
+            throw new UserDoesNotExistException("User with username " + username + " does not exist.");
         }
-        return Optional.empty();
     }
 
     public Integer getTotalLikes(Integer track_id){

@@ -1,10 +1,18 @@
 package Application.services;
+
 import Application.models.Artist;
 import Application.repositories.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * ArtistService
+ * Service that manipulates and executes Artist repository methods
+ *
+ * @date 11/4/2021
+ * @author Erika Johnson
+ */
 @Service
 @Transactional
 public class ArtistService {
@@ -15,15 +23,12 @@ public class ArtistService {
         this.artistRepository = artistRepository;
     }
 
-    public void save(Artist artist){
-        artistRepository.save(artist);
+    public Artist save(Artist artist){
+        return artistRepository.save(artist);
     }
 
     public Artist getArtist(Integer id){
         return artistRepository.getById(id);
     }
 
-//    public Artist getArtistByName(String name){
-//        return artistRepository.findByName(name);
-//    }
 }

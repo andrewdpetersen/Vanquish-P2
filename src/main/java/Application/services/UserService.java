@@ -16,12 +16,11 @@ import java.util.List;
 
 
 /**
- * This service bean is used to talk to its designated repository and handle data retrieval
+ * This service bean is used to talk to its designated repository and handle data retrieval for 'User'
  *
  * @date 10/29/2021
  * @author Kollier Martin
  */
-
 @Service
 @Transactional
 public class UserService {
@@ -84,8 +83,7 @@ public class UserService {
 
     /**
      * Persist User to DB
-     * @param user
-     * @return
+     * @param user User to persist
      */
     public void save(User user) {
         userRepository.save(user);
@@ -93,8 +91,7 @@ public class UserService {
 
     /**
      * Delete User by ID
-     * @param id
-     * @return
+     * @param id ID used to query database
      */
     public void delete(int id) throws UserDoesNotExistException {
         userRepository.deleteByID(id);

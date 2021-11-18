@@ -7,69 +7,55 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This service bean is used to talk to its designated repository and handle data retrieval for 'UserInfo'
+ *
+ *
+ * @date 11/8/2021
+ * @author Andrew Peterson and Kollier Martin
+ */
 @Service
 @Transactional
 public class UserInfoService {
-    private final LoggerService loggerService;
     private final UserInfoRepository userInfoRepository;
     private final String exceptionError = "User: %s does not exist.";
 
     @Autowired
-    public UserInfoService(UserInfoRepository userInfoRepository, LoggerService loggerService) {
+    public UserInfoService(UserInfoRepository userInfoRepository) {
         this.userInfoRepository = userInfoRepository;
-        this.loggerService = loggerService;
     }
 
-    public UserInfo saveUserInfo(UserInfo userInfo){
-        userInfoRepository.save(userInfo);
-        return userInfoRepository.getById(userInfo.getID());
-    }
-
-    public UserInfo getUserInfoById(Integer id){
+    /**
+     *
+     * @param id ID to query the database with
+     * @return UserInfo
+     */
+    public UserInfo getUserInfoById(Integer id) {
         return userInfoRepository.getById(id);
     }
 
-    public String getEmailById(Integer id){
-        UserInfo info = userInfoRepository.getById(id);
-        return info.getEmail();
+    /**
+     * Saves and returns the persisted UserInfo
+     * @param userInfo UserInfo object to save
+     * @return Newly Persisted UserInfo
+     */
+    public UserInfo save(UserInfo userInfo) {
+        return userInfoRepository.save(userInfo);
     }
 
-    public String getUsernameById(Integer id){
-        UserInfo info = userInfoRepository.getById(id);
-        return info.getUsername();
-    }
-
-    public String getPasswordById(Integer id){
-        UserInfo info = userInfoRepository.getById(id);
-        return info.getPassword();
-    }
-
-    public List<String> getLoginById(Integer id){
-        UserInfo info = userInfoRepository.getById(id);
-        List<String> login = new LinkedList<>();
-        login.add(info.getUsername());
-        login.add(info.getPassword());
-        return login;
-    }
-
-    public UserInfo getByFirstName(String firstName) {
-        return userInfoRepository.findByFirstName(firstName).get();
-    }
-
-    public void save(UserInfo userInfo) {
-        userInfoRepository.save(userInfo);
-    }
-
+    /**
+     * This method deletes a persisted UserInfo object
+     * @param info UserInfo object to delete
+     */
     public void deleteUserInfo(UserInfo info){
         userInfoRepository.delete(info);
     }
 
     /**
-     * To reset DB data if necessary
+     * This method is used to clear the UserInfo database
      */
     public void deleteAllInfo(){
         userInfoRepository.deleteAll();
@@ -77,8 +63,6 @@ public class UserInfoService {
 
     /**
      * This method fetches all User Info in the DB
-     * @author Kollier Martin
-     * @date 11/8/2021
      * @return List of users present in DB
      */
     public List<UserInfo> getAll() {
@@ -86,23 +70,16 @@ public class UserInfoService {
     }
 
     /**
-     * Authenticate User
-     * @date 11/8/2021
-     * @author Kollier Martin
+     * Authenticates user presence in database
      * @param username Username
      * @param password Password
      * @return User Info, either null or not null
      */
     public Optional<UserInfo> authenticate(String username, String password){
-        Optional<UserInfo> userInfo = Optional.empty();
+        Optional<UserInfo> userInfo = userInfoRepository.findByUsernameAndPassword(username, password);
 
-        try {
-            userInfo = userInfoRepository.findByUsernameAndPassword(username, password);
-            if (!userInfo.isPresent()) {
-                throw new UserDoesNotExistException(exceptionError);
-            }
-        } catch (UserDoesNotExistException e) {
-            loggerService.writeLog(e.getMessage(), 3);
+        if (!userInfo.isPresent()) {
+            throw new UserDoesNotExistException(String.format(exceptionError, username));
         }
 
         return userInfo;

@@ -1,6 +1,5 @@
 package Application.controllers;
 
-import Application.DTOs.UserRegistrationDTO;
 import Application.models.User;
 import Application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,17 +7,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
  * UserController
- * Handles requests that involve the manipulating or retrieval of user data
+ * Handles requests that involve the manipulating or retrieval of User data
  *
- * @Date 11/1/2021
- * @Author Kollier Martin
+ * @date 11/1/2021
+ * @author Kollier Martin
  */
 
 @RestController
@@ -51,26 +49,6 @@ public class UserController {
             return new ResponseEntity<>(allUsers, HttpStatus.NO_CONTENT);
         else
             return new ResponseEntity<>(allUsers, HttpStatus.OK);
-    }
-
-    /**
-     * Register Basic User to server
-     * @param regData Registration Data
-     * @return The registered User
-     */
-    @PostMapping(value = "/user/register/basic", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public User registerBasicUser(@RequestBody @Valid UserRegistrationDTO regData){
-        return userService.registerUser(regData, User.Role.BASIC);
-    }
-
-    /**
-     * Register Register User to server
-     * @param regData Registration Data
-     * @return The registered User
-     */
-    @PostMapping(value = "/user/register/premium", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public User registerPremiumUser(@RequestBody @Valid UserRegistrationDTO regData){
-        return userService.registerUser(regData, User.Role.PREMIUM);
     }
 
     /**

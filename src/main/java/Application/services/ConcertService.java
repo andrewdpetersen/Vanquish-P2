@@ -1,4 +1,5 @@
 package Application.services;
+
 import Application.models.Concert;
 import Application.repositories.ConcertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * ConcertService
+ * Service that manipulates and executes Concert repository methods
+ *
+ * @date 11/4/2021
+ * @author Erika Johnson
+ */
 @Service
 @Transactional
 public class ConcertService {
@@ -17,8 +25,8 @@ public class ConcertService {
         this.concertRepository = concertRepository;
     }
 
-    public void save(Concert concert){
-        concertRepository.save(concert);
+    public Concert save(Concert concert){
+        return concertRepository.save(concert);
     }
 
     public Concert getConcert(Integer id){

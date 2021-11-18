@@ -1,9 +1,7 @@
 package Application.controllers;
 
 import Application.deezer.AlbumSearch;
-
 import Application.models.Album;
-import Application.models.Artist;
 import Application.services.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,14 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
 /**
  * AlbumController
  * Handles requests that involve the manipulating or retrieval of album data
  *
  * @date 11/3/2021
- * @author Kollier Martin
+ * @author Andrew Peterson and Kollier Martin
  */
 
 @RestController
@@ -38,7 +34,6 @@ public class AlbumController {
      * This functions returns all albums cached into DB
      * @return ResponseEntity with HttpStatus and/or content
      */
-
     @GetMapping("/album/all")
     public ResponseEntity<List<Album>> getAllAlbums() {
         List<Album> allAlbums = albumService.getAll();
@@ -107,10 +102,14 @@ public class AlbumController {
         }
     }
 
+    /**
+     * Search for albums by using a title
+     * @param title Album title
+     * @return Arrays of Album with the variable {title}
+     */
     @GetMapping(value = "/album/search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Album[] searchForAlbumsByTitle(@PathVariable ("title") String title){
-        System.out.println("Test: Album");
         List<Album> albumList = AlbumSearch.albumSearch(title,5);
         Album[] albums = new Album[5];
         for (int i=0;i<5;i++) {

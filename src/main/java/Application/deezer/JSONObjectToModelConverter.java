@@ -7,7 +7,19 @@ import Application.models.Track;
 import Application.services.APIClientService;
 import org.json.JSONObject;
 
+/**
+ * JSONObjectToModelConverter
+ * This converter contains logic to parse API call information and convert the data to Models
+ *
+ * @author Andrew Peterson
+ * @date 11/6/2021
+ */
 public class JSONObjectToModelConverter {
+    /**
+     *
+     * @param jsonObject
+     * @return
+     */
     public static Track trackConverter(JSONObject jsonObject){
 
         int track_id = jsonObject.getInt("id");
@@ -38,6 +50,11 @@ public class JSONObjectToModelConverter {
         return track;
     }
 
+    /**
+     *
+     * @param jsonObject
+     * @return
+     */
     public static Artist artistConverter(JSONObject jsonObject){
         int artist_id = jsonObject.getInt("id");
         String name = jsonObject.getString("name");
@@ -46,6 +63,11 @@ public class JSONObjectToModelConverter {
         return new Artist(name,artist_id,pictureUrl);
     }
 
+    /**
+     *
+     * @param jsonObject
+     * @return
+     */
     public static Album albumConverter(JSONObject jsonObject){
         int album_id = jsonObject.getInt("id");
         String title = jsonObject.getString("title");
@@ -68,6 +90,11 @@ public class JSONObjectToModelConverter {
         return album;
     }
 
+    /**
+     *
+     * @param json
+     * @return
+     */
     public static Genre genreConverter(String json){
         JSONObject jsonObject = new JSONObject(json);
         int genre_id = jsonObject.getInt("id");
@@ -77,6 +104,13 @@ public class JSONObjectToModelConverter {
         return new Genre(genre_id,name,pictureUrl);
     }
 
+    /**
+     *
+     * @param jsonTrack
+     * @param artist
+     * @param album
+     * @return
+     */
     public static Track topTrackConverter(JSONObject jsonTrack,Artist artist,Album album){
         int track_id = jsonTrack.getInt("id");
         String title = jsonTrack.getString("title");

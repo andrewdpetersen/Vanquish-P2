@@ -13,14 +13,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author Andrew Petersen
+ * This service bean is used to talk to its designated repository and handle data retrieval for 'Playlist'
+ *
+ * @author Andrew Peterson, Mike Eads, Michael Reece
  * @date 11/06/21
  */
 @Service
 @Transactional
 public class PlaylistService {
-    private PlaylistRepository playlistRepository;
-    private TrackRepository trackRepository;
+    private final PlaylistRepository playlistRepository;
+    private final TrackRepository trackRepository;
 
     @Autowired
     public PlaylistService(PlaylistRepository playlistRepository,TrackRepository trackRepository) {
@@ -28,23 +30,8 @@ public class PlaylistService {
         this.trackRepository = trackRepository;
     }
 
-    public void savePlaylist(Playlist playlist){
-        playlistRepository.save(playlist);
-    }
-
-    public Playlist getPlaylist(Integer id){
-        return playlistRepository.getById(id);
-    }
-
-    public int getMaxPlaylistId(){
-        List<Playlist> allPlaylists = playlistRepository.findAll();
-        int max = 0;
-        for (Playlist playlist:allPlaylists) {
-            if(playlist.getPlaylist_id()>max){
-                max=playlist.getPlaylist_id();
-            }
-        }
-        return max;
+    public Playlist savePlaylist(Playlist playlist){
+        return playlistRepository.save(playlist);
     }
 
     public List<Track> getTracksByPlaylist(Integer playlist_id){

@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 
 /**
  * LoggerAspect
- * Logs all method calls and exceptions for all classes except filters.
+ * Logs all method calls and exceptions for all classes except filter and configuration files.
  *
  * @author Kollier Martin
+ * @date 11/10/2021
  */
-
 
 @Aspect
 @Component

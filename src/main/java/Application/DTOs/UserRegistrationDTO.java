@@ -1,6 +1,5 @@
 package Application.DTOs;
 
-import Application.models.Location;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;

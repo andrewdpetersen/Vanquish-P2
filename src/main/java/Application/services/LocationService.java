@@ -8,6 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * This service bean is used to talk to its designated repository and handle data retrieval for 'Location'
+ *
+ * @author Andrew Peterson
+ * @date 11/6/2021
+ */
 @Service
 @Transactional
 public class LocationService {
@@ -23,7 +29,6 @@ public class LocationService {
         return locationRepository.getById(location.getLocation_id());
     }
 
-    // Kollier added this
     public List<Location> getAll(){
         return locationRepository.findAll();
     }
@@ -36,17 +41,10 @@ public class LocationService {
         locationRepository.save(location);
     }
 
-    public void deleteLocationById(Integer id){
-        locationRepository.delete(locationRepository.getById(id));
-    }
-
     public void deleteLocation(Location location){
         locationRepository.delete(location);
     }
 
-    /**
-     * To reset DB data if necessary
-     */
     public void deleteAllLocations(){
         locationRepository.deleteAll();
     }

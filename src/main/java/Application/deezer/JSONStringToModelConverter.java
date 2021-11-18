@@ -7,15 +7,22 @@ import Application.models.Track;
 import Application.services.APIClientService;
 import org.json.JSONObject;
 
+/**
+ * JSONStringToModelConverter
+ * This converter contains logic to parse API call information and convert the data to Models
+ *
+ * @author Andrew Peterson and Michael Reece
+ * @date 11/6/2021
+ */
 public class JSONStringToModelConverter {
-
+    /**
+     *
+     */
     public static Track trackConverter(String json){
-
         JSONObject jsonObject = new JSONObject(json);
         int track_id = jsonObject.getInt("id");
         String title = jsonObject.getString("title");
 
-        //This gets the artist JSONObject and pulls data from it
         JSONObject artistJson = jsonObject.getJSONObject("artist");
         int artist_id = artistJson.getInt("id");
         String name = artistJson.getString("name");
@@ -40,6 +47,11 @@ public class JSONStringToModelConverter {
         return track;
     }
 
+    /**
+     *
+     * @param json
+     * @return
+     */
     public static Artist artistConverter(String json){
         JSONObject jsonObject = new JSONObject(json);
         int artist_id = jsonObject.getInt("id");
@@ -49,6 +61,11 @@ public class JSONStringToModelConverter {
         return new Artist(name,artist_id,pictureUrl);
     }
 
+    /**
+     *
+     * @param json
+     * @return
+     */
     public static Album albumConverter(String json){
         JSONObject jsonObject = new JSONObject(json);
         int album_id = jsonObject.getInt("id");
@@ -56,11 +73,10 @@ public class JSONStringToModelConverter {
         String release_date = jsonObject.getString("release_date");
 
         int genre_id = jsonObject.getInt("genre_id");
-        //GET from deezer the Genre by the ID
+
         String genreJsonString = "https://api.deezer.com/genre/"+genre_id;
         String genre_json_response = APIClientService.get(genreJsonString);
 
-        //call genreConverter here
         Genre genre = genreConverter(genre_json_response);
 
         JSONObject artistJson = jsonObject.getJSONObject("artist");
@@ -79,6 +95,11 @@ public class JSONStringToModelConverter {
         return album;
     }
 
+    /**
+     *
+     * @param json
+     * @return
+     */
     public static Genre genreConverter(String json){
         JSONObject jsonObject = new JSONObject(json);
         int genre_id = jsonObject.getInt("id");

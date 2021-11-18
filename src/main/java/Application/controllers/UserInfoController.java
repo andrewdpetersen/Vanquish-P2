@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * UserInfoController
+ * Handles requests that involve the manipulation of UserInfo data
+ *
+ * @date 11/8/2021
+ * @author Andrew Peterson
+ */
 @RestController
 @RequestMapping(value = "/4TheMusic")
 public class UserInfoController {
@@ -20,32 +27,53 @@ public class UserInfoController {
         this.userInfoService = userInfoService;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/userinfo/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public UserInfo getUserInfoById(@PathVariable ("id") Integer id){
         return userInfoService.getUserInfoById(id);
     }
 
+    /**
+     *
+     * @param userInfo
+     * @return
+     */
     @PostMapping(value = "/userinfo", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public UserInfo saveUserInfo(@RequestBody UserInfo userInfo){
-        return userInfoService.saveUserInfo(userInfo);
+        return userInfoService.save(userInfo);
     }
 
-    // Kollier took out setLocation and setUser until we get the Front End together
+    /**
+     *
+     * @param userInfo
+     * @return
+     */
     @PutMapping(value = "/userinfo/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public UserInfo updateUserInfo(@RequestBody UserInfo userInfo){
         UserInfo updatedInfo = userInfoService.getUserInfoById(userInfo.getID());
+
         updatedInfo.setEmail(userInfo.getEmail());
         updatedInfo.setPassword(userInfo.getPassword());
+        updatedInfo.setLocation(userInfo.getLocation());
+        updatedInfo.setUser(userInfo.getUser());
         updatedInfo.setFirstName(userInfo.getFirstName());
         updatedInfo.setLastName(userInfo.getLastName());
         updatedInfo.setUsername(userInfo.getUsername());
-        userInfoService.saveUserInfo(updatedInfo);
-        return userInfoService.getUserInfoById(updatedInfo.getID());
+
+        return userInfoService.save(updatedInfo);
     }
 
+    /**
+     *
+     * @param id
+     */
     @DeleteMapping(value = "/userinfo/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public void deleteUserInfoById(@PathVariable ("id") Integer id){

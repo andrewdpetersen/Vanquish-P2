@@ -7,6 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * GenreController
+ *
+ *
+ * @date 11/1/2021
+ * @author
+ */
 @RestController
 @RequestMapping(value = "/4TheMusic")
 public class GenreController {
@@ -18,6 +25,11 @@ public class GenreController {
         this.genreService = genreService;
     }
 
+    /**
+     *
+     * @param genre
+     * @return
+     */
     @PostMapping(value = "/genre", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public Genre saveGenre(@RequestBody Genre genre){
@@ -26,6 +38,11 @@ public class GenreController {
         return genreService.getGenre(genre.getGenreID());
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/genre/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Genre getGenre(@PathVariable ("id") Integer id){

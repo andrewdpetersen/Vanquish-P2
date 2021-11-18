@@ -5,12 +5,16 @@ import Application.models.Track;
 import Application.repositories.PlaylistRepository;
 import Application.repositories.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
+/**
+ * TrackPlaylistService
+ * The middle man, or service, that connects to the persistence layer for everything relating to the like/dislike functionality for tracks.
+ *
+ * @date 11/9/21
+ * @author Michael Reece
+ */
 @Service
 @Transactional
 public class TrackPlaylistService {

@@ -1,5 +1,12 @@
 package Application.DTOs;
 
+/**
+ * LoginCredentialsDTO
+ * This DTO is used to receive login information from the front-end
+ *
+ * @date 11/4/2021
+ * @author Kollier Martin
+ */
 public class LoginCredentialsDTO {
 
     private String username;

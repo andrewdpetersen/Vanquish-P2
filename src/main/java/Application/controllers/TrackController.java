@@ -2,7 +2,6 @@ package Application.controllers;
 
 
 import Application.deezer.JSONStringToModelConverter;
-
 import Application.deezer.TrackSearch;
 import Application.models.Track;
 import Application.services.APIClientService;
@@ -14,9 +13,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * TrackController
+ * Handles requests that involve the manipulation of Track data
+ *
+ * @date 11/1/2021
+ * @author Andrew Peterson and Mike Eads
+ */
 @RestController
 @RequestMapping(value = "/4TheMusic")
 public class TrackController {
@@ -27,6 +32,11 @@ public class TrackController {
         this.trackService = trackService;
     }
 
+    /**
+     *
+     * @param track
+     * @return
+     */
     @PostMapping(value = "/track", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public Track saveTrack(@RequestBody Track track){
@@ -34,13 +44,22 @@ public class TrackController {
         return trackService.getTrack(track.getTrack_id());
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/track/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    //@GetMapping(value = "/track?id=x", produces = MediaType.APPLICATION_JSON_VALUE) -> @RequestParam
     @ResponseStatus(value = HttpStatus.OK)
     public Track getTrackById(@PathVariable ("id") Integer id){
         return trackService.getTrack(id);
     }
 
+    /**
+     *
+     * @param title
+     * @return
+     */
     @GetMapping(value = "track/search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public Track[] searchForTracksByTitle(@PathVariable ("title") String title){
@@ -52,6 +71,11 @@ public class TrackController {
         return tracks;
     }
 
+    /**
+     *
+     * @param album_id
+     * @return
+     */
     @GetMapping(value = "track/byAlbum/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public Track[] getTracksByAlbum(@PathVariable ("id") Integer album_id){

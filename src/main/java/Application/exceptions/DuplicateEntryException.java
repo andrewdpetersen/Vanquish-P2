@@ -6,12 +6,12 @@ package Application.exceptions;
  * @date 11/1/2021
  * @author Vanquish
  */
-public class AuthenticationException extends RuntimeException {
-    public AuthenticationException() {
+public class DuplicateEntryException extends RuntimeException {
+    public DuplicateEntryException() {
         super();
     }
 
-    public AuthenticationException(String message) {
+    public DuplicateEntryException(String message) {
         super(message);
     }
 }
