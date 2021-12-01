@@ -1,5 +1,5 @@
 # Link to frontend:
-https://github.com/210913-java-full-stack/VanquishFrontEndP2
+https://github.com/andrewdpetersen/VanquishFrontEndP2
 
 # Vanquish-P2
 Team Vanquish Project 2 Implementation
